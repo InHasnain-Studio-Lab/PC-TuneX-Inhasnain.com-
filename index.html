@@ -1,0 +1,161 @@
+<!doctype html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8"/> 
+        <title>InHasnain | Studio Lab </title>         
+        <meta name="viewport" content="width=device-width,initial-scale=1"/> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="site.css"/> 
+    </head>     
+    <body> 
+        <div class="page-transition" id="pg-transition"></div>
+        <div class="bg-grid"></div>
+        <div class="scanlines"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <header class="top-bar" role="banner" aria-label="Top navigation">
+            <div class="brand">
+                <div class="logo" aria-hidden="true">HSL<br>
+                </div>                 
+                <div class="title"> 
+                    <div class="name">InHasnain</div>                     
+                    <div class="sub">Studio Lab</div>                     
+                </div>                 
+            </div>             
+            <nav aria-label="Primary" role="navigation"> 
+                <a href="index.html" class="active">Home</a> 
+                <a href="pctunex.html">Apps</a> 
+                <a href="pricing.html">AI Studio</a> 
+                <a href="contact.html">Contact</a> 
+            </nav>             
+            <div class="actions" role="group" aria-label="Actions"> 
+                <button class="icon-btn" aria-label="Search">🔍</button>
+                <button class="icon-btn" aria-label="Account">👤</button>
+                <button class="icon-btn" aria-label="Cart">🛒</button>
+            </div>
+        </header>         
+        <main class="container" role="main"> 
+            <section class="hero"> 
+                <div class="hero-card"> 
+                    <div class="hero-decoration"></div>
+                    <h1>Digital Solutions</h1>
+                    <p class="lead">Clean, efficient and focused Windows utilities starting with PC TuneX App and Do check my AI Studio Protofolio with learning opportunities.</p> 
+                    <div class="hero-actions"> 
+                        <a class="btn btn--primary" href="pctunex.html">Explore Apps</a> 
+                        <a class="btn btn--secondary" href="pricing.html">Open AI Studio</a> 
+                    </div>                     
+                </div>                 
+                <aside class="auth-container" aria-labelledby="auth-heading" role="region"> 
+                    <h2 id="auth-heading" class="visually-hidden">Authentication</h2> 
+                    <div class="auth-tabs" role="tablist" aria-label="Authentication tabs"> 
+                        <button class="auth-tab active" data-tab="signup" role="tab" aria-selected="true" aria-controls="signup">Sign Up</button>                         
+                        <button class="auth-tab" data-tab="signin" role="tab" aria-selected="false" aria-controls="signin">Sign In</button>                         
+                    </div>                     
+                    <div class="auth-panel" id="signup" role="tabpanel"> 
+                        <form id="signup-form" class="auth-form" autocomplete="on"> 
+                            <label for="name-signup"> 
+                                Name
+                                <input id="name-signup" name="name" type="text" placeholder="Your name" required/> 
+                            </label>                             
+                            <label for="email-signup"> 
+                                Email
+                                <input id="email-signup" name="email" type="email" placeholder="you@example.com" required/> 
+                            </label>                             
+                            <label for="password-signup"> 
+                                Password
+                                <input id="password-signup" name="password" type="password" placeholder="Create a password" minlength="8" required/> 
+                            </label>                             
+                            <button type="submit" class="btn full btn--primary">Create Account</button>                             
+                            <p id="signup-status" class="form-status" aria-live="polite"></p> 
+                        </form>                         
+                    </div>                     
+                    <div class="auth-panel hidden" id="signin" role="tabpanel" aria-hidden="true"> 
+                        <form id="signin-form" class="auth-form" autocomplete="on"> 
+                            <label for="email-signin"> 
+                                Email
+                                <input id="email-signin" name="email" type="email" placeholder="you@example.com" required/> 
+                            </label>                             
+                            <label for="password-signin"> 
+                                Password
+                                <input id="password-signin" name="password" type="password" placeholder="Your password" required/> 
+                            </label>                             
+                            <button type="submit" class="btn full btn--primary">Sign In</button>                             
+                            <p id="signin-status" class="form-status" aria-live="polite"></p> 
+                        </form>                         
+                    </div>                     
+                </aside>                 
+            </section>             
+            <section class="section" aria-labelledby="why-title"> 
+                <div class="section-header"> 
+                    <h2 id="why-title">Why PC TuneX&nbsp;</h2> 
+                    <p>Focused on practical, performance-driven tools for everyday Windows users.</p> 
+                </div>                 
+                <div class="grid" role="list"> 
+                    <article class="card" role="listitem" aria-labelledby="perf-title"> 
+                        <div class="card-accent"></div>
+                        <h3 id="perf-title">Performance First</h3>
+                        <p>Tools designed to make your PC feel faster, not heavier.</p> 
+                    </article>                     
+                    <article class="card" role="listitem" aria-labelledby="clean-title"> 
+                        <div class="card-accent"></div>
+                        <h3 id="clean-title">Clean Experience</h3>
+                        <p>Minimal UI, clear actions, no noise — just what you need.</p> 
+                    </article>                     
+                    <article class="card" role="listitem" aria-labelledby="future-title"> 
+                        <div class="card-accent"></div>
+                        <h3 id="future-title">Future-Ready</h3>
+                        <p>From desktop optimization to AI studio workflows, the platform is growing steadily.</p> 
+                    </article>                     
+                </div>                 
+            </section>             
+        </main>         
+        <footer class="site-footer" role="contentinfo"> 
+            <div class="footer-wrap"> 
+                <div class="footer-grid"> 
+                    <div> 
+                        <div class="footer-title">InHasnain&nbsp;</div>                         
+                        <p class="footer-sub">Strategic digital products for modern productivity, combining lightweight apps and practical AI tooling.</p> 
+                    </div>                     
+                    <div> 
+                        <h4 class="footer-heading">Products</h4> 
+                        <ul class="footer-links"> 
+                            <li>
+                                <a href="pctunex.html">PC TuneX</a>
+                            </li>                             
+                            <li>
+                                <a href="pricing.html">AI Studio</a>
+                            </li>                             
+                        </ul>                         
+                    </div>                     
+                    <div> 
+                        <h4 class="footer-heading">Company</h4> 
+                        <ul class="footer-links"> 
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>                             
+                            <li>
+                                <a href="contact.html">Contact</a>
+                            </li>                             
+                        </ul>                         
+                    </div>                     
+                    <div> 
+                        <h4 class="footer-heading">Contact</h4> 
+                        <ul class="footer-links"> 
+                            <li>
+                                <a href="mailto:Hasnain@outlook.be">Hasnain@outlook.at</a>
+                            </li>                             
+                            <li>England, United Kingdom</li>                             
+                        </ul>                         
+                    </div>                     
+                </div>                 
+                <div class="footer-bottom"> 
+                    <span>© 2026 InHasnain. All rights reserved.</span>                      
+                </div>                 
+            </div>             
+        </footer>         
+        <script src="fluid.js"></script>
+                <script src="site.js"></script>
+    </body>     
+</html>
