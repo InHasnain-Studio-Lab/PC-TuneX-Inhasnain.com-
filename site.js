@@ -492,9 +492,45 @@
     });
   }
 
+  // wireForm handles client-side auth forms only
   wireForm('signup-form',   'signup-status',   'Account draft created successfully. You will receive a confirmation email shortly.');
   wireForm('signin-form',   'signin-status',   'Sign in accepted. Redirecting to your dashboard...');
-  wireForm('contact-form',  'contact-status',  'Thanks for contacting us. We will reply within 1 business day.');
   wireForm('feedback-form', 'feedback-status', 'Thanks for your feedback. It has been submitted successfully.');
+
+  // Contact form submits to Formspree via fetch so the message is actually sent
+  (function wireContactForm() {
+    const form = document.getElementById('contact-form');
+    const msg  = document.getElementById('contact-status');
+    if (!form || !msg) return;
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      msg.classList.remove('error', 'success');
+      if (!form.checkValidity()) {
+        msg.textContent = 'Please complete all required fields correctly.';
+        msg.classList.add('error');
+        form.reportValidity();
+        return;
+      }
+      msg.textContent = 'Sending…';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          msg.textContent = 'Thanks for contacting us. We will reply within 1 business day.';
+          msg.classList.add('success');
+          form.reset();
+        } else {
+          msg.textContent = 'Something went wrong. Please try emailing Hasnain@outlook.at directly.';
+          msg.classList.add('error');
+        }
+      } catch (_) {
+        msg.textContent = 'Network error. Please try emailing Hasnain@outlook.at directly.';
+        msg.classList.add('error');
+      }
+    });
+  })();
 
 })();

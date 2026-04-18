@@ -2,19 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Hasnain Studio X | Contact</title>
+    <title>InHasnain | Contact</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="site.css" />
 </head>
 <body>
+    <div class="page-transition" id="pg-transition"></div>
+    <div class="bg-grid"></div>
+    <div class="scanlines"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
     <header class="top-bar" role="banner" aria-label="Top navigation">
         <div class="brand">
-            <div class="logo" aria-hidden="true">PTX</div>
+            <div class="logo" aria-hidden="true">HSL</div>
             <div class="title">
                 <div class="name">InHasnain</div>
-                <div class="sub">Studio X</div>
+                <div class="sub">Studio Lab</div>
             </div>
         </div>
 
@@ -35,54 +41,50 @@
     <main class="container" role="main">
         <section class="hero hero--single">
             <div class="hero-card">
+                <div class="hero-decoration"></div>
                 <h1>Contact InHasnain</h1>
                 <p class="lead">Need product support, AI Studio guidance? Send us a message and we will get back quickly.</p>
             </div>
         </section>
 
-        <section class="section two-col" aria-label="Contact and feedback forms">
-            <article class="panel" aria-labelledby="contact-form-title">
-                <div class="section-header">
-                  
-                    <article class="panel" aria-labelledby="feedback-form-title">
-                <div class="section-header">
-                    <h2 id="feedback-form-title">Contact Form</h2>
-                    <p>Use this form for Apps Product / AI STUDIO related Enquiries and Feedback.</p>
-                </div>
+        <section class="section" aria-labelledby="contact-form-title">
+            <div class="section-header">
+                <h2 id="contact-form-title">Contact Form</h2>
+                <p>Use this form for Apps Product / AI STUDIO related Enquiries and Feedback.</p>
+            </div>
 
-               <form id="contact-form" class="form-grid" action="https://formspree.io/f/mrerqkrv" method="POST">
-                    <label for="feedback-name">
-                        Name
-                        <input id="feedback-name" name="name" type="text" required />
-                    </label>
+            <form id="contact-form" class="form-grid" action="https://formspree.io/f/mrerqkrv" method="POST">
+                <label for="feedback-name">
+                    Name
+                    <input id="feedback-name" name="name" type="text" required />
+                </label>
 
-                    <label for="feedback-email">
-                        Email
-                        <input id="feedback-email" name="email" type="email" required />
-                    </label>
+                <label for="feedback-email">
+                    Email
+                    <input id="feedback-email" name="email" type="email" required />
+                </label>
 
-                    <label for="feedback-rating">
-                        Satisfaction
-                        <select id="feedback-rating" name="rating" required>
-                            <option value="">Select rating</option>
-                            <option>PC TuneX Support</option>
-                            <option>AI Studio Support</option>
-                            <option>General Inquiry</option>
-                            <option>Excellent</option>
-                            <option>Good</option>
-                            <option>Average</option>
-                        </select>
-                    </label>
+                <label for="feedback-rating">
+                    Enquiry Type
+                    <select id="feedback-rating" name="rating" required>
+                        <option value="">Select type</option>
+                        <option>PC TuneX Support</option>
+                        <option>AI Studio Support</option>
+                        <option>General Inquiry</option>
+                        <option>Excellent</option>
+                        <option>Good</option>
+                        <option>Average</option>
+                    </select>
+                </label>
 
-                    <label for="feedback-message">
-                        Message details
-                        <textarea id="feedback-message" name="feedback" required></textarea>
-                    </label>
+                <label for="feedback-message">
+                    Message details
+                    <textarea id="feedback-message" name="feedback" required></textarea>
+                </label>
 
-                    <button type="submit" class="btn btn--primary full">Submit Email</button>
-                    <p id="feedback-status" class="form-status" aria-live="polite"></p>
-                </form>
-            </article>
+                <button type="submit" class="btn btn--primary full">Submit Email</button>
+                <p id="contact-status" class="form-status" aria-live="polite"></p>
+            </form>
         </section>
 
         <section class="section" aria-labelledby="contact-info-title">
@@ -93,16 +95,19 @@
 
             <div class="grid" role="list">
                 <article class="card" role="listitem">
+                    <div class="card-accent"></div>
                     <h3>Email</h3>
                     <p><a href="mailto:Hasnain@outlook.at">Hasnain@outlook.at</a></p>
                 </article>
                 <article class="card" role="listitem">
+                    <div class="card-accent"></div>
                     <h3>Location</h3>
                     <p>England, United Kingdom</p>
                 </article>
                 <article class="card" role="listitem">
+                    <div class="card-accent"></div>
                     <h3>Response Time</h3>
-                    <p>Within 2 business day for most requests.</p>
+                    <p>Within 2 business days for most requests.</p>
                 </article>
             </div>
         </section>
@@ -143,11 +148,11 @@
 
             <div class="footer-bottom">
                 <span>© 2026 InHasnain. All rights reserved.</span>
-                <span>Built with accessibility-first and responsive design standards.</span>
             </div>
         </div>
     </footer>
 
+    <script src="fluid.js"></script>
     <script src="site.js"></script>
 </body>
 </html>
