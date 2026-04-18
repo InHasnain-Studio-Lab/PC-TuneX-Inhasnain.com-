@@ -2,19 +2,25 @@
 <html lang="en"> 
     <head> 
         <meta charset="utf-8"/> 
-        <title>InHasnain | Studio X </title>         
+        <title>Hasnain | Studio X</title>         
         <meta name="viewport" content="width=device-width,initial-scale=1"/> 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="site.css"/> 
     </head>     
     <body> 
-        <header class="top-bar" role="banner" aria-label="Top navigation"> 
+        <div class="page-transition" id="pg-transition"></div>
+        <div class="bg-grid"></div>
+        <div class="scanlines"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <header class="top-bar"
             <div class="brand"> 
                 <div class="logo" aria-hidden="true">HSL<br>
                 </div>                 
                 <div class="title"> 
-                    <div class="name">InHasnain</div>                     
+                    <div class="name">Hasnain</div>                     
                     <div class="sub">Studio X</div>                     
                 </div>                 
             </div>             
@@ -33,7 +39,8 @@
         <main class="container" role="main"> 
             <section class="hero"> 
                 <div class="hero-card"> 
-                    <h1>Digital Solutions</h1> 
+                    <div class="hero-decoration"></div>
+                    <h1>Digital Solutions</h1>
                     <p class="lead">Clean, efficient and focused Windows utilities starting with PC TuneX App and Do check my AI Studio Protofolio with learning opportunities.</p> 
                     <div class="hero-actions"> 
                         <a class="btn btn--primary" href="pctunex.html">Explore Apps</a> 
@@ -87,15 +94,18 @@
                 </div>                 
                 <div class="grid" role="list"> 
                     <article class="card" role="listitem" aria-labelledby="perf-title"> 
-                        <h3 id="perf-title">Performance First</h3> 
+                        <div class="card-accent"></div>
+                        <h3 id="perf-title">Performance First</h3>
                         <p>Tools designed to make your PC feel faster, not heavier.</p> 
                     </article>                     
                     <article class="card" role="listitem" aria-labelledby="clean-title"> 
-                        <h3 id="clean-title">Clean Experience</h3> 
+                        <div class="card-accent"></div>
+                        <h3 id="clean-title">Clean Experience</h3>
                         <p>Minimal UI, clear actions, no noise — just what you need.</p> 
                     </article>                     
                     <article class="card" role="listitem" aria-labelledby="future-title"> 
-                        <h3 id="future-title">Future-Ready</h3> 
+                        <div class="card-accent"></div>
+                        <h3 id="future-title">Future-Ready</h3>
                         <p>From desktop optimization to AI studio workflows, the platform is growing steadily.</p> 
                     </article>                     
                 </div>                 
@@ -148,4 +158,5 @@
         <script src="site.js"></script>         
     </body>     
 </html>
+
 
