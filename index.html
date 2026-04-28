@@ -2,13 +2,14 @@
 <html lang="en"> 
     <head> 
         <meta charset="utf-8"/> 
-        <title>InHasnain | Studio Lab </title>         
+        <title>Hasnain | Studio X</title>         
         <meta name="viewport" content="width=device-width,initial-scale=1"/> 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="site.css"/> 
     </head>     
     <body> 
+        <div id="scroll-progress"></div>
         <div class="page-transition" id="pg-transition"></div>
         <div class="bg-grid"></div>
         <div class="scanlines"></div>
@@ -17,8 +18,7 @@
         <div class="orb orb-3"></div>
         <header class="top-bar" role="banner" aria-label="Top navigation">
             <div class="brand">
-                <div class="logo" aria-hidden="true">HSX<br>
-                </div>                 
+                <div class="logo" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 1.5L24 7.5V18.5L13 24.5L2 18.5V7.5Z" stroke="currentColor" stroke-width="1.1" opacity="0.55"/><path d="M8.5 9V17M17.5 9V17M8.5 13H17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div>
                 <div class="title"> 
                     <div class="name">Hasnain</div>                     
                     <div class="sub">Studio X</div>                     
@@ -40,8 +40,9 @@
             <section class="hero"> 
                 <div class="hero-card"> 
                     <div class="hero-decoration"></div>
-                    <h1>Digital Solutions</h1>
-                    <p class="lead">Clean, efficient and focused Windows utilities starting with PC TuneX App and Do check my AI Studio Protofolio with learning opportunities.</p> 
+                    <div class="live-badge"><span class="live-dot"></span>Now Live — PC TuneX &amp; AI Studio</div>
+                    <h1>Digital Solutions<br>for Windows Power Users</h1>
+                    <p class="lead">Clean, efficient Windows utilities and AI Studio workflows — built for modern productivity. Start with PC TuneX or explore the AI Studio portfolio.</p> 
                     <div class="hero-actions"> 
                         <a class="btn btn--primary" href="pctunex.html">Explore Apps</a> 
                         <a class="btn btn--secondary" href="pricing.html">Open AI Studio</a> 
@@ -87,26 +88,59 @@
                     </div>                     
                 </aside>                 
             </section>             
-            <section class="section" aria-labelledby="why-title"> 
+            <!-- Stats Section -->
+            <div class="stats-section reveal" aria-label="Key stats">
+                <div class="stat-item">
+                    <div class="stat-number">Win 11</div>
+                    <div class="stat-label">Ready</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">MS Store</div>
+                    <div class="stat-label">Certified</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Data Collected</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Free</div>
+                    <div class="stat-label">No Sign-up</div>
+                </div>
+            </div>
+
+            <section class="section reveal" aria-labelledby="why-title"> 
                 <div class="section-header"> 
                     <h2 id="why-title">Why PC TuneX&nbsp;</h2> 
                     <p>Focused on practical, performance-driven tools for everyday Windows users.</p> 
                 </div>                 
-                <div class="grid" role="list"> 
-                    <article class="card" role="listitem" aria-labelledby="perf-title"> 
-                        <div class="card-accent"></div>
+                <div class="grid stagger" role="list"> 
+                    <article class="card" role="listitem" aria-labelledby="perf-title">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                            </svg>
+                        </div>
                         <h3 id="perf-title">Performance First</h3>
-                        <p>Tools designed to make your PC feel faster, not heavier.</p> 
-                    </article>                     
-                    <article class="card" role="listitem" aria-labelledby="clean-title"> 
-                        <div class="card-accent"></div>
+                        <p>Tools designed to make your PC feel faster, not heavier. Real gains, zero bloat.</p>
+                    </article>
+                    <article class="card" role="listitem" aria-labelledby="clean-title">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
                         <h3 id="clean-title">Clean Experience</h3>
-                        <p>Minimal UI, clear actions, no noise — just what you need.</p> 
-                    </article>                     
-                    <article class="card" role="listitem" aria-labelledby="future-title"> 
-                        <div class="card-accent"></div>
+                        <p>Minimal UI, clear actions, no noise — just what you need, exactly when you need it.</p>
+                    </article>
+                    <article class="card" role="listitem" aria-labelledby="future-title">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                        </div>
                         <h3 id="future-title">Future-Ready</h3>
-                        <p>From desktop optimization to AI studio workflows, the platform is growing steadily.</p> 
+                        <p>From desktop optimisation to AI studio workflows — the platform grows with you.</p>
                     </article>                     
                 </div>                 
             </section>             
