@@ -5,32 +5,32 @@
     <title>Hasnain Studio X | Contact</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="site.css" />
-</head>     
-    <body> 
-        <div class="page-transition" id="pg-transition"></div>
-        <div class="bg-grid"></div>
-        <div class="scanlines"></div>
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-        <header class="top-bar" role="banner" aria-label="Top navigation">
-            <div class="brand">
-                <div class="logo" aria-hidden="true">HSX</div>                 
-                <div class="title">
+</head>
+<body>
+    <div id="scroll-progress"></div>
+    <div class="page-transition" id="pg-transition"></div>
+    <div class="bg-grid"></div>
+    <div class="scanlines"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <header class="top-bar" role="banner" aria-label="Top navigation">
+        <div class="brand">
+            <div class="logo" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 1.5L24 7.5V18.5L13 24.5L2 18.5V7.5Z" stroke="currentColor" stroke-width="1.1" opacity="0.55"/><path d="M8.5 9V17M17.5 9V17M8.5 13H17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div>
+            <div class="title">
                 <div class="name">Hasnain</div>
                 <div class="sub">Studio X</div>
             </div>
         </div>
-
         <nav aria-label="Primary" role="navigation">
             <a href="index.html">Home</a>
             <a href="pctunex.html">Apps</a>
             <a href="pricing.html">AI Studio</a>
             <a href="contact.html" class="active">Contact</a>
         </nav>
-
         <div class="actions" role="group" aria-label="Actions">
             <button class="icon-btn" aria-label="Search">🔍</button>
             <button class="icon-btn" aria-label="Account">👤</button>
@@ -41,75 +41,77 @@
     <main class="container" role="main">
         <section class="hero hero--single">
             <div class="hero-card">
+                <div class="live-badge"><span class="live-dot"></span>We respond within 24 hours</div>
                 <h1>Contact InHasnain</h1>
-                <p class="lead">Need product support, AI Studio guidance? Send us a message and we will get back quickly.</p>
+                <p class="lead">Need product support or AI Studio guidance? Send us a message and we'll get back quickly.</p>
             </div>
         </section>
 
-        <section class="section two-col" aria-label="Contact and feedback forms">
-            <article class="panel" aria-labelledby="contact-form-title">
-                <div class="section-header">
-                  
-                    <article class="panel" aria-labelledby="feedback-form-title">
-                <div class="section-header">
-                    <h2 id="feedback-form-title">Contact Form</h2>
-                    <p>Use this form for Apps Product / AI STUDIO related Enquiries and Feedback.</p>
+        <section class="section contact-section" aria-label="Contact">
+            <div class="contact-grid">
+
+                <!-- Form column -->
+                <div class="contact-form-col">
+                    <div class="section-header">
+                        <h2>Send a Message</h2>
+                        <p>Apps support, AI Studio enquiries, licensing, or general feedback.</p>
+                    </div>
+                    <form id="contact-form" class="contact-form" action="https://formspree.io/f/mrerqkrv" method="POST">
+                        <div class="form-row">
+                            <label for="c-name">
+                                Name
+                                <input id="c-name" name="name" type="text" required placeholder="Your name" />
+                            </label>
+                            <label for="c-email">
+                                Email
+                                <input id="c-email" name="email" type="email" required placeholder="you@example.com" />
+                            </label>
+                        </div>
+                        <label for="c-topic">
+                            Topic
+                            <select id="c-topic" name="topic" required>
+                                <option value="">Select a topic</option>
+                                <option>PC TuneX Support</option>
+                                <option>SpatiaX Pro Support</option>
+                                <option>AI Studio Support</option>
+                                <option>Licensing</option>
+                                <option>General Inquiry</option>
+                            </select>
+                        </label>
+                        <label for="c-message">
+                            Message
+                            <textarea id="c-message" name="message" required rows="5" placeholder="Describe your question or feedback in detail…"></textarea>
+                        </label>
+                        <button type="submit" class="btn btn--primary full">Send Message</button>
+                        <p id="contact-status" class="form-status" aria-live="polite"></p>
+                    </form>
                 </div>
 
-               <form id="contact-form" class="form-grid" action="https://formspree.io/f/mrerqkrv" method="POST">
-                    <label for="feedback-name">
-                        Name
-                        <input id="feedback-name" name="name" type="text" required />
-                    </label>
+                <!-- Info column -->
+                <div class="contact-info-col">
+                    <div class="section-header">
+                        <h2>Get in Touch</h2>
+                        <p>Alternative ways to reach us directly.</p>
+                    </div>
+                    <div class="contact-info-cards">
+                        <div class="contact-info-card">
+                            <div class="card-accent"></div>
+                            <h3>Email</h3>
+                            <a href="mailto:Hasnain@outlook.at">Hasnain@outlook.at</a>
+                        </div>
+                        <div class="contact-info-card">
+                            <div class="card-accent"></div>
+                            <h3>Location</h3>
+                            <p>England, United Kingdom</p>
+                        </div>
+                        <div class="contact-info-card">
+                            <div class="card-accent"></div>
+                            <h3>Response Time</h3>
+                            <p>Within 2 business days for most requests.</p>
+                        </div>
+                    </div>
+                </div>
 
-                    <label for="feedback-email">
-                        Email
-                        <input id="feedback-email" name="email" type="email" required />
-                    </label>
-
-                    <label for="feedback-rating">
-                        Satisfaction
-                        <select id="feedback-rating" name="rating" required>
-                            <option value="">Select rating</option>
-                            <option>PC TuneX Support</option>
-                            <option>AI Studio Support</option>
-                            <option>General Inquiry</option>
-                            <option>Excellent</option>
-                            <option>Good</option>
-                            <option>Average</option>
-                        </select>
-                    </label>
-
-                    <label for="feedback-message">
-                        Message details
-                        <textarea id="feedback-message" name="feedback" required></textarea>
-                    </label>
-
-                    <button type="submit" class="btn btn--primary full">Submit Email</button>
-                    <p id="feedback-status" class="form-status" aria-live="polite"></p>
-                </form>
-            </article>
-        </section>
-
-        <section class="section" aria-labelledby="contact-info-title">
-            <div class="section-header">
-                <h2 id="contact-info-title">Direct Contact Information</h2>
-                <p>Alternative ways to connect with our team.</p>
-            </div>
-
-            <div class="grid" role="list">
-                <article class="card" role="listitem">
-                    <h3>Email</h3>
-                    <p><a href="mailto:Hasnain@outlook.at">Hasnain@outlook.at</a></p>
-                </article>
-                <article class="card" role="listitem">
-                    <h3>Location</h3>
-                    <p>England, United Kingdom</p>
-                </article>
-                <article class="card" role="listitem">
-                    <h3>Response Time</h3>
-                    <p>Within 2 business day for most requests.</p>
-                </article>
             </div>
         </section>
     </main>
@@ -121,7 +123,6 @@
                     <div class="footer-title">InHasnain</div>
                     <p class="footer-sub">Strategic digital products for modern productivity, combining lightweight apps and practical AI tooling.</p>
                 </div>
-
                 <div>
                     <h4 class="footer-heading">Products</h4>
                     <ul class="footer-links">
@@ -129,7 +130,6 @@
                         <li><a href="pricing.html">AI Studio</a></li>
                     </ul>
                 </div>
-
                 <div>
                     <h4 class="footer-heading">Company</h4>
                     <ul class="footer-links">
@@ -137,7 +137,6 @@
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-
                 <div>
                     <h4 class="footer-heading">Contact</h4>
                     <ul class="footer-links">
@@ -146,7 +145,6 @@
                     </ul>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <span>© 2026 InHasnain. All rights reserved.</span>
                 <span>Built with accessibility-first and responsive design standards.</span>
@@ -154,6 +152,7 @@
         </div>
     </footer>
 
+    <script src="fluid.js"></script>
     <script src="site.js"></script>
 </body>
 </html>

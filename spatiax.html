@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="site.css"/>
 </head>
 <body>
+    <div id="scroll-progress"></div>
     <div class="page-transition" id="pg-transition"></div>
     <div class="bg-grid"></div>
     <div class="scanlines"></div>
@@ -18,7 +19,7 @@
 
     <header class="top-bar" role="banner" aria-label="Top navigation">
         <div class="brand">
-            <div class="logo" aria-hidden="true">HSL</div>
+            <div class="logo" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 1.5L24 7.5V18.5L13 24.5L2 18.5V7.5Z" stroke="currentColor" stroke-width="1.1" opacity="0.55"/><path d="M8.5 9V17M17.5 9V17M8.5 13H17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div>
             <div class="title">
                 <div class="name">InHasnain</div>
                 <div class="sub">Studio Lab</div>
@@ -41,6 +42,7 @@
         <section class="hero hero--single">
             <div class="hero-card">
                 <div class="hero-decoration"></div>
+                <div class="live-badge"><span class="live-dot"></span>SpatiaX Pro — Coming Soon</div>
                 <h1>SpatiaX Pro</h1>
                 <p class="lead">Premium audio enhancement platform with immersive surround, smart routing, signature sound profiles, and real-time DSP precision.</p>
                 <div class="hero-actions">
@@ -57,10 +59,22 @@
                 <p>Built to deliver premium listening and gaming experiences on Windows.</p>
             </div>
             <div class="grid" role="list">
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Immersive Surround</h3><p>Enhanced stereo-to-surround perception for movies and gaming sessions.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Signature Sound Profiles</h3><p>Curated presets for Music, Movie, Communication, Gaming, and Smart mode.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Real-Time DSP Engine</h3><p>Low-latency processing with EQ, dynamics, enhancer, and routing intelligence.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Hardware-Aware Routing</h3><p>Smart output management across speakers, headphones, AUX, and HDMI devices.</p></article>
+                <article class="card" role="listitem">
+                    <div class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></div>
+                    <h3>Immersive Surround</h3><p>Enhanced stereo-to-surround perception for movies and gaming sessions.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+                    <h3>Signature Sound Profiles</h3><p>Curated presets for Music, Movie, Communication, Gaming, and Smart mode.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                    <h3>Real-Time DSP Engine</h3><p>Low-latency processing with EQ, dynamics, enhancer, and routing intelligence.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+                    <h3>Hardware-Aware Routing</h3><p>Smart output management across speakers, headphones, AUX, and HDMI devices.</p>
+                </article>
             </div>
         </section>
 
@@ -70,8 +84,14 @@
                 <p>Start quickly and upgrade for full advanced features.</p>
             </div>
             <div class="grid" role="list">
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Trial</h3><p>Essential controls including Bass, Voices, and Treble.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Pro</h3><p>Unlock Signature Sound, advanced surround modes, presets workflow, and pro DSP toolkit.</p></article>
+                <article class="card" role="listitem">
+                    <div class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                    <h3>Trial</h3><p>Essential controls including Bass, Voices, and Treble — free to try.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                    <h3>Pro</h3><p>Unlock Signature Sound, advanced surround modes, presets workflow, and pro DSP toolkit.</p>
+                </article>
             </div>
         </section>
     </main>

@@ -1,124 +1,291 @@
-<!doctype html> 
-<html lang="en"> 
-    <head> 
-        <meta charset="utf-8"/> 
-        <title>InHasnain | AI Studio</title>         
-        <meta name="viewport" content="width=device-width,initial-scale=1"/> 
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="site.css"/> 
-    </head>     
-    <body>
-        <div class="page-transition" id="pg-transition"></div>
-        <div class="bg-grid"></div>
-        <div class="scanlines"></div>
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-        <header class="top-bar" role="banner" aria-label="Top navigation">
-            <div class="brand">
-                <div class="logo" aria-hidden="true">HSX</div>                 
-                <div class="title"> 
-                    <div class="name">Hasnain</div>                     
-                    <div class="sub">Studio X</div>                     
-                </div>                 
-            </div>             
-            <nav aria-label="Primary" role="navigation"> 
-                <a href="index.html">Home</a> 
-                <a href="pctunex.html">Apps</a> 
-                <a href="pricing.html" class="active">AI Studio</a> 
-                <a href="contact.html">Contact</a> 
-            </nav>             
-            <div class="actions" role="group" aria-label="Actions"> 
-                <button class="icon-btn" aria-label="Search">&#128269;</button>                 
-                <button class="icon-btn" aria-label="Account">👤</button>                 
-                <button class="icon-btn" aria-label="Cart">🛒</button>                 
-            </div>             
-        </header>         
-        <main class="container" role="main"> 
-            <section class="hero hero--single"> 
-                <div class="hero-card"> 
-                    <div class="hero-decoration"></div>
-                    <h1>AI Studio Portfolio</h1>
-                    <p class="lead">Explore my AI portfolio that I created using my own custom build&nbsp; prompts, workflow, checkpoint Models, and AI setup in my PC system.<br><br>Learn how to set up your own Unlimited no subscription require AI image/video creation system on PC, and discover how to create prompts, build workflows, and use pro tips to improve your AI results.
-If you want custom setups, training, or automation contact me.</p> 
-                    <div class="hero-actions"> 
-                        <a class="btn btn--primary" href="contact.html">Book </a> 
-                        <a class="btn btn--secondary" href="mailto:Hasnain@outlook.at">Talk to Sales</a> 
-                    </div>                     
-                </div>                 
-            </section>             
-            <section class="section" aria-labelledby="features-title"> 
-                <div class="section-header"> 
-                    <h2 id="features-title">AI Protofolio&nbsp;</h2> 
-                    <p>Content I created Using my own custom build workflow , prompts , AI models and Setup.&nbsp;</p> 
-                </div>                 
-                <div class="grid" role="list"> 
-                    <article class="card" role="listitem"></article>                     
-                </div>                 
-            </section>             
-            <section class="section" aria-labelledby="plans-title"> 
-                <div class="section-header"> 
-                    <h2 id="plans-title">AI Studio Creator Plan</h2> 
-                    <p>Simple packages for individuals, creators.</p> 
-                </div>                 
-                <div class="grid" role="list"> 
-                    <article class="card" role="listitem"> 
-                        <div class="card-accent"></div>
-                        <h3>Pro creator Pack&nbsp;</h3>
-                        <p><strong>Pricing (Variable Based on Project) Starting from 49&pound;&nbsp;</strong></p> 
-                        <p>( Full Training Via Zoom Screen Sharing )</p>
-                        <p>Learn how to set up your own Unlimited no subscription require AI image/video creation system on PC, and discover how to create prompts, build workflows, and use pro tips to improve your AI results. If you want custom setups, training, or automation contact me.<br><br>Contact Via Email&nbsp;</p> 
-                    </article>                     
-                </div>                 
-            </section>             
-        </main>         
-        <footer class="site-footer" role="contentinfo"> 
-            <div class="footer-wrap"> 
-                <div class="footer-grid"> 
-                    <div> 
-                        <div class="footer-title">InHasnain</div>                         
-                        <p class="footer-sub">Strategic digital products for modern productivity, combining lightweight apps and practical AI tooling.</p> 
-                    </div>                     
-                    <div> 
-                        <h4 class="footer-heading">Products</h4> 
-                        <ul class="footer-links"> 
-                            <li>
-                                <a href="pctunex.html">PC TuneX</a>
-                            </li>                             
-                            <li>
-                                <a href="pricing.html">AI Studio</a>
-                            </li>                             
-                        </ul>                         
-                    </div>                     
-                    <div> 
-                        <h4 class="footer-heading">Company</h4> 
-                        <ul class="footer-links"> 
-                            <li>
-                                <a href="index.html">Home</a>
-                            </li>                             
-                            <li>
-                                <a href="contact.html">Contact</a>
-                            </li>                             
-                        </ul>                         
-                    </div>                     
-                    <div> 
-                        <h4 class="footer-heading">Contact</h4> 
-                        <ul class="footer-links"> 
-                            <li>
-                                <a href="mailto:Hasnain@outlook.at">Hasnain@outlook.at</a>
-                            </li>                             
-                            <li>England, United Kingdom</li>                             
-                        </ul>                         
-                    </div>                     
-                </div>                 
-                <div class="footer-bottom"> 
-                    <span>&copy; 2026 InHasnain. All rights reserved.</span> 
-                    <span></span> 
-                </div>                 
-            </div>             
-        </footer>         
-        <script src="fluid.js"></script>
-                <script src="site.js"></script>
-    </body>     
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>InHasnain | AI Studio</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site.css"/>
+    <style>
+        /* ── Portfolio Gallery ── */
+        .port-section-header{margin-bottom:1.8rem;}
+        .port-toolbar{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;flex-wrap:wrap;}
+        .port-toolbar label.port-upload-btn{
+            display:inline-flex;align-items:center;gap:.5rem;
+            padding:.55rem 1.3rem;border-radius:999px;cursor:pointer;font-size:.9rem;font-weight:600;
+            background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.38);
+            backdrop-filter:blur(12px);color:inherit;transition:background .2s,transform .15s;
+        }
+        .port-toolbar label.port-upload-btn:hover{background:rgba(255,255,255,.18);transform:translateY(-1px);}
+        #port-file-input{display:none;}
+        .port-count{font-size:.82rem;opacity:.55;}
+
+        .port-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+            gap:1rem;
+        }
+        .port-item{
+            position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1/1;
+            background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.18);
+            cursor:pointer;transition:transform .25s,box-shadow .25s;
+        }
+        .port-item:hover{transform:scale(1.03);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+        .port-item img{width:100%;height:100%;object-fit:cover;display:block;}
+        .port-item-del{
+            position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;
+            background:rgba(0,0,0,.55);border:none;color:#fff;font-size:14px;cursor:pointer;
+            display:flex;align-items:center;justify-content:center;opacity:0;
+            transition:opacity .2s;line-height:1;
+        }
+        .port-item:hover .port-item-del{opacity:1;}
+        .port-empty{
+            grid-column:1/-1;text-align:center;padding:3rem 1rem;
+            opacity:.45;font-size:.95rem;
+        }
+
+        /* Lightbox */
+        .port-lightbox{
+            display:none;position:fixed;inset:0;z-index:9999;
+            background:rgba(0,0,0,.88);backdrop-filter:blur(6px);
+            align-items:center;justify-content:center;
+        }
+        .port-lightbox.open{display:flex;}
+        .port-lightbox img{
+            max-width:92vw;max-height:88vh;border-radius:12px;
+            box-shadow:0 24px 80px rgba(0,0,0,.7);object-fit:contain;
+        }
+        .port-lightbox-close{
+            position:absolute;top:18px;right:22px;font-size:2rem;color:#fff;
+            cursor:pointer;background:none;border:none;line-height:1;opacity:.8;
+        }
+        .port-lightbox-close:hover{opacity:1;}
+    </style>
+</head>
+<body>
+    <div id="scroll-progress"></div>
+    <div class="page-transition" id="pg-transition"></div>
+    <div class="bg-grid"></div>
+    <div class="scanlines"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <header class="top-bar" role="banner" aria-label="Top navigation">
+        <div class="brand">
+            <div class="logo" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 1.5L24 7.5V18.5L13 24.5L2 18.5V7.5Z" stroke="currentColor" stroke-width="1.1" opacity="0.55"/><path d="M8.5 9V17M17.5 9V17M8.5 13H17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div>
+            <div class="title">
+                <div class="name">Hasnain</div>
+                <div class="sub">Studio X</div>
+            </div>
+        </div>
+        <nav aria-label="Primary" role="navigation">
+            <a href="index.html">Home</a>
+            <a href="pctunex.html">Apps</a>
+            <a href="pricing.html" class="active">AI Studio</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <div class="actions" role="group" aria-label="Actions">
+            <button class="icon-btn" aria-label="Search">🔍</button>
+            <button class="icon-btn" aria-label="Account">👤</button>
+            <button class="icon-btn" aria-label="Cart">🛒</button>
+        </div>
+    </header>
+
+    <main class="container" role="main">
+
+        <!-- Hero -->
+        <section class="hero hero--single">
+            <div class="hero-card">
+                <div class="hero-decoration"></div>
+                <div class="live-badge"><span class="live-dot"></span>AI Studio — Now Accepting Projects</div>
+                <h1>AI Studio Portfolio</h1>
+                <p class="lead">Explore AI creations built with custom prompts, workflow checkpoints, and a fully offline PC setup — no subscriptions required. Want a custom setup, training, or automation? Reach out below.</p>
+            </div>
+        </section>
+
+        <!-- Portfolio Gallery -->
+        <section class="section" aria-labelledby="port-title">
+            <div class="section-header port-section-header">
+                <h2 id="port-title">AI Portfolio</h2>
+                <p>Content created using my own custom-built workflow, prompts, AI models, and PC setup.</p>
+            </div>
+
+            <div class="port-toolbar">
+                <label class="port-upload-btn" for="port-file-input">
+                    ＋ Add Images
+                    <input type="file" id="port-file-input" accept="image/*" multiple>
+                </label>
+                <span class="port-count" id="port-count"></span>
+            </div>
+
+            <div class="port-grid" id="port-grid" role="list" aria-label="Portfolio images"></div>
+        </section>
+
+        <!-- Creator Plan -->
+        <section class="section" aria-labelledby="plans-title">
+            <div class="section-header">
+                <h2 id="plans-title">AI Studio Creator Plan</h2>
+                <p>Simple packages for individuals and creators.</p>
+            </div>
+            <div class="grid" role="list">
+                <article class="card" role="listitem">
+                    <div class="card-icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>Pro Creator Pack</h3>
+                    <p><strong>Pricing variable — starting from £49</strong></p>
+                    <p>Full training via Zoom screen-sharing. Learn how to set up your own unlimited, subscription-free AI image/video creation system on PC. Includes custom prompt techniques, workflow building, model setup, and pro tips to elevate your results.</p>
+                    <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.2rem;">
+                        <button class="btn btn--primary" onclick="window.openBookingWizard && window.openBookingWizard()">Start Your AI Project →</button>
+                        <a class="btn btn--secondary" href="mailto:Hasnain@outlook.at">Contact via Email</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Lightbox -->
+    <div class="port-lightbox" id="port-lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+        <button class="port-lightbox-close" id="port-lb-close" aria-label="Close lightbox">✕</button>
+        <img id="port-lb-img" src="" alt="Portfolio image full view">
+    </div>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-title">InHasnain</div>
+                    <p class="footer-sub">Strategic digital products for modern productivity, combining lightweight apps and practical AI tooling.</p>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="pctunex.html">PC TuneX</a></li>
+                        <li><a href="pricing.html">AI Studio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:Hasnain@outlook.at">Hasnain@outlook.at</a></li>
+                        <li>England, United Kingdom</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 InHasnain. All rights reserved.</span>
+                <span>Built with accessibility-first and responsive design standards.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="fluid.js"></script>
+    <script src="site.js"></script>
+
+    <!-- Portfolio Gallery Logic -->
+    <script>
+    (function(){
+        var STORE = 'hsx-portfolio-v1';
+        var grid   = document.getElementById('port-grid');
+        var count  = document.getElementById('port-count');
+        var input  = document.getElementById('port-file-input');
+        var lb     = document.getElementById('port-lightbox');
+        var lbImg  = document.getElementById('port-lb-img');
+        var lbClose= document.getElementById('port-lb-close');
+
+        function load(){ try{ return JSON.parse(localStorage.getItem(STORE)||'[]'); }catch(e){ return []; } }
+        function save(arr){ try{ localStorage.setItem(STORE, JSON.stringify(arr)); }catch(e){} }
+
+        function render(){
+            var imgs = load();
+            count.textContent = imgs.length ? imgs.length + ' image' + (imgs.length>1?'s':'') : '';
+            grid.innerHTML = '';
+            if(!imgs.length){
+                var emp = document.createElement('div');
+                emp.className = 'port-empty';
+                emp.textContent = 'No images yet — click "Add Images" to upload your AI creations.';
+                grid.appendChild(emp);
+                return;
+            }
+            imgs.forEach(function(item, idx){
+                var wrap = document.createElement('div');
+                wrap.className = 'port-item';
+                wrap.setAttribute('role','listitem');
+
+                var img = document.createElement('img');
+                img.src = item.data;
+                img.alt = item.name || 'Portfolio image';
+                img.loading = 'lazy';
+
+                var del = document.createElement('button');
+                del.className = 'port-item-del';
+                del.innerHTML = '✕';
+                del.setAttribute('aria-label','Delete image');
+                del.addEventListener('click', function(e){
+                    e.stopPropagation();
+                    var arr = load();
+                    arr.splice(idx, 1);
+                    save(arr);
+                    render();
+                });
+
+                wrap.addEventListener('click', function(){
+                    lbImg.src = item.data;
+                    lbImg.alt = item.name || 'Portfolio image';
+                    lb.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                });
+
+                wrap.appendChild(img);
+                wrap.appendChild(del);
+                grid.appendChild(wrap);
+            });
+        }
+
+        input.addEventListener('change', function(){
+            var files = Array.from(this.files);
+            var arr = load();
+            var pending = files.length;
+            if(!pending){ return; }
+            files.forEach(function(file){
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    arr.push({ name: file.name, data: e.target.result });
+                    pending--;
+                    if(pending === 0){ save(arr); render(); }
+                };
+                reader.readAsDataURL(file);
+            });
+            input.value = '';
+        });
+
+        lbClose.addEventListener('click', function(){
+            lb.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+        lb.addEventListener('click', function(e){
+            if(e.target === lb){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+        });
+        document.addEventListener('keydown', function(e){
+            if(e.key === 'Escape' && lb.classList.contains('open')){
+                lb.classList.remove('open'); document.body.style.overflow = '';
+            }
+        });
+
+        render();
+    })();
+    </script>
+</body>
 </html>
