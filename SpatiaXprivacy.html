@@ -17,7 +17,7 @@
     <div class="orb orb-3"></div>
     <header class="top-bar" role="banner" aria-label="Top navigation">
         <div class="brand">
-            <div class="logo" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 1.5L24 7.5V18.5L13 24.5L2 18.5V7.5Z" stroke="currentColor" stroke-width="1.1" opacity="0.55"/><path d="M8.5 9V17M17.5 9V17M8.5 13H17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div>
+            <div class="logo" aria-hidden="true">HSX<br></div>
             <div class="title">
                 <div class="name">Hasnain</div>
                 <div class="sub">Studio X</div>
@@ -29,7 +29,11 @@
             <a href="pricing.html">AI Studio</a>
             <a href="contact.html">Contact</a>
         </nav>
-        <div class="actions" role="group" aria-label="Actions"><!-- injected by site.js --></div>
+        <div class="actions" role="group" aria-label="Actions">
+            <button class="icon-btn" aria-label="Search">🔍</button>
+            <button class="icon-btn" aria-label="Account">👤</button>
+            <button class="icon-btn" aria-label="Cart">🛒</button>
+        </div>
     </header>
 
     <main class="container" role="main">
@@ -37,10 +41,10 @@
             <div class="hero-card">
                 <div class="hero-decoration"></div>
                 <h1>Privacy Policy</h1>
-                <p class="lead">SpatiaX Pro App — How we handle your data and protect your privacy.</p>
+                <p class="lead">SpatiaX Pro App — How we handle audio processing data and protect your privacy.</p>
                 <p style="color:var(--text-muted); font-size:0.88rem; margin-top:8px;">
-                    <strong style="color:var(--text-main);">Effective date:</strong> 1 January 2026 &nbsp;·&nbsp;
-                    <strong style="color:var(--text-main);">Last updated:</strong> 1 January 2026 &nbsp;·&nbsp;
+                    <strong style="color:var(--text-main);">Effective date:</strong> 10 August 2026 &nbsp;·&nbsp;
+                    <strong style="color:var(--text-main);">Version:</strong> 1.0.0.1 &nbsp;·&nbsp;
                     <strong style="color:var(--text-main);">Publisher:</strong> Hasnain Butt Akhtar
                 </p>
             </div>
@@ -53,162 +57,158 @@
             <div class="grid" style="grid-template-columns:1fr;" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <p>SpatiaX Pro is a Windows desktop audio-processing app. This policy explains what information the App accesses and how it is used.</p>
-                    <p><strong>SpatiaX Pro primarily processes audio locally on your device.</strong></p>
-                    <p>This policy is provided for Microsoft Store compliance and user transparency.</p>
+                    <p>SpatiaX Pro is a Windows desktop audio enhancement application published by Hasnain Butt Akhtar. This Privacy Policy explains what information the app accesses, how that information is used, and what data (if any) leaves your device.</p>
+                    <p><strong>SpatiaX Pro is designed for local, on-device audio processing and does not sell personal data.</strong></p>
+                    <p>We are committed to protecting user privacy while providing real-time audio processing and routing features.</p>
                 </article>
             </div>
         </section>
 
-        <section class="section" aria-labelledby="ondevice-title">
+        <section class="section" aria-labelledby="nocollect-title">
             <div class="section-header">
-                <h2 id="ondevice-title">2. Data we access on-device</h2>
-                <p>The App may access the following data locally to function:</p>
+                <h2 id="nocollect-title">2. Data We Do NOT Collect</h2>
+                <p>SpatiaX Pro does not collect, upload, or transmit:</p>
             </div>
             <div class="grid" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <h3>Audio Endpoints</h3>
-                    <p>Audio endpoint names/IDs and state for routing and device selection.</p>
+                    <h3>Personal Identity Data</h3>
+                    <p>Your name, home address, or personal identity documents</p>
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <h3>System Volume State</h3>
-                    <p>Windows master volume and mute state for in-app volume sync.</p>
+                    <h3>Ad Tracking Data</h3>
+                    <p>Advertising identifiers or behavior tracking profiles</p>
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <h3>Live Audio Buffers</h3>
-                    <p>Temporary audio buffers required for real-time DSP processing.</p>
+                    <h3>Credentials</h3>
+                    <p>Passwords, secure vault credentials, or secret keys</p>
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <h3>Local App Settings</h3>
-                    <p>Presets and configuration stored on your device.</p>
+                    <h3>Keystroke or Clipboard Data</h3>
+                    <p>No keylogging, clipboard scraping, or hidden input capture</p>
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <h3>License Data</h3>
-                    <p>Optional license/activation details that you enter.</p>
+                    <h3>Background Uploaded Audio</h3>
+                    <p>Audio processing is local; audio streams are not automatically uploaded to our servers</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>Marketing Telemetry</h3>
+                    <p>No third-party advertising SDK telemetry is used in the desktop app</p>
                 </article>
             </div>
         </section>
 
-        <section class="section" aria-labelledby="network-title">
+        <section class="section" aria-labelledby="local-title">
             <div class="section-header">
-                <h2 id="network-title">3. Optional network and external services</h2>
-                <p>Depending on features you use, the App may access network/external services for:</p>
+                <h2 id="local-title">3. Data Stored Locally</h2>
+                <p>The app may write limited local files on your device only to support operation and user settings.</p>
             </div>
             <div class="grid" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <h3>License Activation</h3>
-                    <p>Activating or validating license keys when you choose to use licensing features.</p>
+                    <h3>Runtime Settings</h3>
+                    <p><strong>AppData\Roaming\SpatiaXPro\</strong> — runtime settings such as latency preferences and endpoint-specific tuning.</p>
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <h3>Optional Component Download</h3>
-                    <p>Downloading optional components such as VB-CABLE installer package.</p>
+                    <h3>Engine Recovery Journal</h3>
+                    <p><strong>AppData\Roaming\SpatiaXPro\</strong> — local recovery state used to restart audio safely after endpoint changes.</p>
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <h3>User-Requested External Links</h3>
-                    <p>Opening support, policy, or purchase pages only when explicitly requested by you.</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="section" aria-labelledby="sharing-title">
-            <div class="section-header">
-                <h2 id="sharing-title">4. Data sharing and selling</h2>
-            </div>
-            <div class="grid" style="grid-template-columns:1fr;" role="list">
-                <article class="card" role="listitem">
-                    <div class="card-accent"></div>
-                    <p>We do not sell personal information.</p>
-                    <p>We do not use third-party advertising SDKs in the desktop app.</p>
+                    <h3>UI Preferences</h3>
+                    <p><strong>AppData\Roaming\SpatiaXPro\</strong> — local theme and interface preferences only.</p>
                 </article>
             </div>
         </section>
 
-        <section class="section" aria-labelledby="permissions-title">
+        <section class="section" aria-labelledby="admin-title">
             <div class="section-header">
-                <h2 id="permissions-title">5. Microphone and other permissions</h2>
-                <p>SpatiaX Pro primarily uses system audio loopback/output routing.</p>
+                <h2 id="admin-title">4. System Access and Audio Processing</h2>
+                <p>SpatiaX Pro uses Windows user-mode audio APIs for real-time processing.</p>
             </div>
-            <div class="grid" style="grid-template-columns:1fr;" role="list">
+            <div class="grid" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <p>If a feature requests microphone access (for example, calibration), it is used only for that feature workflow.</p>
-                    <p>You can manage Windows permissions at any time in system settings.</p>
+                    <h3>User-Mode Audio Path</h3>
+                    <p>Audio routing and processing are performed through Windows WASAPI user-mode endpoints.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>No Bundled Third-Party Drivers</h3>
+                    <p>The app package does not include third-party audio drivers or driver installers.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>Local Device Enumeration</h3>
+                    <p>Audio device discovery and switching occur locally on your machine.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>User-Initiated Controls</h3>
+                    <p>Audio mode changes, routing selections, and calibration workflows are initiated by user actions.</p>
                 </article>
             </div>
         </section>
 
-        <section class="section" aria-labelledby="retention-title">
+        <section class="section" aria-labelledby="perms-title">
             <div class="section-header">
-                <h2 id="retention-title">6. Local storage and retention</h2>
+                <h2 id="perms-title">5. Windows Permissions Disclosure</h2>
+                <p>SpatiaX Pro declares the following MSIX capability:</p>
             </div>
-            <div class="grid" style="grid-template-columns:1fr;" role="list">
+            <div class="grid" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <p>The App stores configuration and preset data locally so your settings persist between launches.</p>
-                    <p>You can remove local app data by uninstalling the app and deleting related local-data folders.</p>
+                    <h3>runFullTrust</h3>
+                    <p>Required for packaged Win32/WPF desktop app execution.</p>
                 </article>
             </div>
         </section>
 
-        <section class="section" aria-labelledby="security-title">
+        <section class="section" aria-labelledby="thirdparty-title">
             <div class="section-header">
-                <h2 id="security-title">7. Security</h2>
+                <h2 id="thirdparty-title">6. Third-Party Services</h2>
             </div>
             <div class="grid" style="grid-template-columns:1fr;" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <p>We use reasonable measures to protect local app data. Final security also depends on your Windows account and device security controls.</p>
+                    <p>SpatiaX Pro does not integrate advertising trackers. If the app opens a website link (for support, licensing, or policy pages), that network action is user-initiated.</p>
                 </article>
             </div>
         </section>
 
         <section class="section" aria-labelledby="children-title">
             <div class="section-header">
-                <h2 id="children-title">8. Children’s privacy</h2>
+                <h2 id="children-title">7. Children's Privacy</h2>
             </div>
             <div class="grid" style="grid-template-columns:1fr;" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <p>SpatiaX Pro is not directed to children under 13.</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="section" aria-labelledby="rights-title">
-            <div class="section-header">
-                <h2 id="rights-title">9. Your rights</h2>
-            </div>
-            <div class="grid" style="grid-template-columns:1fr;" role="list">
-                <article class="card" role="listitem">
-                    <div class="card-accent"></div>
-                    <p>Depending on your region (for example GDPR/CCPA), you may have rights regarding personal data. Contact us using the details below for privacy requests.</p>
+                    <p>SpatiaX Pro is not directed at children under 13. We do not knowingly collect personal information from children.</p>
                 </article>
             </div>
         </section>
 
         <section class="section" aria-labelledby="changes-title">
             <div class="section-header">
-                <h2 id="changes-title">10. Changes to this policy</h2>
+                <h2 id="changes-title">8. Changes to This Policy</h2>
             </div>
             <div class="grid" style="grid-template-columns:1fr;" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <p>We may update this policy from time to time. The “Last updated” date will reflect the latest revision.</p>
+                    <p>If we make material updates to this Privacy Policy, we will revise the effective date and version number. Continued use of SpatiaX Pro after updates constitutes acceptance of the revised policy.</p>
                 </article>
             </div>
         </section>
 
         <section class="section" aria-labelledby="contact-title">
             <div class="section-header">
-                <h2 id="contact-title">11. Contact</h2>
+                <h2 id="contact-title">9. Contact</h2>
             </div>
             <div class="grid" style="grid-template-columns:1fr;" role="list">
                 <article class="card" role="listitem">
@@ -216,7 +216,7 @@
                     <p>For questions or concerns about this Privacy Policy, contact:<br>
                     <strong>Hasnain Butt Akhtar</strong><br>
                     <a href="https://www.inhasnain.com" style="color:var(--cyan);">https://www.inhasnain.com</a></p>
-                    <p>© 2025 Hasnain Butt Akhtar. All rights reserved. · PC TuneX v1.0.0.0</p>
+                    <p>© 2026 Hasnain Butt Akhtar. All rights reserved. · SpatiaX Pro v1.0.1.0</p>
                 </article>
             </div>
         </section>
