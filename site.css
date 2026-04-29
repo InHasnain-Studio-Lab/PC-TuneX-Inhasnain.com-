@@ -486,30 +486,23 @@ body.is-night .crack-svg .c-glow{stroke:rgba(255,255,255,.18)}
    RESPONSIVE
    ============================================================ */
 @media (max-width:980px){
-  .top-bar{flex-wrap:wrap;border-radius:20px;padding:10px 14px}
-  .top-bar nav{order:3;width:100%;justify-content:flex-start;gap:2px}
+  /* nav gets overridden below for phones — these rules apply tablet only */
+  .top-bar{border-radius:20px;padding:10px 14px}
   .hero{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr 1fr;gap:20px}
   .section{padding:24px 20px}
 }
 @media (max-width:680px){
-  .container{padding:20px 14px 48px}
-  .hero-card h1{font-size:clamp(32px,9vw,52px)}
-  .lead{font-size:14px}
-  .section{margin-top:10px}
+  /* legacy overrides — comprehensive block below handles phones */
   .grid{grid-template-columns:1fr;gap:16px}
   .footer-grid{grid-template-columns:1fr;gap:16px}
   .footer-bottom{flex-direction:column;gap:6px;text-align:center}
-  .top-bar{margin:8px 8px 0}
   .kinetic-word{height:clamp(28px,8vw,52px);margin:4px 0}
   .btn{padding:11px 20px;font-size:13px}
-  .tool-btn{padding:7px 10px}
-  .clock{font-size:11px;padding:7px 11px}
   .greet{font-size:12px;max-width:88vw;text-align:center;white-space:normal}
 }
 @media (max-width:380px){
   .title .sub{display:none}
-  .clock .meridian{display:none}
 }
 @media (min-width:1400px){
   .container,.top-bar,.footer-wrap{max-width:1200px}
@@ -2434,17 +2427,21 @@ body.is-night .footer-links a:hover{
 
 /* ── TABLET PORTRAIT (≤960px) ───────────────────────────────── */
 @media (max-width:960px){
-  /* Top bar — keep pill, strip 3D, tighter margin */
+  /* Top bar — single pill row, no 3D */
   .top-bar{
     margin:8px 12px 0;
     padding:8px 12px;
-    gap:10px;
-    transform:none !important;       /* kill perspective translateZ */
+    gap:8px;
+    transform:none !important;
     border-radius:20px;
+    flex-wrap:nowrap;              /* keep one row on tablet */
   }
-  /* Nav: scrollable single row, no wrap */
+  .brand{flex-shrink:0}
+  .actions{flex-shrink:0}
+  /* Nav: scrollable in remaining space */
   .top-bar nav{
-    flex:1;
+    flex:1 1 0%;               /* grow into available space */
+    min-width:0;               /* allow shrink below content size */
     overflow-x:auto;
     overflow-y:hidden;
     scrollbar-width:none;
@@ -2452,17 +2449,18 @@ body.is-night .footer-links a:hover{
     flex-wrap:nowrap !important;
     justify-content:flex-start;
     gap:2px;
-    mask-image:linear-gradient(90deg,transparent 0,#000 16px,#000 calc(100% - 16px),transparent 100%);
-    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16px,#000 calc(100% - 16px),transparent 100%);
   }
   .top-bar nav::-webkit-scrollbar{display:none}
   .top-bar nav a{white-space:nowrap}
 
-  /* Hero: single column, full width */
+  /* Clock: slightly smaller */
+  .clock{font-size:11px;padding:7px 10px}
+
+  /* Hero: single column */
   .hero{grid-template-columns:1fr}
   .hero-card{padding:36px 32px}
 
-  /* Cards: 2 columns minimum */
+  /* Cards: 2 columns */
   .grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 
   /* Sections */
@@ -2473,7 +2471,7 @@ body.is-night .footer-links a:hover{
 
   /* Contact: single column */
   .contact-grid{grid-template-columns:1fr;gap:24px}
-  .form-row{grid-template-columns:1fr 1fr} /* keep 2 col on tablet */
+  .form-row{grid-template-columns:1fr 1fr}
 }
 
 /* ── LARGE PHONE (≤680px) ───────────────────────────────────── */
@@ -2481,45 +2479,69 @@ body.is-night .footer-links a:hover{
   /* ── Container ── */
   .container{padding:10px 12px 52px}
 
-  /* ── Top bar: flush to top, round only bottom corners ── */
+  /* ────────────────────────────────────────────────────────────
+     TOP BAR — two-row layout:
+       Row 1: [logo + name]  →  [action buttons]
+       Row 2: [nav links, scrollable]
+     The critical fix: flex: 0 0 100% forces nav to its own row.
+     width:100% alone is NOT enough because the base flex:1 sets
+     flex-basis:0, which wins over width in flex sizing.
+  ──────────────────────────────────────────────────────────── */
   .top-bar{
     position:sticky;top:0;
     margin:0 !important;
-    border-radius:0 0 20px 20px;
-    padding:8px 12px 6px;
-    gap:8px;
+    max-width:100% !important;
+    border-radius:0 0 18px 18px;
+    padding:8px 12px 4px;
+    gap:0;
+    row-gap:4px;
     transform:none !important;
     flex-wrap:wrap;
+    align-items:center;
   }
-  /* Row 1: brand left, actions right */
-  .brand{flex-shrink:0;flex:1}
-  .actions{flex-shrink:0;margin-left:auto}
-  /* Row 2: nav full-width scrollable */
+  /* Row 1 items */
+  .brand{
+    flex:1 1 auto;    /* grow to push actions right */
+    min-width:0;
+  }
+  .actions{
+    flex:0 0 auto;   /* hug content, stay on row 1 */
+    margin-left:8px;
+    gap:4px;
+  }
+  /* Row 2: nav as full-width scrollable strip */
   .top-bar nav{
-    order:3;
+    order:10;                  /* always last */
+    flex:0 0 100% !important; /* ← THE FIX: force own row */
     width:100%;
+    min-width:0;
     overflow-x:auto;
     overflow-y:hidden;
     scrollbar-width:none;
     -webkit-overflow-scrolling:touch;
     flex-wrap:nowrap !important;
     justify-content:flex-start;
-    padding-bottom:2px;
+    gap:2px;
+    padding:2px 0 4px;
+    /* Fade edges to hint scrollability */
+    mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%);
   }
   .top-bar nav::-webkit-scrollbar{display:none}
   .top-bar nav a{
-    padding:7px 12px;
+    padding:6px 12px;
     font-size:12px;
     white-space:nowrap;
-    min-height:36px;
+    min-height:34px;
     display:inline-flex;
     align-items:center;
+    border-radius:999px;
   }
-  /* Clock smaller */
-  .clock{font-size:10px;padding:6px 9px;letter-spacing:.08em}
-  .clock .meridian{display:none}
-  /* Tool buttons smaller */
-  .tool-btn{padding:6px 9px;font-size:10px}
+
+  /* ── Hide clock on phones — too wide, not essential ── */
+  .clock{display:none !important}
+  /* Tool buttons: icon-only, compact */
+  .tool-btn{padding:6px 8px;font-size:10px;min-width:32px;justify-content:center}
   .tool-btn .lbl{display:none}
 
   /* ── Hero ── */
@@ -2611,9 +2633,13 @@ body.is-night .footer-links a:hover{
   .hero-card h1{font-size:clamp(24px,8vw,36px) !important}
   .section{padding:14px 12px}
   .card{padding:16px 12px}
-  .top-bar{padding:6px 10px 5px}
+  .top-bar{padding:6px 10px 3px;row-gap:3px}
+  .top-bar nav{flex:0 0 100% !important} /* reinforce — never flex into row 1 */
   .logo{width:36px !important;height:36px !important}
   .title .name{font-size:12px;letter-spacing:.12em}
+  .title .sub{display:none}              /* hide "Studio X" — too cramped */
+  .clock{display:none !important}
+  .tool-btn{padding:5px 7px;min-width:30px}
   .stat-item{padding:13px 8px}
   .stat-number{font-size:clamp(18px,5vw,26px) !important}
   .hero-actions .btn{padding:12px 16px;font-size:12.5px}
@@ -2625,22 +2651,30 @@ body.is-night .footer-links a:hover{
 /* ── TINY PHONE (≤360px) ────────────────────────────────────── */
 @media (max-width:360px){
   .title .sub{display:none}
+  .title .name{font-size:11px}
   .stats-section{grid-template-columns:1fr !important}
-  .top-bar nav a{padding:6px 10px;font-size:11px}
-  .hero-card h1{font-size:clamp(22px,7.5vw,32px) !important}
-  .live-badge{font-size:9px}
-  .clock{display:none} /* too cramped — hide clock, keep sound + theme toggles */
+  .top-bar nav{flex:0 0 100% !important}
+  .top-bar nav a{padding:6px 9px;font-size:11px}
+  .hero-card h1{font-size:clamp(20px,7vw,30px) !important}
+  .live-badge{font-size:9px;padding:3px 8px 3px 6px}
+  .clock{display:none !important}
+  .actions{gap:3px}
+  .tool-btn{padding:5px 6px;min-width:28px}
 }
 
 /* ── ALL TOUCH DEVICES (phones & tablets) ───────────────────── */
 @media (hover:none){
-  /* Disable expensive perspective tilt — causes GPU strain on mobile */
+  /* Disable expensive perspective tilt */
   .top-bar{transform:none !important}
   .section{transform:none !important}
-  .card{
-    transform:none !important;
-    /* disable the 3D tilt JS sets on mouse move */
+  .card{transform:none !important}
+
+  /* On phones: reinforce nav on own row — belt + suspenders */
+  @media (max-width:680px){
+    .top-bar nav{flex:0 0 100% !important;order:10 !important}
+    .clock{display:none !important}
   }
+
   .hero-card{
     animation:heroFloatTouch 8s ease-in-out infinite !important;
   }
