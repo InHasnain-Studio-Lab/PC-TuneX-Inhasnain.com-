@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Android Apps | Hasnain Studio X</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="site.css"/>
+        <style>
+            /* ── Android Apps page compact layout ── */
+            @media(min-width:600px){
+                .container .section .grid{
+                    grid-template-columns: repeat(2, 1fr) !important;
+                }
+            }
+            .container .section{
+                margin-top: .8rem !important;
+                padding: 1.2rem 1.4rem !important;
+            }
+            .container .section-header{
+                padding-bottom: .4rem !important;
+                margin-bottom: .6rem !important;
+            }
+            .container .section-header h2{
+                font-size: 1.05rem !important;
+                margin-bottom: .2rem !important;
+            }
+            .container .section-header p{
+                font-size: .85rem !important;
+                margin: 0 !important;
+            }
+            .container .card{
+                padding: 1.1rem 1.2rem !important;
+            }
+            .container .card h3{
+                font-size: 1rem !important;
+                margin-bottom: .35rem !important;
+            }
+            .container .card p{
+                font-size: .88rem !important;
+                margin-bottom: .45rem !important;
+            }
+            .container .card ul{
+                font-size: .85rem !important;
+                margin: .3rem 0 .5rem 1rem !important;
+                line-height: 1.6 !important;
+            }
+            .hero--single .hero-card h1{
+                font-size: clamp(1.3rem,3vw,1.8rem) !important;
+            }
+            /* Android badge colour */
+            .badge-android {
+                display:inline-flex;align-items:center;gap:.4rem;
+                background:rgba(61,220,132,.12);color:#29c97e;
+                border:1px solid rgba(61,220,132,.30);
+                border-radius:999px;padding:.15rem .65rem;
+                font-size:.78rem;font-weight:600;
+            }
+            .badge-soon {
+                display:inline-block;
+                background:rgba(80,120,255,.12);color:#6a9fff;
+                border:1px solid rgba(80,120,255,.3);
+                border-radius:999px;padding:.15rem .65rem;
+                font-size:.78rem;font-weight:600;
+            }
+            /* Platform tag pills */
+            .platform-tag {
+                display:inline-flex;align-items:center;gap:.3rem;
+                font-size:.72rem;font-weight:600;letter-spacing:.05em;
+                padding:.2rem .55rem;border-radius:8px;
+                background:rgba(61,220,132,.08);color:#29c97e;
+                border:1px solid rgba(61,220,132,.18);
+                margin-bottom:.6rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="scroll-progress"></div>
+        <div class="page-transition" id="pg-transition"></div>
+        <div class="bg-grid"></div>
+        <div class="scanlines"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <header class="top-bar" role="banner" aria-label="Top navigation">
+            <div class="brand">
+                <div class="logo" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 1.5L24 7.5V18.5L13 24.5L2 18.5V7.5Z" stroke="currentColor" stroke-width="1.1" opacity="0.55"/><path d="M8.5 9V17M17.5 9V17M8.5 13H17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div>
+                <div class="title">
+                    <div class="name">Hasnain</div>
+                    <div class="sub">Studio X</div>
+                </div>
+            </div>
+            <nav aria-label="Primary" role="navigation">
+                <a href="index.html">Home</a>
+                <a href="pctunex.html">Windows</a>
+                <a href="android-apps.html" class="active">Android</a>
+                <a href="pricing.html">AI Studio</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="actions" role="group" aria-label="Actions">
+                <button class="icon-btn" aria-label="Search">🔍</button>
+                <button class="icon-btn" aria-label="Account">👤</button>
+                <button class="icon-btn" aria-label="Cart">🛒</button>
+            </div>
+        </header>
+        <main class="container" role="main">
+
+            <!-- Hero banner -->
+            <section class="hero hero--single" style="margin-bottom:0">
+                <div class="hero-card" style="padding:1.4rem 2rem 1.2rem;">
+                    <div class="hero-decoration"></div>
+                    <div class="live-badge"><span class="live-dot"></span>Mobile TuneX — Coming to Google Play</div>
+                    <h1 style="font-size:clamp(1.4rem,3.5vw,2rem);margin-bottom:.4rem;">Android Apps</h1>
+                    <p class="lead" style="font-size:.92rem;margin-bottom:.9rem;opacity:.75;">The same lightweight, privacy-first philosophy from our Windows tools — brought to Android. No trackers, no background data collection, no bloat.</p>
+                    <div class="hero-actions" style="gap:.5rem;flex-wrap:wrap;">
+                        <a class="btn btn--primary" href="contact.html">Get Early Access</a>
+                        <a class="btn btn--secondary" href="pctunex.html">See Windows Apps</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Philosophy strip -->
+            <div class="stats-section reveal" style="margin-top:1rem;" aria-label="Android platform values">
+                <div class="stat-item">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Trackers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Local</div>
+                    <div class="stat-label">Processing</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">No</div>
+                    <div class="stat-label">Background Data</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Play</div>
+                    <div class="stat-label">Store Certified</div>
+                </div>
+            </div>
+
+            <!-- Apps Grid -->
+            <h2 id="android-apps-title" style="margin-top:1.6rem;margin-bottom:.2rem;">Android App Catalogue</h2>
+            <section class="section" aria-labelledby="android-apps-title" style="margin-top:.4rem;">
+                <div class="section-header" style="padding-bottom:.5rem;">
+                    <p>Practical mobile utilities built with the same standards as our Windows range.</p>
+                </div>
+                <div class="grid" role="list">
+
+                    <!-- Mobile TuneX -->
+                    <article class="card" role="listitem">
+                        <div class="platform-tag">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341a.25.25 0 0 1-.25.25H6.727a.25.25 0 0 1-.25-.25V8.66a.25.25 0 0 1 .25-.25h10.546a.25.25 0 0 1 .25.25v6.68zM4.5 7.5C3.12 7.5 2 8.62 2 10s1.12 2.5 2.5 2.5V7.5zm15 0v5C20.88 12.5 22 11.38 22 10S20.88 7.5 19.5 7.5zM7.5 3l1.5 3h6l1.5-3H7.5z"/></svg>
+                            Android
+                        </div>
+                        <div class="card-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                            </svg>
+                        </div>
+                        <h3>Mobile TuneX</h3>
+                        <p>A lightweight Android companion to PC TuneX — designed to help you clear junk, manage permissions, and keep your phone running smoothly without draining your battery.</p>
+                        <ul style="margin:.6rem 0 .8rem 1.1rem;line-height:1.8;font-size:.93rem;">
+                            <li>Junk &amp; cache file cleanup</li>
+                            <li>App permission auditor</li>
+                            <li>Battery usage optimisation tips</li>
+                            <li>Storage analyser with safe-delete preview</li>
+                        </ul>
+                        <p style="margin-bottom:.9rem;">
+                            <span class="badge-soon">⏳ Coming to Google Play</span>
+                        </p>
+                        <div class="hero-actions">
+                            <a class="btn btn--primary" href="contact.html">Get Notified</a>
+                            <a class="btn btn--secondary" href="MobileTunexPrivacy.html">Privacy Policy</a>
+                        </div>
+                    </article>
+
+                    <!-- Android App Slot 2 -->
+                    <article class="card" role="listitem">
+                        <div class="platform-tag">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341a.25.25 0 0 1-.25.25H6.727a.25.25 0 0 1-.25-.25V8.66a.25.25 0 0 1 .25-.25h10.546a.25.25 0 0 1 .25.25v6.68zM4.5 7.5C3.12 7.5 2 8.62 2 10s1.12 2.5 2.5 2.5V7.5zm15 0v5C20.88 12.5 22 11.38 22 10S20.88 7.5 19.5 7.5zM7.5 3l1.5 3h6l1.5-3H7.5z"/></svg>
+                            Android
+                        </div>
+                        <div class="card-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 8v4l3 3"/>
+                            </svg>
+                        </div>
+                        <h3>More Apps Coming</h3>
+                        <p>A second Android utility is currently in planning. We build based on real user needs — reach out if you have a specific problem you'd like us to solve on mobile.</p>
+                        <ul style="margin:.6rem 0 .8rem 1.1rem;line-height:1.8;font-size:.93rem;">
+                            <li>Built on the same local-first architecture</li>
+                            <li>Privacy-first — no analytics or tracking SDKs</li>
+                            <li>Designed for Android 10 and above</li>
+                            <li>Light on storage, easy on battery</li>
+                        </ul>
+                        <p style="margin-bottom:.9rem;">
+                            <span class="badge-soon">📋 In Planning</span>
+                        </p>
+                        <div class="hero-actions">
+                            <a class="btn btn--primary" href="contact.html">Suggest a Feature</a>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- Why Android section -->
+            <section class="section reveal" aria-labelledby="why-android-title" style="margin-top:.8rem;">
+                <div class="section-header">
+                    <h2 id="why-android-title">Our Android Philosophy</h2>
+                    <p>The same standards that define our Windows apps, applied to mobile.</p>
+                </div>
+                <div class="grid" role="list">
+                    <article class="card" role="listitem">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3>No Hidden Permissions</h3>
+                        <p>We only request permissions that are strictly necessary. Every permission is explained in plain language before you grant it.</p>
+                    </article>
+                    <article class="card" role="listitem">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="18" r="1"/>
+                            </svg>
+                        </div>
+                        <h3>Battery Conscious</h3>
+                        <p>No background sync, no push notifications unless you ask for them, no wake locks. Your battery life is yours.</p>
+                    </article>
+                    <article class="card" role="listitem">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                            </svg>
+                        </div>
+                        <h3>Fast &amp; Light</h3>
+                        <p>Minimal APK size, instant launch, smooth on mid-range hardware. Performance is a feature, not a bonus.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Cross-platform CTA -->
+            <section class="section reveal" aria-label="Also on Windows" style="margin-top:.8rem;text-align:center;">
+                <p style="margin:0 0 .8rem;opacity:.75;font-size:.95rem;">Using Windows? We have a full suite of desktop tools ready for you →</p>
+                <a class="btn btn--primary" href="pctunex.html">Browse Windows Apps</a>
+            </section>
+
+        </main>
+        <footer class="site-footer" role="contentinfo">
+            <div class="footer-wrap">
+                <div class="footer-grid">
+                    <div>
+                        <div class="footer-title">InHasnain</div>
+                        <p class="footer-sub">Strategic digital products for modern productivity — Windows utilities, Android apps, and practical AI tooling.</p>
+                    </div>
+                    <div>
+                        <h4 class="footer-heading">Products</h4>
+                        <ul class="footer-links">
+                            <li><a href="pctunex.html">Windows Apps</a></li>
+                            <li><a href="android-apps.html">Android Apps</a></li>
+                            <li><a href="pricing.html">AI Studio</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="footer-heading">Company</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="footer-heading">Contact</h4>
+                        <ul class="footer-links">
+                            <li><a href="mailto:Hasnain@outlook.at">Hasnain@outlook.at</a></li>
+                            <li>England, United Kingdom</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <span>© 2026 InHasnain. All rights reserved.</span>
+                </div>
+            </div>
+        </footer>
+        <script src="fluid.js"></script>
+        <script src="site.js"></script>
+    </body>
+</html>

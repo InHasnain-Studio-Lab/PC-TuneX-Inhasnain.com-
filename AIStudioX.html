@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Hasnain Studio X | AI Portfolio</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site.css" />
+    <style>
+    /* ── PAGE-SPECIFIC: AI Portfolio Gallery ── */
+
+    /* Hero stats row */
+    .ai-stats{
+      display:flex;gap:32px;margin:24px 0 8px;flex-wrap:wrap;
+    }
+    .ai-stat-num{
+      font-family:'Orbitron',monospace;font-weight:700;
+      font-size:clamp(22px,3vw,36px);
+      color:var(--ink);line-height:1;
+    }
+    .ai-stat-lbl{
+      font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+      opacity:.55;margin-top:4px;
+    }
+
+    /* Filter bar */
+    .filter-bar{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin:32px 0 24px;
+    }
+    .filter-btn{
+      font-family:'Orbitron',monospace;
+      font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+      padding:8px 16px;border-radius:999px;
+      border:1px solid var(--line);
+      background:transparent;
+      color:var(--ink);opacity:.55;
+      cursor:pointer;
+      transition:all .22s ease;
+    }
+    .filter-btn:hover{opacity:1;border-color:var(--ink);background:rgba(0,0,0,.05)}
+    .filter-btn.active{
+      opacity:1;background:#000;color:var(--btn-fg);border-color:#000;
+    }
+    body.is-night .filter-btn{border-color:rgba(255,255,255,.14);color:#eeeae0}
+    body.is-night .filter-btn:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.07)}
+    body.is-night .filter-btn.active{background:#fff;color:#000;border-color:#fff}
+
+    /* Gallery grid */
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      gap:20px;
+    }
+    .gallery-item.featured{
+      grid-column:span 2;
+      grid-row:span 2;
+    }
+    @media (max-width:640px){
+      .gallery-item.featured{grid-column:span 1;grid-row:span 1}
+    }
+
+    /* Gallery card */
+    .gallery-item{
+      position:relative;
+      border-radius:16px;overflow:hidden;
+      border:1px solid var(--card-border);
+      background:var(--card-bg);
+      backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.5);
+      cursor:pointer;
+      transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+      opacity:0;transform:translateY(24px);
+    }
+    .gallery-item.visible{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease,box-shadow .3s ease,border-color .3s ease}
+    .gallery-item:hover{
+      transform:translateY(-5px) scale(1.01);
+      border-color:rgba(0,0,0,.22);
+      box-shadow:0 16px 48px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.7);
+    }
+    body.is-night .gallery-item{
+      background:rgba(8,16,48,.55);
+      border-color:rgba(255,255,255,.08);
+      box-shadow:none;
+    }
+    body.is-night .gallery-item:hover{
+      border-color:rgba(255,255,255,.22);
+      box-shadow:0 16px 48px rgba(0,0,0,.5);
+    }
+
+    /* Image inside card */
+    .gallery-item img{
+      width:100%;height:100%;object-fit:cover;display:block;
+      min-height:240px;
+      transition:transform .55s cubic-bezier(.23,1,.32,1);
+      filter:saturate(1.05);
+    }
+    .gallery-item.featured img{min-height:460px}
+    .gallery-item:hover img{transform:scale(1.05)}
+
+    /* Image placeholder — shown before you add real images */
+    .img-placeholder{
+      width:100%;min-height:240px;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:12px;
+      background:rgba(0,0,0,.04);
+      color:var(--ink);opacity:.28;
+      font-family:'Orbitron',monospace;font-size:9px;letter-spacing:.2em;
+      text-transform:uppercase;
+      pointer-events:none;
+    }
+    .gallery-item.featured .img-placeholder{min-height:460px}
+    body.is-night .img-placeholder{background:rgba(255,255,255,.03)}
+    .img-placeholder svg{width:36px;height:36px}
+
+    /* Overlay on hover */
+    .card-overlay{
+      position:absolute;bottom:0;left:0;right:0;z-index:4;
+      padding:20px;
+      background:linear-gradient(to top,rgba(0,0,0,.82) 0%,transparent 100%);
+      transform:translateY(100%);
+      transition:transform .35s cubic-bezier(.23,1,.32,1);
+    }
+    body.is-night .card-overlay{background:linear-gradient(to top,rgba(0,2,18,.92) 0%,transparent 100%)}
+    .gallery-item:hover .card-overlay{transform:translateY(0)}
+    .card-tag{
+      font-family:'Orbitron',monospace;font-size:9px;letter-spacing:.22em;
+      color:rgba(255,255,255,.65);text-transform:uppercase;margin-bottom:5px;
+    }
+    .card-title{
+      font-family:'Orbitron',monospace;font-size:14px;font-weight:700;
+      color:#fff;margin-bottom:4px;
+    }
+    .card-desc{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5}
+
+    /* Top-right expand button */
+    .card-actions{
+      position:absolute;top:12px;right:12px;z-index:5;
+      opacity:0;transform:translateY(-6px);
+      transition:opacity .3s ease,transform .3s ease;
+    }
+    .gallery-item:hover .card-actions{opacity:1;transform:translateY(0)}
+    .card-btn{
+      width:34px;height:34px;border-radius:50%;
+      background:rgba(0,0,0,.55);backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.2);
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;font-size:14px;cursor:pointer;
+      transition:background .22s ease,border-color .22s ease;
+    }
+    .card-btn:hover{background:rgba(0,0,0,.8);border-color:rgba(255,255,255,.5)}
+
+    /* Corner accents */
+    .corner-accent{
+      position:absolute;z-index:5;pointer-events:none;
+      width:16px;height:16px;opacity:0;transition:opacity .3s ease;
+    }
+    .corner-accent.tl{top:10px;left:10px;border-top:2px solid var(--ink);border-left:2px solid var(--ink)}
+    .corner-accent.br{bottom:10px;right:10px;border-bottom:2px solid var(--ink);border-right:2px solid var(--ink);transition-delay:.05s}
+    .gallery-item:hover .corner-accent{opacity:.4}
+    body.is-night .corner-accent{border-color:#fff}
+
+    /* Lightbox */
+    #lightbox{
+      position:fixed;inset:0;z-index:2000;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(0,0,0,.88);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+      opacity:0;pointer-events:none;
+      transition:opacity .32s ease;
+    }
+    #lightbox.open{opacity:1;pointer-events:all}
+    .lb-inner{
+      position:relative;
+      max-width:90vw;max-height:92vh;
+      display:flex;flex-direction:column;align-items:center;
+      animation:lbZoom .38s cubic-bezier(.23,1,.32,1) both;
+    }
+    @keyframes lbZoom{from{transform:scale(.88);opacity:0}to{transform:scale(1);opacity:1}}
+    #lb-img{
+      max-width:88vw;max-height:72vh;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 0 80px rgba(0,0,0,.7),0 30px 80px rgba(0,0,0,.5);
+      object-fit:contain;display:block;
+    }
+    .lb-info{margin-top:18px;text-align:center}
+    .lb-tag{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:.25em;color:rgba(255,255,255,.55);margin-bottom:5px}
+    .lb-title{font-family:'Orbitron',monospace;font-size:17px;font-weight:700;color:#fff}
+    .lb-desc{font-size:13px;color:rgba(255,255,255,.5);margin-top:4px}
+    .lb-close{
+      position:absolute;top:-46px;right:0;
+      width:38px;height:38px;border-radius:50%;
+      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+      color:#fff;font-size:16px;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:background .22s ease,border-color .22s ease;
+    }
+    .lb-close:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.4)}
+    .lb-nav{
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:44px;height:44px;border-radius:50%;
+      background:rgba(0,0,0,.6);backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,.15);
+      color:#fff;font-size:18px;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:background .22s ease,border-color .22s ease;
+    }
+    .lb-nav:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.35)}
+    .lb-prev{left:-58px}.lb-next{right:-58px}
+    @media (max-width:700px){.lb-prev{left:-6px}.lb-next{right:-6px}}
+
+    /* About strip */
+    .about-strip{
+      text-align:center;max-width:760px;margin:0 auto;padding:36px 32px;
+    }
+    .about-strip h3{
+      font-family:'Orbitron',monospace;font-weight:700;
+      font-size:clamp(18px,2.8vw,26px);
+      color:var(--ink);margin:0 0 14px;
+    }
+    .about-strip p{
+      color:var(--ink);opacity:.72;line-height:1.78;
+      font-size:15px;max-width:56ch;margin:0 auto 20px;
+    }
+    .tech-badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+    .tech-badge{
+      font-family:'Orbitron',monospace;font-size:9px;letter-spacing:.15em;
+      padding:7px 14px;border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--ink);opacity:.65;
+      transition:opacity .22s ease,border-color .22s ease;
+    }
+    .tech-badge:hover{opacity:1;border-color:var(--ink)}
+    body.is-night .tech-badge{border-color:rgba(255,255,255,.14)}
+    body.is-night .tech-badge:hover{border-color:rgba(255,255,255,.4)}
+
+    /* ── HOW TO ADD IMAGES — see comments in each .gallery-item ── */
+    /* Simply replace the <div class="img-placeholder">…</div> with:
+       <img src="images/your-file.jpg" alt="Your title" loading="lazy"/>
+       Store your images in a subfolder: D:\Website Project\images\
+    */
+    </style>
+</head>
+<body>
+    <div id="scroll-progress"></div>
+    <div class="page-transition" id="pg-transition"></div>
+    <div class="bg-grid"></div>
+    <div class="scanlines"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <header class="top-bar" role="banner" aria-label="Top navigation">
+        <div class="brand">
+            <div class="logo" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 1.5L24 7.5V18.5L13 24.5L2 18.5V7.5Z" stroke="currentColor" stroke-width="1.1" opacity="0.55"/><path d="M8.5 9V17M17.5 9V17M8.5 13H17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div>
+            <div class="title">
+                <div class="name">Hasnain</div>
+                <div class="sub">Studio X</div>
+            </div>
+        </div>
+        <nav aria-label="Primary" role="navigation">
+            <a href="index.html">Home</a>
+            <a href="pctunex.html">Windows</a>
+            <a href="android-apps.html">Android</a>
+            <a href="pricing.html">AI Studio</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <div class="actions" role="group" aria-label="Actions">
+            <button class="icon-btn" aria-label="Search">🔍</button>
+            <button class="icon-btn" aria-label="Account">👤</button>
+            <button class="icon-btn" aria-label="Cart">🛒</button>
+        </div>
+    </header>
+
+    <main class="container" role="main">
+
+        <!-- Hero -->
+        <section class="hero hero--single">
+            <div class="hero-card">
+                <h1>AI Creation Portfolio</h1>
+                <p class="lead">A curated collection of AI-generated artworks — exploring the frontier where machine intelligence meets human imagination.</p>
+                <div class="ai-stats">
+                    <div>
+                        <div class="ai-stat-num" data-target="48">0</div>
+                        <div class="ai-stat-lbl">Artworks</div>
+                    </div>
+                    <div>
+                        <div class="ai-stat-num" data-target="12">0</div>
+                        <div class="ai-stat-lbl">Series</div>
+                    </div>
+                    <div>
+                        <div class="ai-stat-num" data-target="5">0</div>
+                        <div class="ai-stat-lbl">AI Models</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section class="section" id="gallery" aria-label="Portfolio gallery">
+
+            <!-- Filter bar -->
+            <div class="filter-bar" role="group" aria-label="Filter gallery">
+                <button class="filter-btn active" data-filter="all">All Works</button>
+                <button class="filter-btn" data-filter="surreal">Surreal</button>
+                <button class="filter-btn" data-filter="portrait">Portraits</button>
+                <button class="filter-btn" data-filter="landscape">Landscapes</button>
+                <button class="filter-btn" data-filter="abstract">Abstract</button>
+                <button class="filter-btn" data-filter="cyber">Cyberpunk</button>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════
+                 GALLERY GRID — ADD YOUR IMAGES HERE
+                 ─────────────────────────────────────────────────────
+                 To add an image to any card:
+                 1. Copy your image into D:\Website Project\images\
+                 2. Replace the <div class="img-placeholder">…</div>
+                    with: <img src="images/your-file.jpg" alt="Title" loading="lazy"/>
+                 ═══════════════════════════════════════════════════════ -->
+            <div class="gallery-grid" id="gallery-grid">
+
+                <!-- CARD 01 — Featured (spans 2×2) -->
+                <div class="gallery-item featured reveal"
+                     data-category="surreal"
+                     data-title="Fractured Consciousness"
+                     data-desc="Midjourney v6 · Surrealism Series"
+                     data-tag="SURREAL · FEATURED">
+                    <div class="corner-accent tl"></div>
+                    <div class="corner-accent br"></div>
+                    <!-- ↓ Replace with: <img src="images/your-image-01.jpg" alt="Fractured Consciousness" loading="lazy"/> -->
+                    <div class="img-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 21h18M3.75 3h16.5A.75.75 0 0121 3.75v13.5a.75.75 0 01-.75.75H3.75A.75.75 0 013 17.25V3.75A.75.75 0 013.75 3z"/></svg>
+                        Add your image here
+                    </div>
+                    <div class="card-actions">
+                        <button class="card-btn lb-trigger" title="View fullscreen">⤢</button>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-tag">Surreal · Featured</div>
+                        <div class="card-title">Fractured Consciousness</div>
+                        <div class="card-desc">Midjourney v6 · Surrealism Series</div>
+                    </div>
+                </div>
+
+                <!-- CARD 02 -->
+                <div class="gallery-item reveal"
+                     data-category="cyber"
+                     data-title="Neon Samurai"
+                     data-desc="Stable Diffusion XL · Cyberpunk"
+                     data-tag="CYBERPUNK">
+                    <div class="corner-accent tl"></div>
+                    <div class="corner-accent br"></div>
+                    <!-- ↓ Replace with: <img src="images/your-image-02.jpg" alt="Neon Samurai" loading="lazy"/> -->
+                    <div class="img-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 21h18M3.75 3h16.5A.75.75 0 0121 3.75v13.5a.75.75 0 01-.75.75H3.75A.75.75 0 013 17.25V3.75A.75.75 0 013.75 3z"/></svg>
+                        Add your image here
+                    </div>
+                    <div class="card-actions">
+                        <button class="card-btn lb-trigger" title="View fullscreen">⤢</button>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-tag">Cyberpunk</div>
+                        <div class="card-title">Neon Samurai</div>
+                        <div class="card-desc">Stable Diffusion XL · Cyberpunk</div>
+                    </div>
+                </div>
+
+                <!-- CARD 03 -->
+                <div class="gallery-item reveal"
+                     data-category="portrait"
+                     data-title="Crystal Mind"
+                     data-desc="DALL·E 3 · Portrait Series"
+                     data-tag="PORTRAIT">
+                    <div class="corner-accent tl"></div>
+                    <div class="corner-accent br"></div>
+                    <!-- ↓ Replace with: <img src="images/your-image-03.jpg" alt="Crystal Mind" loading="lazy"/> -->
+                    <div class="img-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 21h18M3.75 3h16.5A.75.75 0 0121 3.75v13.5a.75.75 0 01-.75.75H3.75A.75.75 0 013 17.25V3.75A.75.75 0 013.75 3z"/></svg>
+                        Add your image here
+                    </div>
+                    <div class="card-actions">
+                        <button class="card-btn lb-trigger" title="View fullscreen">⤢</button>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-tag">Portrait</div>
+                        <div class="card-title">Crystal Mind</div>
+                        <div class="card-desc">DALL·E 3 · Portrait Series</div>
+                    </div>
+                </div>
+
+                <!-- CARD 04 -->
+                <div class="gallery-item reveal"
+                     data-category="landscape"
+                     data-title="Quantum Horizon"
+                     data-desc="Midjourney v6 · Landscape"
+                     data-tag="LANDSCAPE">
+                    <div class="corner-accent tl"></div>
+                    <div class="corner-accent br"></div>
+                    <!-- ↓ Replace with: <img src="images/your-image-04.jpg" alt="Quantum Horizon" loading="lazy"/> -->
+                    <div class="img-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 21h18M3.75 3h16.5A.75.75 0 0121 3.75v13.5a.75.75 0 01-.75.75H3.75A.75.75 0 013 17.25V3.75A.75.75 0 013.75 3z"/></svg>
+                        Add your image here
+                    </div>
+                    <div class="card-actions">
+                        <button class="card-btn lb-trigger" title="View fullscreen">⤢</button>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-tag">Landscape</div>
+                        <div class="card-title">Quantum Horizon</div>
+                        <div class="card-desc">Midjourney v6 · Landscape</div>
+                    </div>
+                </div>
+
+                <!-- CARD 05 -->
+                <div class="gallery-item reveal"
+                     data-category="abstract"
+                     data-title="Void Geometry"
+                     data-desc="ComfyUI · Abstract Series"
+                     data-tag="ABSTRACT">
+                    <div class="corner-accent tl"></div>
+                    <div class="corner-accent br"></div>
+                    <!-- ↓ Replace with: <img src="images/your-image-05.jpg" alt="Void Geometry" loading="lazy"/> -->
+                    <div class="img-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 21h18M3.75 3h16.5A.75.75 0 0121 3.75v13.5a.75.75 0 01-.75.75H3.75A.75.75 0 013 17.25V3.75A.75.75 0 013.75 3z"/></svg>
+                        Add your image here
+                    </div>
+                    <div class="card-actions">
+                        <button class="card-btn lb-trigger" title="View fullscreen">⤢</button>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-tag">Abstract</div>
+                        <div class="card-title">Void Geometry</div>
+                        <div class="card-desc">ComfyUI · Abstract Series</div>
+                    </div>
+                </div>
+
+                <!-- CARD 06 -->
+                <div class="gallery-item reveal"
+                     data-category="surreal"
+                     data-title="Digital Dreamscape"
+                     data-desc="Midjourney v6 · Surrealism"
+                     data-tag="SURREAL">
+                    <div class="corner-accent tl"></div>
+                    <div class="corner-accent br"></div>
+                    <!-- ↓ Replace with: <img src="images/your-image-06.jpg" alt="Digital Dreamscape" loading="lazy"/> -->
+                    <div class="img-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 21h18M3.75 3h16.5A.75.75 0 0121 3.75v13.5a.75.75 0 01-.75.75H3.75A.75.75 0 013 17.25V3.75A.75.75 0 013.75 3z"/></svg>
+                        Add your image here
+                    </div>
+                    <div class="card-actions">
+                        <button class="card-btn lb-trigger" title="View fullscreen">⤢</button>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-tag">Surreal</div>
+                        <div class="card-title">Digital Dreamscape</div>
+                        <div class="card-desc">Midjourney v6 · Surrealism</div>
+                    </div>
+                </div>
+
+                <!-- CARD 07 -->
+                <div class="gallery-item reveal"
+                     data-category="cyber"
+                     data-title="Chrome Deity"
+                     data-desc="Stable Diffusion · Sci-Fi"
+                     data-tag="CYBERPUNK">
+                    <div class="corner-accent tl"></div>
+                    <div class="corner-accent br"></div>
+                    <!-- ↓ Replace with: <img src="images/your-image-07.jpg" alt="Chrome Deity" loading="lazy"/> -->
+                    <div class="img-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 21h18M3.75 3h16.5A.75.75 0 0121 3.75v13.5a.75.75 0 01-.75.75H3.75A.75.75 0 013 17.25V3.75A.75.75 0 013.75 3z"/></svg>
+                        Add your image here
+                    </div>
+                    <div class="card-actions">
+                        <button class="card-btn lb-trigger" title="View fullscreen">⤢</button>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-tag">Cyberpunk</div>
+                        <div class="card-title">Chrome Deity</div>
+                        <div class="card-desc">Stable Diffusion · Sci-Fi</div>
+                    </div>
+                </div>
+
+                <!-- CARD 08 -->
+                <div class="gallery-item reveal"
+                     data-category="landscape"
+                     data-title="Celestial Archive"
+                     data-desc="Adobe Firefly · Space Art"
+                     data-tag="LANDSCAPE">
+                    <div class="corner-accent tl"></div>
+                    <div class="corner-accent br"></div>
+                    <!-- ↓ Replace with: <img src="images/your-image-08.jpg" alt="Celestial Archive" loading="lazy"/> -->
+                    <div class="img-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 21h18M3.75 3h16.5A.75.75 0 0121 3.75v13.5a.75.75 0 01-.75.75H3.75A.75.75 0 013 17.25V3.75A.75.75 0 013.75 3z"/></svg>
+                        Add your image here
+                    </div>
+                    <div class="card-actions">
+                        <button class="card-btn lb-trigger" title="View fullscreen">⤢</button>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-tag">Landscape</div>
+                        <div class="card-title">Celestial Archive</div>
+                        <div class="card-desc">Adobe Firefly · Space Art</div>
+                    </div>
+                </div>
+
+                <!-- CARD 09 -->
+                <div class="gallery-item reveal"
+                     data-category="portrait"
+                     data-title="Synthetic Soul"
+                     data-desc="DALL·E 3 · AI Portraits"
+                     data-tag="PORTRAIT">
+                    <div class="corner-accent tl"></div>
+                    <div class="corner-accent br"></div>
+                    <!-- ↓ Replace with: <img src="images/your-image-09.jpg" alt="Synthetic Soul" loading="lazy"/> -->
+                    <div class="img-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 21h18M3.75 3h16.5A.75.75 0 0121 3.75v13.5a.75.75 0 01-.75.75H3.75A.75.75 0 013 17.25V3.75A.75.75 0 013.75 3z"/></svg>
+                        Add your image here
+                    </div>
+                    <div class="card-actions">
+                        <button class="card-btn lb-trigger" title="View fullscreen">⤢</button>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-tag">Portrait</div>
+                        <div class="card-title">Synthetic Soul</div>
+                        <div class="card-desc">DALL·E 3 · AI Portraits</div>
+                    </div>
+                </div>
+
+                <!-- ── ADD MORE CARDS BELOW ─────────────────────────────
+                     Copy and paste a card block above, change:
+                     • data-category  (surreal/cyber/portrait/landscape/abstract)
+                     • data-title, data-desc, data-tag
+                     • Replace img-placeholder with your <img> tag
+                     ────────────────────────────────────────────────────── -->
+
+            </div><!-- /gallery-grid -->
+        </section>
+
+        <!-- About -->
+        <section class="section" id="about" aria-label="About this portfolio">
+            <div class="about-strip">
+                <h3>Crafted at the Edge of Imagination</h3>
+                <p>Every piece in this collection began as a single thought — translated into language, then into light by neural networks trained on the breadth of human creativity. No brushes. No cameras. Only intention.</p>
+                <div class="tech-badges">
+                    <span class="tech-badge">Midjourney v6</span>
+                    <span class="tech-badge">DALL·E 3</span>
+                    <span class="tech-badge">Stable Diffusion XL</span>
+                    <span class="tech-badge">ComfyUI</span>
+                    <span class="tech-badge">Adobe Firefly</span>
+                    <span class="tech-badge">ControlNet</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-title">InHasnain</div>
+                    <p class="footer-sub">Strategic digital products for modern productivity, combining lightweight apps and practical AI tooling.</p>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="pctunex.html">PC TuneX</a></li>
+                        <li><a href="pricing.html">AI Studio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:Hasnain@outlook.at">Hasnain@outlook.at</a></li>
+                        <li>England, United Kingdom</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 InHasnain. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <div class="lb-inner">
+            <button class="lb-close" id="lb-close" title="Close (Esc)">✕</button>
+            <button class="lb-nav lb-prev" id="lb-prev" title="Previous (←)">‹</button>
+            <button class="lb-nav lb-next" id="lb-next" title="Next (→)">›</button>
+            <img id="lb-img" src="" alt="" />
+            <div class="lb-info">
+                <div class="lb-tag" id="lb-tag"></div>
+                <div class="lb-title" id="lb-title"></div>
+                <div class="lb-desc" id="lb-desc"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="fluid.js"></script>
+    <script src="site.js"></script>
+    <script>
+    /* ── Gallery-specific JS (cursor + particles handled by site.js / fluid.js) ── */
+    (() => {
+      'use strict';
+
+      /* Counter animation */
+      function animateCounter(el, target){
+        let v = 0;
+        const step = Math.max(1, Math.floor(target / 50));
+        const t = setInterval(() => {
+          v = Math.min(v + step, target);
+          el.textContent = v + (target > 20 ? '+' : '');
+          if (v >= target) clearInterval(t);
+        }, 32);
+      }
+      const cObs = new IntersectionObserver(es => {
+        es.forEach(e => {
+          if (e.isIntersecting){ animateCounter(e.target, +e.target.dataset.target); cObs.unobserve(e.target); }
+        });
+      }, {threshold:.5});
+      document.querySelectorAll('[data-target]').forEach(el => cObs.observe(el));
+
+      /* Scroll reveal for gallery items */
+      const gObs = new IntersectionObserver((es, obs) => {
+        es.forEach((e, i) => {
+          if (e.isIntersecting){
+            setTimeout(() => e.target.classList.add('visible'), i * 70);
+            obs.unobserve(e.target);
+          }
+        });
+      }, {threshold:.08, rootMargin:'0px 0px -30px 0px'});
+      document.querySelectorAll('.gallery-item').forEach(el => gObs.observe(el));
+
+      /* Filter tabs */
+      const filterBtns  = document.querySelectorAll('.filter-btn');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.dataset.filter;
+          galleryItems.forEach((item, idx) => {
+            const match = filter === 'all' || item.dataset.category === filter;
+            item.style.transition = `opacity .3s ease ${idx*25}ms, transform .3s ease ${idx*25}ms`;
+            if (match){
+              item.style.display = '';
+              requestAnimationFrame(() => requestAnimationFrame(() => {
+                item.style.opacity = '1'; item.style.transform = 'translateY(0) scale(1)';
+              }));
+            } else {
+              item.style.opacity = '0'; item.style.transform = 'translateY(8px) scale(.97)';
+              setTimeout(() => { item.style.display = 'none'; }, 300);
+            }
+          });
+        });
+      });
+
+      /* Lightbox */
+      const lb = document.getElementById('lightbox');
+      const lbImg   = document.getElementById('lb-img');
+      const lbTag   = document.getElementById('lb-tag');
+      const lbTitle = document.getElementById('lb-title');
+      const lbDesc  = document.getElementById('lb-desc');
+      let lbItems = [], lbCurrent = 0;
+
+      function openLb(idx){
+        const item = lbItems[idx]; if (!item) return;
+        const img  = item.querySelector('img');
+        lbImg.src         = img ? img.src : '';
+        lbImg.alt         = item.dataset.title || '';
+        lbTag.textContent   = item.dataset.tag   || '';
+        lbTitle.textContent = item.dataset.title || '';
+        lbDesc.textContent  = item.dataset.desc  || '';
+        lbCurrent = idx;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLb(){
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+        setTimeout(() => { lbImg.src = ''; }, 350);
+      }
+
+      lbItems = Array.from(document.querySelectorAll('.gallery-item'));
+
+      document.querySelectorAll('.lb-trigger').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          openLb(lbItems.indexOf(btn.closest('.gallery-item')));
+        });
+      });
+      galleryItems.forEach(card => {
+        card.addEventListener('click', e => {
+          if (e.target.closest('.card-btn')) return;
+          openLb(lbItems.indexOf(card));
+        });
+      });
+
+      document.getElementById('lb-close').addEventListener('click', closeLb);
+      lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+      document.getElementById('lb-prev').addEventListener('click', e => {
+        e.stopPropagation(); openLb((lbCurrent - 1 + lbItems.length) % lbItems.length);
+      });
+      document.getElementById('lb-next').addEventListener('click', e => {
+        e.stopPropagation(); openLb((lbCurrent + 1) % lbItems.length);
+      });
+      document.addEventListener('keydown', e => {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape')     closeLb();
+        if (e.key === 'ArrowLeft')  openLb((lbCurrent - 1 + lbItems.length) % lbItems.length);
+        if (e.key === 'ArrowRight') openLb((lbCurrent + 1) % lbItems.length);
+      });
+      /* Touch swipe in lightbox */
+      let tsX = 0;
+      lb.addEventListener('touchstart', e => { tsX = e.touches[0].clientX; }, {passive:true});
+      lb.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - tsX;
+        if (Math.abs(dx) > 50){
+          if (dx < 0) openLb((lbCurrent + 1) % lbItems.length);
+          else        openLb((lbCurrent - 1 + lbItems.length) % lbItems.length);
+        }
+      });
+
+      /* Subtle parallax tilt on cards */
+      galleryItems.forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const x = ((e.clientX - r.left) / r.width  - .5) * 10;
+          const y = ((e.clientY - r.top)  / r.height - .5) * 10;
+          card.style.transform = `translateY(-5px) scale(1.01) rotateX(${-y}deg) rotateY(${x}deg)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      });
+
+    })();
+    </script>
+</body>
+</html>

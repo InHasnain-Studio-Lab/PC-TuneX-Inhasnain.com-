@@ -345,8 +345,8 @@
     dot.id = 'hsx-cursor';
     document.body.appendChild(dot);
 
-    /* Snake trail — 18 segments, each slightly smaller and more faded */
-    const SEGMENTS = 18;
+    /* Snake trail — 10 segments, each slightly smaller and more faded */
+    const SEGMENTS = 10;
     const trail = Array.from({length:SEGMENTS}, (_, i) => {
       const el = document.createElement('div');
       el.className = 'hsx-snake-dot';
@@ -369,7 +369,7 @@
     document.addEventListener('mouseup',   () => dot.classList.remove('clicking'));
 
     /* Smooth lerp — each segment chases the one ahead */
-    const LERP = 0.28; /* how tightly each segment follows — lower = longer snake */
+    const LERP = 0.36; /* how tightly each segment follows — lower = longer snake */
     function animate(){
       /* segment 0 chases the real cursor */
       trail[0].x += (mx - trail[0].x) * LERP;
@@ -784,8 +784,8 @@
         let curX = 0, curY = 0, targetX = 0, targetY = 0;
 
         function animate(){
-          curX = lerp(curX, targetX, 0.14);
-          curY = lerp(curY, targetY, 0.14);
+          curX = lerp(curX, targetX, 0.22);
+          curY = lerp(curY, targetY, 0.22);
           el.style.transform =
             `perspective(${cfg.perspective}px) rotateY(${curX}deg) rotateX(${-curY}deg) translateZ(${cfg.scale > 1 ? 14 : 8}px) scale(${cfg.scale})`;
           if (Math.abs(curX - targetX) > 0.02 || Math.abs(curY - targetY) > 0.02)
@@ -809,11 +809,11 @@
       });
     }
 
-    setup3DTilt('.card',                {maxTilt:9,  scale:1.025, perspective:900});
-    setup3DTilt('.hero-card',           {maxTilt:4,  scale:1.008, perspective:1100});
-    setup3DTilt('.contact-info-card',   {maxTilt:8,  scale:1.02,  perspective:900});
-    setup3DTilt('.gallery-item',        {maxTilt:7,  scale:1.018, perspective:850});
-    setup3DTilt('.section',             {maxTilt:2,  scale:1.002, perspective:1400});
+    setup3DTilt('.card',                {maxTilt:5,  scale:1.012, perspective:900});
+    setup3DTilt('.hero-card',           {maxTilt:2,  scale:1.004, perspective:1100});
+    setup3DTilt('.contact-info-card',   {maxTilt:4,  scale:1.010, perspective:900});
+    setup3DTilt('.gallery-item',        {maxTilt:4,  scale:1.010, perspective:850});
+    setup3DTilt('.section',             {maxTilt:1,  scale:1.001, perspective:1400});
   })();
 
   /* ========================================================
@@ -908,102 +908,6 @@
         ticking = false;
       });
     }, {passive:true});
-  })();
-
-  /* ============================================================
-     ① CINEMATIC PC TUNEХ BEFORE/AFTER DEMO
-     Only on pctunex.html — injected into the PC TuneX card.
-     ============================================================ */
-  (function(){
-    /* Only show on the Apps catalog page */
-    if(location.pathname.split('/').pop() !== 'pctunex.html') return;
-
-    const METRICS = [
-      { label:'Frames Per Second', before:45,  after:122, unit:'fps', beforeBar:37, afterBar:100 },
-      { label:'RAM Usage',         before:4.2, after:1.1, unit:'GB',  beforeBar:78, afterBar:20  },
-      { label:'Disk Usage',        before:92,  after:34,  unit:'%',   beforeBar:92, afterBar:34  },
-      { label:'Boot Time',         before:47,  after:11,  unit:'s',   beforeBar:88, afterBar:21  },
-    ];
-
-    /* inject "Watch Demo" button inside the PC TuneX card only */
-    const cards = document.querySelectorAll('.section .grid .card');
-    let pcCard = null;
-    cards.forEach(c => { if(c.querySelector('h3') && c.querySelector('h3').textContent.includes('PC TuneX')) pcCard = c; });
-    if(pcCard){
-      const btn = document.createElement('button');
-      btn.className = 'demo-trigger-btn';
-      btn.innerHTML = '▶ Watch PC TuneX Demo';
-      btn.style.cssText = 'margin-top:.8rem;';
-      const actions = pcCard.querySelector('.hero-actions');
-      if(actions) actions.after(btn); else pcCard.appendChild(btn);
-      btn.addEventListener('click', openDemo);
-    }
-
-    /* build modal */
-    const overlay = document.createElement('div');
-    overlay.className = 'demo-overlay';
-    overlay.innerHTML = `
-      <div class="demo-panel">
-        <div class="demo-header">
-          <h2>PC TuneX — Real Results</h2>
-          <button class="demo-close" aria-label="Close">✕</button>
-        </div>
-        <div class="demo-split">
-          <div class="demo-col before">
-            <div class="demo-col-label">⚠ Before PC TuneX</div>
-            ${METRICS.map(m=>`
-              <div class="metric">
-                <div class="metric-label">${m.label}</div>
-                <div class="metric-val" data-before="${m.before}" data-unit="${m.unit}">—</div>
-                <div class="metric-bar"><div class="metric-bar-fill" style="width:0" data-target="${m.beforeBar}"></div></div>
-              </div>`).join('')}
-          </div>
-          <div class="demo-col after">
-            <div class="demo-col-label">✓ After PC TuneX</div>
-            ${METRICS.map(m=>`
-              <div class="metric">
-                <div class="metric-label">${m.label}</div>
-                <div class="metric-val" data-after="${m.after}" data-unit="${m.unit}">—</div>
-                <div class="metric-bar"><div class="metric-bar-fill" style="width:0" data-target="${m.afterBar}"></div></div>
-              </div>`).join('')}
-          </div>
-        </div>
-        <div class="demo-cta">
-          <a href="pctunex.html" class="btn btn--primary" style="display:inline-flex">Download PC TuneX →</a>
-        </div>
-      </div>`;
-    document.body.appendChild(overlay);
-    overlay.querySelector('.demo-close').addEventListener('click', closeDemo);
-    overlay.addEventListener('click', e => { if (e.target === overlay) closeDemo(); });
-
-    function openDemo(){
-      overlay.classList.add('open');
-      /* animate numbers */
-      setTimeout(() => {
-        overlay.querySelectorAll('[data-before]').forEach(el => countTo(el, 0, +el.dataset.before, el.dataset.unit));
-        overlay.querySelectorAll('[data-after]').forEach(el  => countTo(el, 0, +el.dataset.after,  el.dataset.unit));
-        overlay.querySelectorAll('.metric-bar-fill').forEach(bar => {
-          setTimeout(() => bar.style.width = bar.dataset.target + '%', 80);
-        });
-      }, 120);
-    }
-    function closeDemo(){
-      overlay.classList.remove('open');
-      /* reset */
-      overlay.querySelectorAll('.metric-val').forEach(el => el.textContent = '—');
-      overlay.querySelectorAll('.metric-bar-fill').forEach(bar => bar.style.width = '0');
-    }
-    function countTo(el, from, to, unit){
-      const dur = 1200, start = performance.now();
-      const isFloat = (to % 1 !== 0);
-      (function tick(now){
-        const p = Math.min((now - start) / dur, 1);
-        const ease = 1 - Math.pow(1 - p, 3);
-        const val = from + (to - from) * ease;
-        el.innerHTML = `${isFloat ? val.toFixed(1) : Math.round(val)}<span>${unit}</span>`;
-        if (p < 1) requestAnimationFrame(tick);
-      })(start);
-    }
   })();
 
   /* ============================================================
