@@ -3,12 +3,12 @@
     <head>
         <meta charset="utf-8"/>
         <title>Android Apps | Hasnain Studio X</title>
-        <meta name="description" content="Hasnain Studio X builds clean, privacy-first Windows utilities, Android apps, and AI Studio workflows. No bloat, no tracking, no subscriptions."/>
+        <meta name="description" content="Privacy-first Android apps from Hasnain Studio X. No trackers, no background data collection, no bloat - the same local-first standards as our Windows range."/>
         <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
         <link rel="canonical" href="https://www.inhasnain.com/android-apps.html"/>
         <meta property="og:type" content="website"/>
         <meta property="og:title" content="Android Apps | Hasnain Studio X"/>
-        <meta property="og:description" content="Hasnain Studio X builds clean, privacy-first Windows utilities, Android apps, and AI Studio workflows. No bloat, no tracking, no subscriptions."/>
+        <meta property="og:description" content="Privacy-first Android apps from Hasnain Studio X."/>
         <meta property="og:url" content="https://www.inhasnain.com/android-apps.html"/>
         <meta property="og:site_name" content="Hasnain Studio X"/>
         <meta name="twitter:card" content="summary_large_image"/>
@@ -17,70 +17,289 @@
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="site.css"/>
         <style>
-            /* ── Android Apps page compact layout ── */
-            @media(min-width:600px){
-                .container .section .grid{
-                    grid-template-columns: repeat(2, 1fr) !important;
-                }
+            /* Android Apps page - compact grid + modal layout */
+
+            .filter-bar {
+                display: flex;
+                flex-wrap: wrap;
+                gap: .5rem;
+                margin: 1.6rem 0 .5rem;
             }
-            .container .section{
-                margin-top: .8rem !important;
-                padding: 1.2rem 1.4rem !important;
+
+            .app-count {
+                font-size: .73rem;
+                color: var(--ink-faint);
+                margin-bottom: .9rem;
+                font-family: var(--f-display);
+                letter-spacing: .12em;
+                text-transform: uppercase;
             }
-            .container .section-header{
-                padding-bottom: .4rem !important;
-                margin-bottom: .6rem !important;
+
+            .apps-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1rem;
             }
-            .container .section-header h2{
-                font-size: 1.05rem !important;
-                margin-bottom: .2rem !important;
+            @media(max-width: 1080px) {
+                .apps-grid { grid-template-columns: repeat(3, 1fr); }
             }
-            .container .section-header p{
-                font-size: .85rem !important;
-                margin: 0 !important;
+            @media(max-width: 660px) {
+                .apps-grid { grid-template-columns: repeat(2, 1fr); }
             }
-            .container .card{
-                padding: 1.1rem 1.2rem !important;
+            @media(max-width: 360px) {
+                .apps-grid { grid-template-columns: 1fr; }
             }
-            .container .card h3{
-                font-size: 1rem !important;
-                margin-bottom: .35rem !important;
+
+            .app-tile {
+                position: relative;
+                overflow: hidden;
+                padding: 1.15rem 1.1rem 1rem;
+                border-radius: var(--r-md);
+                background: var(--card-bg);
+                border: 1px solid var(--card-border);
+                backdrop-filter: blur(var(--blur));
+                -webkit-backdrop-filter: blur(var(--blur));
+                display: flex;
+                flex-direction: column;
+                gap: .38rem;
+                cursor: pointer;
+                transition: transform var(--t-mid) var(--ease),
+                            border-color var(--t-mid) var(--ease),
+                            box-shadow var(--t-mid) var(--ease);
             }
-            .container .card p{
-                font-size: .88rem !important;
-                margin-bottom: .45rem !important;
+            .app-tile::after {
+                content: "";
+                position: absolute;
+                left: 0; top: 0; bottom: 0;
+                width: 2px;
+                background: linear-gradient(var(--accent), transparent);
+                opacity: 0;
+                transition: opacity var(--t-mid) var(--ease);
             }
-            .container .card ul{
-                font-size: .85rem !important;
-                margin: .3rem 0 .5rem 1rem !important;
-                line-height: 1.6 !important;
+            .app-tile:hover {
+                transform: translateY(-3px);
+                border-color: var(--accent-line);
+                box-shadow: var(--shadow-1);
             }
-            .hero--single .hero-card h1{
-                font-size: clamp(1.3rem,3vw,1.8rem) !important;
+            .app-tile:hover::after { opacity: .8; }
+            .app-tile.hidden { display: none; }
+
+            .tile-icon {
+                width: 42px;
+                height: 42px;
+                border-radius: 11px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--accent);
+                background: var(--accent-soft);
+                border: 1px solid var(--accent-line);
+                margin-bottom: .15rem;
+                flex-shrink: 0;
             }
-            /* Android badge colour */
-            .badge-android {
-                display:inline-flex;align-items:center;gap:.4rem;
-                background:var(--accent-soft);color:var(--accent);
-                border:1px solid var(--accent-line);
-                border-radius:999px;padding:.15rem .65rem;
-                font-size:.78rem;font-weight:600;
+            .tile-name {
+                font-family: var(--f-display);
+                font-weight: 700;
+                font-size: .86rem;
+                letter-spacing: .02em;
+                color: var(--ink);
+                line-height: 1.2;
             }
-            .badge-soon {
-                display:inline-block;
-                background:rgba(159,180,200,.12);color:var(--accent-2);
-                border:1px solid rgba(159,180,200,.3);
-                border-radius:999px;padding:.15rem .65rem;
-                font-size:.78rem;font-weight:600;
+            .tile-tagline {
+                font-size: .77rem;
+                color: var(--ink-faint);
+                line-height: 1.42;
+                flex: 1;
+                margin-bottom: .15rem;
             }
-            /* Platform tag pills */
-            .platform-tag {
-                display:inline-flex;align-items:center;gap:.3rem;
-                font-size:.72rem;font-weight:600;letter-spacing:.05em;
-                padding:.2rem .55rem;border-radius:8px;
-                background:var(--accent-soft);color:var(--accent);
-                border:1px solid var(--accent-line);
-                margin-bottom:.6rem;
+            .tile-footer {
+                display: flex;
+                align-items: center;
+                gap: .38rem;
+                margin-top: .4rem;
+                flex-wrap: wrap;
+            }
+            .tile-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: .3rem .78rem;
+                border-radius: var(--r-pill);
+                font-size: .74rem;
+                font-weight: 600;
+                cursor: pointer;
+                border: 1px solid transparent;
+                transition: transform var(--t-fast) var(--ease),
+                            box-shadow var(--t-fast) var(--ease),
+                            border-color var(--t-fast) var(--ease),
+                            background var(--t-fast) var(--ease);
+                text-decoration: none;
+                line-height: 1;
+                white-space: nowrap;
+            }
+            .tile-btn-get {
+                background: linear-gradient(135deg, #e9ddc4, var(--accent));
+                color: var(--btn-fg);
+            }
+            .tile-btn-get:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 5px 16px rgba(205,184,146,.3);
+            }
+            .tile-btn-details {
+                background: var(--surface);
+                color: var(--ink-soft);
+                border-color: var(--line);
+            }
+            .tile-btn-details:hover {
+                border-color: var(--accent-line);
+                color: var(--ink);
+            }
+
+            /* Philosophy cards */
+            .philosophy-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            @media(max-width: 680px) {
+                .philosophy-grid { grid-template-columns: 1fr; }
+            }
+
+            /* Modal */
+            .modal-overlay {
+                position: fixed;
+                inset: 0;
+                z-index: 2000;
+                background: rgba(0, 0, 0, .8);
+                backdrop-filter: blur(18px);
+                -webkit-backdrop-filter: blur(18px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1rem;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity .22s var(--ease);
+            }
+            .modal-overlay.open {
+                opacity: 1;
+                pointer-events: all;
+            }
+            .modal-card {
+                position: relative;
+                width: 100%;
+                max-width: 580px;
+                max-height: 90vh;
+                overflow-y: auto;
+                padding: 2rem;
+                background: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+                border: 1px solid var(--card-border);
+                border-radius: var(--r-lg);
+                box-shadow: 0 40px 100px rgba(0,0,0,.8);
+                transform: translateY(28px) scale(.96);
+                transition: transform .28s var(--ease);
+                scrollbar-width: thin;
+                scrollbar-color: var(--accent-line) transparent;
+            }
+            .modal-overlay.open .modal-card {
+                transform: none;
+            }
+            .modal-close {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                background: var(--surface);
+                border: 1px solid var(--line);
+                color: var(--ink-soft);
+                font-size: 1rem;
+                cursor: pointer;
+                transition: background var(--t-fast) var(--ease),
+                            color var(--t-fast) var(--ease);
+            }
+            .modal-close:hover {
+                background: var(--surface-2);
+                color: var(--ink);
+            }
+            .modal-head {
+                display: flex;
+                align-items: flex-start;
+                gap: 1rem;
+                margin-bottom: 1rem;
+                padding-right: 2.2rem;
+            }
+            .modal-icon {
+                width: 54px;
+                height: 54px;
+                border-radius: 14px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--accent);
+                background: var(--accent-soft);
+                border: 1px solid var(--accent-line);
+                flex-shrink: 0;
+            }
+            .modal-name {
+                font-family: var(--f-display);
+                font-size: 1.3rem;
+                font-weight: 700;
+                line-height: 1.2;
+                margin-bottom: .35rem;
+            }
+            .modal-divider {
+                height: 1px;
+                background: var(--line);
+                margin: 1rem 0;
+            }
+            .modal-desc {
+                color: var(--ink-soft);
+                font-size: .94rem;
+                line-height: 1.72;
+                margin-bottom: 1.1rem;
+            }
+            .modal-features-label {
+                font-family: var(--f-display);
+                font-size: .66rem;
+                letter-spacing: .16em;
+                text-transform: uppercase;
+                color: var(--ink-faint);
+                margin-bottom: .55rem;
+            }
+            .modal-features {
+                list-style: none;
+                margin: 0 0 1.5rem;
+                padding: 0;
+            }
+            .modal-features li {
+                position: relative;
+                padding: .44rem 0 .44rem 1.25rem;
+                font-size: .88rem;
+                color: var(--ink-soft);
+                border-bottom: 1px solid rgba(255,255,255,.04);
+            }
+            .modal-features li:last-child { border-bottom: none; }
+            .modal-features li::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background: var(--accent);
+            }
+            .modal-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: .6rem;
             }
         </style>
     </head>
@@ -92,9 +311,15 @@
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
+
         <header class="top-bar" role="banner" aria-label="Top navigation">
             <div class="brand">
-                <div class="logo" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 1.5L24 7.5V18.5L13 24.5L2 18.5V7.5Z" stroke="currentColor" stroke-width="1.1" opacity="0.55"/><path d="M8.5 9V17M17.5 9V17M8.5 13H17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div>
+                <div class="logo" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 1.5L24 7.5V18.5L13 24.5L2 18.5V7.5Z" stroke="currentColor" stroke-width="1.1" opacity="0.55"/>
+                        <path d="M8.5 9V17M17.5 9V17M8.5 13H17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+                    </svg>
+                </div>
                 <div class="title">
                     <div class="name">Hasnain</div>
                     <div class="sub">Studio X</div>
@@ -108,24 +333,29 @@
                 <a href="contact.html">Contact</a>
             </nav>
         </header>
+
         <main class="container" role="main">
 
-            <!-- Hero banner -->
+            <!-- Hero -->
             <section class="hero hero--single" style="margin-bottom:0">
-                <div class="hero-card" style="padding:1.4rem 2rem 1.2rem;">
+                <div class="hero-card" style="padding:1.6rem 2rem 1.4rem;">
                     <div class="hero-decoration"></div>
-                    <div class="live-badge"><span class="live-dot"></span>Mobile TuneX - Now Available on Google Play</div>
-                    <h1 style="font-size:clamp(1.4rem,3.5vw,2rem);margin-bottom:.4rem;">Android Apps</h1>
-                    <p class="lead" style="font-size:.92rem;margin-bottom:.9rem;opacity:.75;">The same lightweight, privacy-first philosophy from our Windows tools - brought to Android. No trackers, no background data collection, no bloat.</p>
-                    <div class="hero-actions" style="gap:.5rem;flex-wrap:wrap;">
-                        <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.mobiletunex.app&pcampaignid=web_share">Download Here</a>
+                    <div class="live-badge"><span class="live-dot"></span>Mobile TuneX - Now on Google Play</div>
+                    <h1 style="font-size:clamp(1.5rem,3.8vw,2.2rem);margin-bottom:.4rem;">Android Apps</h1>
+                    <p class="lead" style="font-size:.93rem;margin-bottom:.9rem;opacity:.75;">The same lightweight, privacy-first philosophy from our Windows tools - brought to Android. No trackers, no background data collection, no bloat.</p>
+                    <div class="hero-actions" style="gap:.5rem;flex-wrap:wrap;justify-content:center;">
+                        <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.mobiletunex.app&pcampaignid=web_share" target="_blank" rel="noopener">Browse on Google Play</a>
                         <a class="btn btn--secondary" href="Windows-apps.html">See Windows Apps</a>
                     </div>
                 </div>
             </section>
 
-            <!-- Philosophy strip -->
+            <!-- Stats strip -->
             <div class="stats-section reveal" style="margin-top:1rem;" aria-label="Android platform values">
+                <div class="stat-item">
+                    <div class="stat-number">Android</div>
+                    <div class="stat-label">10+ Support</div>
+                </div>
                 <div class="stat-item">
                     <div class="stat-number">0</div>
                     <div class="stat-label">Trackers</div>
@@ -135,90 +365,32 @@
                     <div class="stat-label">Processing</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">No</div>
-                    <div class="stat-label">Background Data</div>
-                </div>
-                <div class="stat-item">
                     <div class="stat-number">Play</div>
                     <div class="stat-label">Store Certified</div>
                 </div>
             </div>
 
-            <!-- Apps Grid -->
-            <h2 id="android-apps-title" style="margin-top:1.6rem;margin-bottom:.2rem;">Android App Catalogue</h2>
-            <section class="section" aria-labelledby="android-apps-title" style="margin-top:.4rem;">
-                <div class="section-header" style="padding-bottom:.5rem;">
-                    <p>Practical mobile utilities built with the same standards as our Windows range.</p>
-                </div>
-                <div class="grid" role="list">
+            <!-- Filter bar -->
+            <div class="filter-bar reveal" role="group" aria-label="Filter apps by category">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="utilities">Utilities</button>
+                <button class="filter-btn" data-filter="media">Media &amp; Audio</button>
+                <button class="filter-btn" data-filter="productivity">Productivity</button>
+            </div>
 
-                    <!-- Mobile TuneX -->
-                    <article class="card" role="listitem">
-                        <div class="platform-tag">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341a.25.25 0 0 1-.25.25H6.727a.25.25 0 0 1-.25-.25V8.66a.25.25 0 0 1 .25-.25h10.546a.25.25 0 0 1 .25.25v6.68zM4.5 7.5C3.12 7.5 2 8.62 2 10s1.12 2.5 2.5 2.5V7.5zm15 0v5C20.88 12.5 22 11.38 22 10S20.88 7.5 19.5 7.5zM7.5 3l1.5 3h6l1.5-3H7.5z"/></svg>
-                            Android
-                        </div>
-                        <div class="card-icon" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                            </svg>
-                        </div>
-                        <h3>Mobile TuneX</h3>
-                        <p>A lightweight Android companion to PC TuneX - designed to help you clear junk, manage permissions, and keep your phone running smoothly without draining your battery.</p>
-                        <ul style="margin:.6rem 0 .8rem 1.1rem;line-height:1.8;font-size:.93rem;">
-                            <li>Junk &amp; cache file cleanup</li>
-                            <li>App permission auditor</li>
-                            <li>Battery usage optimisation tips</li>
-                            <li>Storage analyser with safe-delete preview</li>
-                        </ul>
-                        <p style="margin-bottom:.9rem;">
-                            <span class="badge-soon">Now On Google Play</span>
-                        </p>
-                        <div class="hero-actions">
-                            <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.mobiletunex.app&pcampaignid=web_share">Download Here</a>
-                            <a class="btn btn--secondary" href="MobileTunexPrivacy.html">Privacy Policy</a>
-                        </div>
-                    </article>
+            <div class="app-count" id="app-count"></div>
 
-                    <!-- Android App Slot 2 -->
-                    <article class="card" role="listitem">
-                        <div class="platform-tag">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341a.25.25 0 0 1-.25.25H6.727a.25.25 0 0 1-.25-.25V8.66a.25.25 0 0 1 .25-.25h10.546a.25.25 0 0 1 .25.25v6.68zM4.5 7.5C3.12 7.5 2 8.62 2 10s1.12 2.5 2.5 2.5V7.5zm15 0v5C20.88 12.5 22 11.38 22 10S20.88 7.5 19.5 7.5zM7.5 3l1.5 3h6l1.5-3H7.5z"/></svg>
-                            Android
-                        </div>
-                        <div class="card-icon" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 8v4l3 3"/>
-                            </svg>
-                        </div>
-                        <h3>More Apps Coming</h3>
-                        <p>A second Android utility is currently in planning. We build based on real user needs - reach out if you have a specific problem you'd like us to solve on mobile.</p>
-                        <ul style="margin:.6rem 0 .8rem 1.1rem;line-height:1.8;font-size:.93rem;">
-                            <li>Built on the same local-first architecture</li>
-                            <li>Privacy-first - no analytics or tracking SDKs</li>
-                            <li>Designed for Android 10 and above</li>
-                            <li>Light on storage, easy on battery</li>
-                        </ul>
-                        <p style="margin-bottom:.9rem;">
-                            <span class="badge-soon">📋 In Planning</span>
-                        </p>
-                        <div class="hero-actions">
-                            <a class="btn btn--primary" href="contact.html">Suggest a Feature</a>
-                        </div>
-                    </article>
+            <!-- App grid - rendered by JS -->
+            <div class="apps-grid" id="apps-grid" role="list" aria-label="Android apps"></div>
 
-                </div>
-            </section>
-
-            <!-- Why Android section -->
-            <section class="section reveal" aria-labelledby="why-android-title" style="margin-top:.8rem;">
+            <!-- Philosophy section -->
+            <section class="section reveal" aria-labelledby="philosophy-title" style="margin-top:2rem;">
                 <div class="section-header">
-                    <h2 id="why-android-title">Our Android Philosophy</h2>
+                    <h2 id="philosophy-title">Our Android Philosophy</h2>
                     <p>The same standards that define our Windows apps, applied to mobile.</p>
                 </div>
-                <div class="grid" role="list">
-                    <article class="card" role="listitem">
+                <div class="philosophy-grid">
+                    <article class="card" role="article">
                         <div class="card-icon" aria-hidden="true">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -227,16 +399,16 @@
                         <h3>No Hidden Permissions</h3>
                         <p>We only request permissions that are strictly necessary. Every permission is explained in plain language before you grant it.</p>
                     </article>
-                    <article class="card" role="listitem">
+                    <article class="card" role="article">
                         <div class="card-icon" aria-hidden="true">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="18" r="1"/>
                             </svg>
                         </div>
                         <h3>Battery Conscious</h3>
-                        <p>No background sync, no push notifications unless you ask for them, no wake locks. Your battery life is yours.</p>
+                        <p>No background sync, no push notifications unless you ask, no wake locks. Your battery life is yours.</p>
                     </article>
-                    <article class="card" role="listitem">
+                    <article class="card" role="article">
                         <div class="card-icon" aria-hidden="true">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
@@ -248,13 +420,14 @@
                 </div>
             </section>
 
-            <!-- Cross-platform CTA -->
-            <section class="section reveal" aria-label="Also on Windows" style="margin-top:.8rem;text-align:center;">
-                <p style="margin:0 0 .8rem;opacity:.75;font-size:.95rem;">Using Windows? We have a full suite of desktop tools ready for you →</p>
+            <!-- Windows CTA -->
+            <section class="section reveal" aria-label="Also on Windows" style="margin-top:1.2rem;text-align:center;padding:1.4rem 1.6rem;">
+                <p style="margin:0 0 .8rem;opacity:.75;font-size:.92rem;">Using Windows? We have a full suite of 10 desktop tools ready for you.</p>
                 <a class="btn btn--primary" href="Windows-apps.html">Browse Windows Apps</a>
             </section>
 
         </main>
+
         <footer class="site-footer" role="contentinfo">
             <div class="footer-wrap">
                 <div class="footer-grid">
@@ -286,12 +459,238 @@
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <span>© 2026 InHasnain. All rights reserved.</span>
+                    <span>&copy; 2026 InHasnain. All rights reserved.</span>
                 </div>
             </div>
         </footer>
+
+        <!-- Modal overlay -->
+        <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-app-name">
+            <div class="modal-card" id="modal-card">
+                <button class="modal-close" id="modal-close" aria-label="Close">&#x2715;</button>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+
+        <script>
+        function ico(d) {
+            return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + d + '</svg>';
+        }
+
+        const APPS = [
+            // ── Utilities ───────────────────────────────────────────────────
+            {
+                id: 'mobiletunex',
+                name: 'Mobile TuneX',
+                category: 'utilities',
+                tagline: 'Keep your Android phone fast and clean',
+                badge: 'Free Trial',
+                badgeClass: 'badge-available',
+                status: 'live',
+                description: 'A lightweight Android companion to PC TuneX - designed to clear junk, manage permissions, and keep your phone running smoothly without draining your battery.',
+                features: [
+                    'Junk and cache file cleanup',
+                    'App permission auditor',
+                    'Battery usage optimisation tips',
+                    'Storage analyser with safe-delete preview',
+                ],
+                storeUrl: 'https://play.google.com/store/apps/details?id=com.mobiletunex.app&pcampaignid=web_share',
+                privacyUrl: 'https://www.inhasnain.com/MobileTunexPrivacy.html',
+                storeLabel: 'Download App',
+                icon: ico('<polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>'),
+            },
+            {
+                id: 'xcipher',
+                name: 'XCipher',
+                category: 'utilities',
+                tagline: 'Local file and text encryption on Android',
+                badge: 'Coming Soon',
+                badgeClass: 'badge-pending',
+                status: 'soon',
+                description: 'A local-first file and text encryption tool for Android. Encrypt files, folders, and clipboard content using AES-256 - everything stays on your device, nothing leaves.',
+                features: [
+                    'AES-256 file and folder encryption',
+                    'Clipboard and text snippet encryption',
+                    'Drag-and-drop interface with instant feedback',
+                    'Completely offline - no keys sent anywhere',
+                ],
+                storeUrl: 'contact.html',
+                privacyUrl: 'https://www.inhasnain.com/XCipherPrivacy.html',
+                storeLabel: 'Get Notified',
+                icon: ico('<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'),
+            },
+
+            // ── Media & Audio ────────────────────────────────────────────────
+            {
+                id: 'spatiaxmobile',
+                name: 'SpatiaX Ultra Mobile',
+                category: 'media',
+                tagline: 'Real-time 3D spatial audio for Android',
+                badge: 'Coming Soon',
+                badgeClass: 'badge-pending',
+                status: 'soon',
+                description: 'The Android version of SpatiaX Ultra - a real-time audio engine that transforms your headphone or speaker experience with 3D spatial sound and pro-grade DSP, running entirely on device.',
+                features: [
+                    '3D spatial surround for headphones and speakers',
+                    'Profiles for gaming, music, movies, and calls',
+                    'Smart audio routing and device selection',
+                    'Crystal-clear voice enhancement DSP',
+                ],
+                storeUrl: 'contact.html',
+                privacyUrl: 'https://www.inhasnain.com/SpatiaXMobilePrivacy.html',
+                storeLabel: 'Get Notified',
+                icon: ico('<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3v5zm-14 0a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3v5z"/>'),
+            },
+            {
+                id: 'flipxandroid',
+                name: 'FlipX Studio',
+                category: 'media',
+                tagline: 'Convert audio, video, and images on Android',
+                badge: 'Coming Soon',
+                badgeClass: 'badge-pending',
+                status: 'soon',
+                description: 'The Android edition of FlipX Studio - a local-first media toolkit for fast, high-quality conversion of audio, video, and image files, processed entirely on your device.',
+                features: [
+                    'Convert audio, video, and image files locally',
+                    'Smart output presets for quality and file size',
+                    'Batch processing with progress tracking',
+                    'No upload required - all processing stays on device',
+                ],
+                storeUrl: 'contact.html',
+                privacyUrl: 'https://www.inhasnain.com/FlipXprivacy.html',
+                storeLabel: 'Get Notified',
+                icon: ico('<polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>'),
+            },
+
+            // ── Productivity ─────────────────────────────────────────────────
+            {
+                id: 'docsmining',
+                name: 'DocsMining',
+                category: 'productivity',
+                tagline: 'Extract and analyse content from documents',
+                badge: 'Coming Soon',
+                badgeClass: 'badge-pending',
+                status: 'soon',
+                description: 'A local-first document intelligence tool for Android - extract text, tables, and key data from PDFs, images, and scanned documents, all processed privately on your device.',
+                features: [
+                    'Extract text and tables from PDFs and scanned documents',
+                    'OCR support for images and handwritten notes',
+                    'Export results as plain text, CSV, or structured JSON',
+                    'Fully offline - no cloud upload, no server processing',
+                ],
+                storeUrl: 'contact.html',
+                privacyUrl: 'https://www.inhasnain.com/DocsMiningPrivacy.html',
+                storeLabel: 'Get Notified',
+                icon: ico('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>'),
+            },
+        ];
+
+        let currentFilter = 'all';
+
+        function renderGrid(filter) {
+            const grid = document.getElementById('apps-grid');
+            const countEl = document.getElementById('app-count');
+            const visible = APPS.filter(a => filter === 'all' || a.category === filter);
+
+            grid.innerHTML = visible.map(app => {
+                const isExternal = app.storeUrl.startsWith('http');
+                const target = isExternal ? ' target="_blank" rel="noopener"' : '';
+                return `
+                    <article class="app-tile reveal" role="listitem" tabindex="0"
+                        data-id="${app.id}" aria-label="${app.name} - ${app.tagline}">
+                        <div class="tile-icon" aria-hidden="true">${app.icon}</div>
+                        <div class="tile-name">${app.name}</div>
+                        <div class="tile-tagline">${app.tagline}</div>
+                        <span class="${app.badgeClass}" style="font-size:.68rem;padding:.13rem .58rem;align-self:flex-start;">${app.badge}</span>
+                        <div class="tile-footer">
+                            <a class="tile-btn tile-btn-get" href="${app.storeUrl}"${target}
+                                onclick="event.stopPropagation()"
+                                aria-label="${app.storeLabel} - ${app.name}">${app.storeLabel}</a>
+                            <button class="tile-btn tile-btn-details"
+                                onclick="event.stopPropagation();openModal('${app.id}')"
+                                aria-label="Details for ${app.name}">Details</button>
+                        </div>
+                    </article>`;
+            }).join('');
+
+            grid.querySelectorAll('.app-tile').forEach(tile => {
+                tile.addEventListener('click', () => openModal(tile.dataset.id));
+                tile.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openModal(tile.dataset.id);
+                    }
+                });
+            });
+
+            const liveCount = visible.filter(a => a.status === 'live').length;
+            const soonCount = visible.filter(a => a.status === 'soon').length;
+            let label = liveCount + ' app' + (liveCount !== 1 ? 's' : '') + ' available';
+            if (soonCount > 0) label += ' · ' + soonCount + ' coming soon';
+            countEl.textContent = label;
+
+            requestAnimationFrame(() => {
+                grid.querySelectorAll('.reveal').forEach((el, i) => {
+                    setTimeout(() => el.classList.add('visible'), i * 50);
+                });
+            });
+        }
+
+        function openModal(id) {
+            const app = APPS.find(a => a.id === id);
+            if (!app) return;
+            const isExternal = app.storeUrl.startsWith('http');
+            const target = isExternal ? ' target="_blank" rel="noopener"' : '';
+            document.getElementById('modal-body').innerHTML = `
+                <div class="modal-head">
+                    <div class="modal-icon" aria-hidden="true">${app.icon}</div>
+                    <div>
+                        <div class="modal-name" id="modal-app-name">${app.name}</div>
+                        <span class="${app.badgeClass}" style="font-size:.73rem;">${app.badge}</span>
+                    </div>
+                </div>
+                <div class="modal-divider"></div>
+                <p class="modal-desc">${app.description}</p>
+                <div class="modal-features-label">Key Features</div>
+                <ul class="modal-features">
+                    ${app.features.map(f => '<li>' + f + '</li>').join('')}
+                </ul>
+                <div class="modal-actions">
+                    <a class="btn btn--primary" href="${app.storeUrl}"${target}>${app.storeLabel}</a>
+                    <a class="btn btn--secondary" href="${app.privacyUrl}">Privacy Policy</a>
+                </div>`;
+            document.getElementById('modal-overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('modal-close').focus();
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderGrid(currentFilter);
+            });
+        });
+
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+        document.getElementById('modal-overlay').addEventListener('click', e => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        renderGrid('all');
+        </script>
+
         <script src="fluid.js"></script>
         <script src="site.js"></script>
-    <script src="effects.js"></script>
+        <script src="effects.js"></script>
     </body>
 </html>
