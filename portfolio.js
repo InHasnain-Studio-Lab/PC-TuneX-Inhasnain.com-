@@ -1,15 +1,12 @@
-/* ============================================================
- AI Studio portfolio - YOU control this list.
- This is the only place images are added. Visitors cannot
- upload anything; they can only view what you list here.
+/* ═══════════════════════════════════════════════════════════════════════
+   HASNAIN STUDIO X — portfolio.js
+   AI Studio gallery image list. Add your images below — each entry shows
+   in the portfolio grid and opens in the lightbox.
 
- To add an image:
- 1. Put the image file in the images/portfolio/ folder.
- 2. Add a line below: { src: "images/portfolio/yourfile.jpg", alt: "Short description" },
-
- Leave the array empty until you have real images.
- ============================================================ */
+   Example:
+   { src: 'images/portrait-01.jpg', alt: 'Cinematic AI portrait',
+     tag: 'Portrait Series', title: 'Neon Rain', desc: 'Custom SDXL workflow' }
+   ═══════════════════════════════════════════════════════════════════════ */
 window.PORTFOLIO_IMAGES = [
-    /* Example (remove the // and edit once you add a real file):
- { src: "images/portfolio/example.jpg", alt: "AI portrait study" }, */
+    // { src: 'images/example-01.jpg', alt: 'Description of the image' },
 ];

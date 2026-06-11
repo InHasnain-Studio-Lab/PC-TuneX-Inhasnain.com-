@@ -1,66 +1,76 @@
-/* ============================================================
- InHasnain Studio X - fluid.js
- Live aurora mesh background. Graphite / platinum / champagne.
- Bold but luxurious. GPU-light: low-res buffer, blurred upscale.
- Disabled under prefers-reduced-motion (CSS shows static gradient).
- ============================================================ */
-(function(){
+/* ═══════════════════════════════════════════════════════════════════════
+   HASNAIN STUDIO X — fluid.js
+   Quiet cosmic dust only. The wind ribbons were retired so the night
+   sky (stars + moon in effects.js) owns the background.
+   Pauses when the tab is hidden; off for reduced motion.
+   ═══════════════════════════════════════════════════════════════════════ */
+(function () {
     'use strict';
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    function start(){
-        var canvas = document.createElement('canvas');
-        canvas.id = 'bg-canvas';
-        document.body.appendChild(canvas);
-        var ctx = canvas.getContext('2d');
+    var canvas = document.createElement('canvas');
+    canvas.id = 'fluid-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    document.body.insertBefore(canvas, document.body.firstChild);
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-        var SCALE = 0.18;
-        var vw, vh, bw, bh;
+    var W, H, DPR;
+    var mobile = window.matchMedia('(max-width: 760px)').matches;
 
-        var blobs = [
-            { hue:'rgba(168,186,206,', baseR:0.55, ax:0.22, ay:0.16, sx:0.00021, sy:0.00017, px:0.0, py:1.3, a:0.55 },
-            { hue:'rgba(205,184,146,', baseR:0.50, ax:0.26, ay:0.20, sx:0.00016, sy:0.00024, px:2.1, py:0.4, a:0.50 },
-            { hue:'rgba(120,140,170,', baseR:0.62, ax:0.20, ay:0.24, sx:0.00013, sy:0.00019, px:4.0, py:2.7, a:0.45 },
-            { hue:'rgba(225,214,190,', baseR:0.42, ax:0.30, ay:0.14, sx:0.00027, sy:0.00012, px:1.0, py:3.6, a:0.38 },
-            { hue:'rgba(90,104,128,',  baseR:0.70, ax:0.16, ay:0.28, sx:0.00011, sy:0.00015, px:5.2, py:1.9, a:0.40 }
-        ];
+    function resize() {
+        DPR = Math.min(window.devicePixelRatio || 1, 1.75);
+        W = canvas.width = Math.floor(innerWidth * DPR);
+        H = canvas.height = Math.floor(innerHeight * DPR);
+        canvas.style.width = innerWidth + 'px';
+        canvas.style.height = innerHeight + 'px';
+    }
+    resize();
+    addEventListener('resize', resize, { passive: true });
 
-        function resize(){
-            vw = window.innerWidth; vh = window.innerHeight;
-            bw = canvas.width  = Math.max(2, Math.round(vw * SCALE));
-            bh = canvas.height = Math.max(2, Math.round(vh * SCALE));
-            canvas.style.width = vw + 'px';
-            canvas.style.height = vh + 'px';
-        }
+    var PALETTE = [
+        [242, 223, 184],
+        [243, 179, 207],
+        [199, 165, 247],
+        [159, 232, 214],
+        [188, 217, 244]
+    ];
 
-        function draw(t){
-            ctx.globalCompositeOperation = 'source-over';
-            ctx.fillStyle = '#06070a';
-            ctx.fillRect(0, 0, bw, bh);
-            ctx.globalCompositeOperation = 'lighter';
-
-            for(var i=0;i<blobs.length;i++){
-                var b = blobs[i];
-                var cx = (0.5 + Math.sin(t*b.sx + b.px) * b.ax) * bw;
-                var cy = (0.5 + Math.cos(t*b.sy + b.py) * b.ay) * bh;
-                var r  = (b.baseR + 0.06*Math.sin(t*b.sx*1.7 + b.px)) * Math.max(bw,bh);
-                var g  = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-                g.addColorStop(0, b.hue + b.a + ')');
-                g.addColorStop(0.5, b.hue + (b.a*0.35) + ')');
-                g.addColorStop(1, b.hue + '0)');
-                ctx.fillStyle = g;
-                ctx.beginPath();
-                ctx.arc(cx, cy, r, 0, Math.PI*2);
-                ctx.fill();
-            }
-            requestAnimationFrame(draw);
-        }
-
-        resize();
-        window.addEventListener('resize', resize);
-        requestAnimationFrame(draw);
+    var DUST = mobile ? 14 : 26;
+    var dust = [];
+    for (var d = 0; d < DUST; d++) {
+        dust.push({
+            x: Math.random(), y: Math.random(),
+            r: 0.5 + Math.random() * 1.3,
+            vx: (Math.random() - 0.5) * 0.00005,
+            vy: -0.00002 - Math.random() * 0.00005,
+            tw: Math.random() * Math.PI * 2,
+            c: PALETTE[(Math.random() * PALETTE.length) | 0]
+        });
     }
 
-    if(document.readyState !== 'loading'){ start(); }
-    else{ document.addEventListener('DOMContentLoaded', start); }
+    var running = true;
+    document.addEventListener('visibilitychange', function () {
+        running = !document.hidden;
+        if (running) requestAnimationFrame(frame);
+    });
+
+    function frame(t) {
+        if (!running) return;
+        ctx.clearRect(0, 0, W, H);
+        for (var k = 0; k < dust.length; k++) {
+            var p = dust[k];
+            p.x += p.vx * 16; p.y += p.vy * 16;
+            if (p.y < -0.02) { p.y = 1.02; p.x = Math.random(); }
+            if (p.x < -0.02) { p.x = 1.02; }
+            if (p.x > 1.02) { p.x = -0.02; }
+            var tw = 0.35 + 0.65 * Math.abs(Math.sin(t * 0.0011 + p.tw));
+            ctx.beginPath();
+            ctx.arc(p.x * W, p.y * H, p.r * DPR, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(' + p.c[0] + ',' + p.c[1] + ',' + p.c[2] + ',' + (0.22 * tw).toFixed(3) + ')';
+            ctx.fill();
+        }
+        requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
 })();

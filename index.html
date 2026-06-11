@@ -14,7 +14,7 @@
         <meta name="twitter:card" content="summary_large_image"/>
         <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="site.css"/>
     </head>
     <body>
@@ -42,127 +42,131 @@
             </nav>
         </header>
         <main class="container" role="main">
-            <section class="hero">
-                <div class="hero-card">
-                    <div class="hero-decoration"></div>
-                    <div class="live-badge"><span class="live-dot"></span>PC TuneX Free · ForgeX Pro Available · Mobile TuneX on Android</div>
-                    <div class="welcome" aria-label="Welcome">
-                        <span>W</span><span>E</span><span>L</span><span>C</span><span>O</span><span>M</span><span>E</span>
-                    </div>
-                    <h1>Clean Digital Tools<br>Built with Purpose</h1>
-                    <p class="lead">Windows utilities, Android apps, and AI Studio workflows - a growing ecosystem of focused, privacy-first tools. No bloat, no subscriptions, no compromise.</p>
+
+            <!-- ── Asymmetric hero: copy left, floating live apps right ── -->
+            <section class="hero-split" aria-label="Introduction">
+                <div class="hero-copy">
+                    <div class="hero-eyebrow">Independent Software Studio · England, UK</div>
+                    <h1>Tools that feel<br><span class="holo-word">alive.</span><br>Privacy that's real.</h1>
+                    <p class="lead">Windows utilities, Android apps, and AI Studio workflows. A growing ecosystem of focused, local-first tools that respect your machine and your privacy. No bloat, no subscriptions, no data collected. Ever.</p>
                     <div class="hero-actions">
-                        <a class="btn btn--primary" href="Windows-apps.html">Windows Apps</a>
-                        <a class="btn btn--primary" href="android-apps.html">Android Apps</a>
-                        <a class="btn btn--secondary" href="pricing.html">AI Studio</a>
+                        <a class="btn btn--primary" href="Windows-apps.html">Explore Windows Apps</a>
+                        <a class="btn btn--secondary" href="android-apps.html">Android Apps</a>
+                    </div>
+                    <div class="proof-chips" aria-label="Store presence">
+                        <span class="proof-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.4v7.1H3zM3 12.5h7.5v7.1L3 18.5zM11.5 4.2 21 3v8.5h-9.5zM11.5 12.5H21V21l-9.5-1.2z"/></svg>Microsoft Store · <b>Live</b></span>
+                        <span class="proof-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3.5v17l9-8.5zM14.5 10.5 17 8l3.5 2.6c.8.6.8 1.6 0 2.2L17 15.4l-2.5-2.5 1.2-1.2z"/></svg>Google Play · <b>Live</b></span>
+                        <span class="proof-chip"><b>14+</b>&nbsp;Apps Shipped</span>
+                        <span class="proof-chip"><b>0</b>&nbsp;Telemetry</span>
+                    </div>
+                </div>
+                <div class="hero-stage depth-stage" aria-hidden="true">
+                    <div class="float-card fc-1" data-float>
+                        <div class="viz viz-gauge"><span class="vg-ring"><span class="vg-core"></span></span><span class="vg-bars"><i></i><i></i><i></i></span></div>
+                        <div class="fc-name">PC TuneX</div>
+                        <div class="fc-sub">One-click cleanup</div>
+                    </div>
+                    <div class="float-card fc-2" data-float>
+                        <div class="viz viz-spatial"><span class="vsp"><i class="vsp-ring"></i><i class="vsp-ring vsp-ring2"></i><b class="vsp-head"></b><span class="vsp-orbit"><i class="vsp-orb"></i></span></span></div>
+                        <div class="fc-name">SpatiaX Ultra</div>
+                        <div class="fc-sub">3D spatial audio</div>
+                    </div>
+                    <div class="float-card fc-3" data-float>
+                        <div class="viz viz-qr"><span class="vq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+                        <div class="fc-name">Drop2QR</div>
+                        <div class="fc-sub">Styled QR codes</div>
                     </div>
                 </div>
             </section>
 
-            <!-- Stats Section -->
+            <!-- ── App marquee ── -->
+            <div class="marquee" aria-hidden="true">
+                <div class="marquee-track">
+                    <span>PC TuneX</span><span>PC GuardX</span><span>NimbusDock</span><span>HorizonOS</span><span>Drop2QR</span><span>QuantumDrop</span><span>XSeasons</span><span>SpatiaX Ultra</span><span>VAudio Elite</span><span>FlipX Studio</span><span>WorkX Suite</span><span>ForgeX Pro</span><span>HSX StudioFlow</span><span>Mobile TuneX</span><span>PC TuneX</span><span>PC GuardX</span><span>NimbusDock</span><span>HorizonOS</span><span>Drop2QR</span><span>QuantumDrop</span><span>XSeasons</span><span>SpatiaX Ultra</span><span>VAudio Elite</span><span>FlipX Studio</span><span>WorkX Suite</span><span>ForgeX Pro</span><span>HSX StudioFlow</span><span>Mobile TuneX</span>
+                </div>
+            </div>
+
+            <!-- ── Stats ── -->
             <div class="stats-section reveal" aria-label="Key stats">
                 <div class="stat-item">
-                    <div class="stat-number">7</div>
+                    <div class="stat-number">14+</div>
                     <div class="stat-label">Apps Available</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">Win + Android</div>
-                    <div class="stat-label">Platforms</div>
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Platforms · Win + Android</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">0</div>
                     <div class="stat-label">Data Collected</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">Local-First</div>
-                    <div class="stat-label">Privacy by Design</div>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Local-First</div>
                 </div>
             </div>
 
-            <!-- Platform Overview -->
+            <!-- ── Bento showcase ── -->
             <section class="section reveal" aria-labelledby="platform-title">
                 <div class="section-header">
                     <h2 id="platform-title">Everything We Build</h2>
-                    <p>Three distinct product lines - each designed with the same principle: do less, do it better.</p>
+                    <p>Three product lines, one principle: do less, do it better, and never touch your data.</p>
                 </div>
-                <div class="grid stagger" role="list">
-                    <article class="card" role="listitem" aria-labelledby="windows-title">
-                        <div class="card-icon" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
-                            </svg>
+                <div class="bento">
+                    <article class="bento-cell b-span4 b-row2">
+                        <span class="bento-kicker">Desktop · Microsoft Store</span>
+                        <h3>Windows Apps</h3>
+                        <p>Thirteen live apps on the Microsoft Store. Clean your PC in one click with PC TuneX, take command of Windows privacy with PC GuardX, generate AI images on your own GPU with HSX StudioFlow, replace your Start experience with HorizonOS, enjoy 3D spatial audio in SpatiaX Ultra, and edit PDFs, Word docs, and spreadsheets in WorkX Suite. Every one runs locally and stays out of your way.</p>
+                        <div class="bento-art" aria-hidden="true">
+                            <div class="viz viz-dock" style="min-height:110px;width:100%;"><span class="vd"><i></i><i></i><i></i><i></i><i></i></span></div>
                         </div>
-                        <h3 id="windows-title">Windows Apps</h3>
-                        <p>PC TuneX, FlipX Studio, WorkX Suite, ForgeX Pro, VAudio Elite, and Drop2QR are available now, with SpatiaX Pro in beta - lightweight tools that keep your Windows machine fast and your workflow frictionless.</p>
-                        <div class="hero-actions" style="margin-top:14px">
-                            <a class="btn btn--primary" href="Windows-apps.html">Browse Windows Apps</a>
-                        </div>
+                        <div class="bento-cta"><a class="btn btn--primary" href="Windows-apps.html">Browse 13 Windows Apps</a></div>
                     </article>
-                    <article class="card" role="listitem" aria-labelledby="android-title-card">
-                        <div class="card-icon" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="18" r="1"/>
-                            </svg>
+                    <article class="bento-cell b-span2 b-row2">
+                        <span class="bento-kicker">Mobile · Google Play</span>
+                        <h3>Android Apps</h3>
+                        <p>Mobile TuneX is live, with XCipher, SpatiaX Mobile and more on the way. Clean installs, zero tracking.</p>
+                        <div class="bento-art" data-float aria-hidden="true">
+                            <div class="dev-phone" style="width:130px;height:240px;">
+                                <div class="dev-screen">
+                                    <div class="ds-label">Mobile TuneX</div>
+                                    <div class="viz viz-gauge"><span class="vg-ring"><span class="vg-core"></span></span></div>
+                                </div>
+                            </div>
                         </div>
-                        <h3 id="android-title-card">Android Apps</h3>
-                        <p>Mobile TuneX and more coming to Google Play - the same lightweight, privacy-first philosophy brought to Android. Clean installs, zero tracking.</p>
-                        <div class="hero-actions" style="margin-top:14px">
-                            <a class="btn btn--primary" href="android-apps.html">Browse Android Apps</a>
-                        </div>
+                        <div class="bento-cta"><a class="btn btn--secondary" href="android-apps.html">Browse Android Apps</a></div>
                     </article>
-                    <article class="card" role="listitem" aria-labelledby="ai-title">
-                        <div class="card-icon" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 0 6h-1v1a4 4 0 0 1-8 0v-1H7a3 3 0 0 1 0-6h1V6a4 4 0 0 1 4-4z"/>
-                            </svg>
+                    <article class="bento-cell b-span2">
+                        <span class="bento-kicker">Creative · AI Studio</span>
+                        <h3>AI Studio</h3>
+                        <p>Learn to build your own unlimited, subscription-free AI image setup on your PC. Live training from £49.</p>
+                        <div class="bento-art" aria-hidden="true">
+                            <div class="viz viz-ai" style="margin:0;border:none;background:transparent;"><span class="va"><span class="va-orbit"><i></i></span><span class="va-orbit va-orbit2"><i></i></span><span class="va-core"></span></span></div>
                         </div>
-                        <h3 id="ai-title">AI Studio</h3>
-                        <p>Custom AI image generation, portrait series, brand visuals, and creative workflows. Tailored for individuals and businesses who need results, not just outputs.</p>
-                        <div class="hero-actions" style="margin-top:14px">
-                            <a class="btn btn--primary" href="pricing.html">View AI Studio</a>
-                        </div>
+                        <div class="bento-cta"><a class="btn btn--secondary" href="pricing.html">View AI Studio</a></div>
                     </article>
-                </div>
-            </section>
-
-            <!-- Core Values -->
-            <section class="section reveal" aria-labelledby="values-title">
-                <div class="section-header">
-                    <h2 id="values-title">Built on Three Principles</h2>
-                    <p>Every product we ship lives and dies by these standards.</p>
-                </div>
-                <div class="grid stagger" role="list">
-                    <article class="card" role="listitem">
-                        <div class="card-icon" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                            </svg>
-                        </div>
+                    <article class="bento-cell b-span2">
+                        <span class="bento-kicker">Principle 01</span>
                         <h3>Performance First</h3>
-                        <p>Tools that make your devices faster, not heavier. Every feature earns its place - if it slows things down, it doesn't ship.</p>
+                        <p>Tools that make devices faster, not heavier. If a feature slows things down, it doesn't ship.</p>
                     </article>
-                    <article class="card" role="listitem">
-                        <div class="card-icon" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            </svg>
-                        </div>
+                    <article class="bento-cell b-span2">
+                        <span class="bento-kicker">Principle 02</span>
                         <h3>Privacy by Default</h3>
-                        <p>Zero telemetry, zero data collection, zero accounts required. Your device, your data - we never touch it.</p>
-                    </article>
-                    <article class="card" role="listitem">
-                        <div class="card-icon" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                            </svg>
+                        <p>Zero telemetry, zero accounts, zero cloud dependency. Your device holds your data, and we never see it.</p>
+                        <div class="bento-art" style="min-height:60px;" aria-hidden="true">
+                            <span class="vl"><span class="vl-pad"></span><span class="vl-code">LOCAL·ONLY</span></span>
                         </div>
+                    </article>
+                    <article class="bento-cell b-span2">
+                        <span class="bento-kicker">Principle 03</span>
                         <h3>Honest Quality</h3>
-                        <p>No dark patterns, no artificial upsells. Free tiers that are genuinely useful, paid upgrades that are genuinely worth it.</p>
+                        <p>No dark patterns, no artificial upsells. Free tiers that are useful, paid upgrades that are worth it.</p>
                     </article>
                 </div>
             </section>
 
-            <!-- About / Introduction -->
+            <!-- ── About / Introduction ── -->
             <section class="section reveal" id="about" aria-labelledby="about-title">
                 <div class="about-strip">
                     <h2 id="about-title" style="font-size:clamp(1.4rem,3.2vw,2.1rem);margin-bottom:.8rem;">Hasnain Studio X</h2>

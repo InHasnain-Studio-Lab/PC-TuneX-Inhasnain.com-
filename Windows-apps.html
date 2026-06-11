@@ -360,16 +360,32 @@
 
         <main class="container" role="main">
 
-            <!-- Hero -->
-            <section class="hero hero--single" style="margin-bottom:0">
-                <div class="hero-card" style="padding:1.6rem 2rem 1.4rem;">
-                    <div class="hero-decoration"></div>
-                    <div class="live-badge"><span class="live-dot"></span>10 Apps Live on Microsoft Store</div>
-                    <h1 style="font-size:clamp(1.5rem,3.8vw,2.2rem);margin-bottom:.4rem;">Windows Apps</h1>
-                    <p class="lead" style="font-size:.93rem;margin-bottom:.9rem;opacity:.75;">Privacy-first Windows utilities, media tools, productivity suites, and local AI tools. No accounts required, no data collected, no subscriptions.</p>
-                    <div class="hero-actions" style="gap:.5rem;flex-wrap:wrap;justify-content:center;">
+            <!-- Hero: command deck -->
+            <section class="hero-split" aria-label="Windows apps introduction" style="padding-bottom:0;">
+                <div class="hero-copy">
+                    <div class="hero-eyebrow">Desktop Catalogue · Microsoft Store</div>
+                    <h1>Your Windows,<br><span class="holo-word">accelerated.</span></h1>
+                    <p class="lead">Thirteen privacy-first apps live on the Microsoft Store: one-click PC cleanup, a privacy control center, local AI image generation, a smarter desktop shell, 3D spatial audio, styled QR codes, and more. No accounts, no data collected, no subscriptions.</p>
+                    <div class="hero-actions">
                         <a class="btn btn--primary" href="https://apps.microsoft.com/detail/9NM5CJRT7D06?hl=en-gb&gl=GB&ocid=pdpshare" target="_blank" rel="noopener">Browse on MS Store</a>
                         <a class="btn btn--secondary" href="contact.html">Licensing &amp; Support</a>
+                    </div>
+                    <div class="proof-chips" aria-label="Store presence">
+                        <span class="proof-chip"><b>13</b>&nbsp;Apps Live</span>
+                        <span class="proof-chip">Win 11 · <b>Ready</b></span>
+                        <span class="proof-chip"><b>0</b>&nbsp;Cloud Required</span>
+                    </div>
+                </div>
+                <div class="hero-stage depth-stage" style="min-height:300px;display:flex;align-items:center;justify-content:center;" aria-hidden="true">
+                    <div class="console" data-float style="--rot:-1deg;">
+                        <div class="console-bar"><i></i><i></i><i></i><em>studio-x · system console</em></div>
+                        <div class="console-body">
+                            <div class="c-line">&gt; pctunex --scan <span class="c-dim">junk files · startup load · background apps</span></div>
+                            <div class="c-line"><b>✓</b> scan complete. one click to clean.</div>
+                            <div class="c-line c-progress"></div>
+                            <div class="c-line"><b>✓</b> all processing local · telemetry: <b>none</b></div>
+                            <div class="c-line">&gt; <span class="c-cursor"></span></div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -377,7 +393,7 @@
             <!-- Stats strip -->
             <div class="stats-section reveal" style="margin-top:1rem;" aria-label="Platform values">
                 <div class="stat-item">
-                    <div class="stat-number">10+</div>
+                    <div class="stat-number">13</div>
                     <div class="stat-label">Live Apps</div>
                 </div>
                 <div class="stat-item">
@@ -681,9 +697,9 @@
                 name: 'HSX StudioFlow',
                 category: 'ai',
                 tagline: 'Local AI image studio powered by your own GPU',
-                badge: 'Coming Soon',
-                badgeClass: 'badge-pending',
-                status: 'soon',
+                badge: 'Free Trial',
+                badgeClass: 'badge-available',
+                status: 'live',
                 description: 'A local AI image studio for Windows with GPU-accelerated generation. Create, upscale, and batch-export images entirely on your own hardware - no cloud upload, no API keys, no subscription.',
                 features: [
                     'GPU-accelerated AI image generation on your own hardware',
@@ -691,9 +707,9 @@
                     'Batch export with custom naming templates',
                     'No API keys, no internet connection required',
                 ],
-                storeUrl: 'contact.html',
+                storeUrl: 'https://apps.microsoft.com/detail/9P6NZMCG20P8',
                 privacyUrl: 'HSXStudioFlowPrivacy.html',
-                storeLabel: 'Get Notified',
+                storeLabel: 'Download App',
                 icon: ico('<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>'),
             },
             {
@@ -701,9 +717,9 @@
                 name: 'HorizonOS',
                 category: 'utilities',
                 tagline: 'Private Windows desktop shell and launcher',
-                badge: 'Coming Soon',
-                badgeClass: 'badge-pending',
-                status: 'soon',
+                badge: 'Free Trial',
+                badgeClass: 'badge-available',
+                status: 'live',
                 description: 'A private, local-first Windows desktop shell with a clean launcher, customisable widgets, workspace management, and note panels - a cleaner replacement for the default Start experience.',
                 features: [
                     'Clean app launcher with instant search',
@@ -711,10 +727,88 @@
                     'Multi-workspace management',
                     'Fully local - no settings sync, no telemetry',
                 ],
-                storeUrl: 'contact.html',
+                storeUrl: 'https://apps.microsoft.com/detail/9PDWPB52FRZJ',
                 privacyUrl: 'HorizonOSPrivacy.html',
-                storeLabel: 'Get Notified',
+                storeLabel: 'Download App',
                 icon: ico('<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>'),
+            },
+            {
+                id: 'pcguardx',
+                name: 'PC GuardX',
+                category: 'utilities',
+                tagline: 'One dashboard for Windows privacy controls',
+                badge: 'Free Trial',
+                badgeClass: 'badge-available',
+                status: 'live',
+                description: 'A Windows privacy control center. Switch camera, microphone, location, Bluetooth, telemetry, advertising, and activity history on or off from one dashboard, with ad-domain blocking and encrypted DNS. Every change is local and reversible.',
+                features: [
+                    'Toggle camera, microphone, location, and Bluetooth access',
+                    'Switch off Windows telemetry, advertising ID, and activity history',
+                    'Ad-domain blocking and encrypted DNS presets',
+                    'All changes applied locally and fully reversible',
+                ],
+                storeUrl: 'https://apps.microsoft.com/detail/9NVK1JPFSQHL',
+                privacyUrl: 'PCGuardXPrivacy.html',
+                storeLabel: 'Download App',
+                icon: ico('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>'),
+            },
+            {
+                id: 'hsxpocketai',
+                name: 'HSX Pocket AI',
+                category: 'ai',
+                tagline: 'Chat, documents, and images with local AI',
+                badge: 'Coming Soon',
+                badgeClass: 'badge-pending',
+                status: 'soon',
+                description: 'A Windows app that runs AI models entirely on your own machine. Chat with a local language model, ask questions over your own documents, and generate images. Nothing you type, index, or create ever leaves your device.',
+                features: [
+                    'Chat with a language model running locally',
+                    'Ask questions over your own documents',
+                    'Generate images on your own hardware',
+                    'No cloud, no account, nothing transmitted',
+                ],
+                storeUrl: 'contact.html',
+                privacyUrl: 'HSXPocketAIPrivacy.html',
+                storeLabel: 'Get Notified',
+                icon: ico('<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/>'),
+            },
+            {
+                id: 'stillmotion',
+                name: 'Stillmotion',
+                category: 'media',
+                tagline: 'Organise, edit, and export photos and videos',
+                badge: 'Coming Soon',
+                badgeClass: 'badge-pending',
+                status: 'soon',
+                description: 'A Windows app for organising, editing, and exporting photos and videos in one local library. Zero upload policy: your media never leaves your machine, and no model is ever trained on it.',
+                features: [
+                    'One local library for photos and videos',
+                    'Editing and export tools, including SRT captions',
+                    'EXIF and GPS metadata read on device only',
+                    'Zero upload policy, media never leaves your machine',
+                ],
+                storeUrl: 'contact.html',
+                privacyUrl: 'StillmotionPrivacy.html',
+                storeLabel: 'Get Notified',
+                icon: ico('<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m10.5 15.5 5-3-5-3z"/>'),
+            },
+            {
+                id: 'quantumcast',
+                name: 'QuantumCast',
+                category: 'media',
+                tagline: 'New Windows app, in development',
+                badge: 'Coming Soon',
+                badgeClass: 'badge-pending',
+                status: 'soon',
+                description: 'QuantumCast is currently in development at the studio. Full details, features, and its privacy policy will be published here closer to release.',
+                features: [
+                    'Feature list to be announced',
+                    'Built on the same local-first, zero-telemetry principles',
+                ],
+                storeUrl: 'contact.html',
+                privacyUrl: 'contact.html',
+                storeLabel: 'Get Notified',
+                icon: ico('<path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/><line x1="2" y1="20" x2="2.01" y2="20"/>'),
             },
         ];
 
@@ -731,6 +825,7 @@
                 return `
                     <article class="app-tile reveal" role="listitem" tabindex="0"
                         data-id="${app.id}" aria-label="${app.name} - ${app.tagline}">
+                        ${window.AppViz ? AppViz(app) : ''}
                         <div class="tile-icon" aria-hidden="true">${app.icon}</div>
                         <div class="tile-name">${app.name}</div>
                         <div class="tile-tagline">${app.tagline}</div>
@@ -777,6 +872,7 @@
             const isExternal = app.storeUrl.startsWith('http');
             const target = isExternal ? ' target="_blank" rel="noopener"' : '';
             document.getElementById('modal-body').innerHTML = `
+                ${window.AppViz ? AppViz(app) : ''}
                 <div class="modal-head">
                     <div class="modal-icon" aria-hidden="true">${app.icon}</div>
                     <div>

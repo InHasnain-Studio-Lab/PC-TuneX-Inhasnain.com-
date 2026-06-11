@@ -1,271 +1,246 @@
-/* ============================================================
- InHasnain Studio X - site.js
- Nav, scroll progress, reveals, lightbox, contact form, wizard.
- ============================================================ */
-(function(){
+/* ═══════════════════════════════════════════════════════════════════════
+   HASNAIN STUDIO X — site.js
+   Core interactions: page transitions, scroll progress, reveal-on-scroll,
+   stat count-up, magnetic buttons, contact form, header state.
+   ═══════════════════════════════════════════════════════════════════════ */
+(function () {
     'use strict';
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function ready(fn){
-        if(document.readyState !== 'loading'){ fn(); }
-        else{ document.addEventListener('DOMContentLoaded', fn); }
-    }
-
-    /* Mobile nav */
-    function initNav(){
-        var bar = document.querySelector('.top-bar');
-        var nav = bar && bar.querySelector('nav');
-        if(!bar || !nav) return;
-        var toggle = document.createElement('button');
-        toggle.className = 'nav-toggle';
-        toggle.setAttribute('aria-label','Toggle menu');
-        toggle.setAttribute('aria-expanded','false');
-        toggle.innerHTML = '<span></span>';
-        var actions = bar.querySelector('.actions');
-        if(actions){ bar.insertBefore(toggle, actions); } else { bar.appendChild(toggle); }
-        toggle.addEventListener('click', function(){
-            var open = document.body.classList.toggle('nav-open');
-            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    /* ── Page transition: fade in on load, fade out on internal nav ────── */
+    var pg = document.getElementById('pg-transition');
+    if (pg) {
+        pg.classList.add('active');
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () { pg.classList.remove('active'); });
         });
-        nav.addEventListener('click', function(e){
-            if(e.target.tagName === 'A'){
-                document.body.classList.remove('nav-open');
-                toggle.setAttribute('aria-expanded','false');
-            }
-        });
-    }
-
-    /* Scroll progress */
-    function initProgress(){
-        var bar = document.getElementById('scroll-progress');
-        if(!bar) return;
-        function update(){
-            var h = document.documentElement;
-            var max = h.scrollHeight - h.clientHeight;
-            var pct = max > 0 ? (h.scrollTop || document.body.scrollTop) / max * 100 : 0;
-            bar.style.width = pct + '%';
-        }
-        window.addEventListener('scroll', update, {passive:true});
-        update();
-    }
-
-    /* Scroll reveals */
-    function initReveals(){
-        var items = document.querySelectorAll('.reveal, .stagger, .gallery-item');
-        if(!items.length) return;
-        if(reduceMotion || !('IntersectionObserver' in window)){
-            items.forEach(function(el){ el.classList.add('visible'); });
-            return;
-        }
-        var io = new IntersectionObserver(function(entries){
-            entries.forEach(function(en){
-                if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); }
-            });
-        }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
-        items.forEach(function(el){ io.observe(el); });
-    }
-
-    /* Orb parallax (skipped under reduced motion) */
-    function initOrbs(){
-        if(reduceMotion) return;
-        var orbs = document.querySelectorAll('.orb');
-        if(!orbs.length) return;
-        var ticking = false;
-        window.addEventListener('scroll', function(){
-            if(ticking) return;
-            ticking = true;
-            requestAnimationFrame(function(){
-                var y = window.scrollY || 0;
-                orbs.forEach(function(o,i){
-                    var f = (i+1)*0.04;
-                    o.style.transform = 'translateY(' + (y*f) + 'px)';
-                });
-                ticking = false;
-            });
-        }, {passive:true});
-    }
-
-    /* Smooth page transition on internal nav */
-    function initPageTransition(){
-        var pt = document.getElementById('pg-transition');
-        if(!pt || reduceMotion) return;
-        requestAnimationFrame(function(){ pt.classList.remove('show'); });
-        document.addEventListener('click', function(e){
-            var a = e.target.closest('a');
-            if(!a) return;
+        document.addEventListener('click', function (e) {
+            var a = e.target.closest && e.target.closest('a');
+            if (!a) return;
             var href = a.getAttribute('href') || '';
-            if(a.target === '_blank' || href.indexOf('http') === 0 || href.indexOf('mailto:') === 0 || href.charAt(0) === '#' || a.hasAttribute('download')) return;
-            if(href.indexOf('.html') === -1) return;
+            if (a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey) return;
+            if (!/\.html(\#.*)?$/i.test(href) || /^https?:\/\//i.test(href)) return;
             e.preventDefault();
-            pt.classList.add('show');
-            setTimeout(function(){ window.location.href = href; }, 280);
+            pg.classList.add('active');
+            setTimeout(function () { window.location.href = href; }, reduceMotion ? 0 : 110);
+        });
+        // restore when navigating back from bfcache
+        window.addEventListener('pageshow', function (e) {
+            if (e.persisted) pg.classList.remove('active');
         });
     }
 
-    /* Contact form (Formspree) */
-    function initContactForm(){
-        var form = document.getElementById('contact-form');
-        if(!form) return;
-        var status = document.getElementById('contact-status');
-        form.addEventListener('submit', function(e){
-            e.preventDefault();
-            if(status){ status.className = 'form-status'; status.textContent = 'Sending...'; }
-            var data = new FormData(form);
-            fetch(form.action, {method:'POST', body:data, headers:{'Accept':'application/json'}})
-                .then(function(r){
-                    if(r.ok){
-                        form.reset();
-                        if(status){ status.className = 'form-status ok'; status.textContent = 'Message sent. We will reply within 2 business days.'; }
-                    } else {
-                        if(status){ status.className = 'form-status err'; status.textContent = 'Something went wrong. Please email us directly.'; }
-                    }
-                })
-                .catch(function(){
-                    if(status){ status.className = 'form-status err'; status.textContent = 'Network error. Please email us directly.'; }
+    /* ── Header scrolled state + scroll progress ───────────────────────── */
+    var bar = document.querySelector('.top-bar');
+    var prog = document.getElementById('scroll-progress');
+    function onScroll() {
+        var y = window.scrollY || document.documentElement.scrollTop;
+        if (bar) bar.classList.toggle('scrolled', y > 24);
+        if (prog) {
+            var h = document.documentElement.scrollHeight - window.innerHeight;
+            prog.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+        }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ── Reveal on scroll ───────────────────────────────────────────────── */
+    var revealEls = document.querySelectorAll('.reveal, .stagger');
+    if ('IntersectionObserver' in window && revealEls.length) {
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+                if (en.isIntersecting) {
+                    en.target.classList.add('visible');
+                    io.unobserve(en.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(function (el) {
+            if (el.classList.contains('stagger')) {
+                Array.prototype.forEach.call(el.children, function (c, i) {
+                    c.style.setProperty('--i', i);
                 });
+            }
+            io.observe(el);
         });
+    } else {
+        revealEls.forEach(function (el) { el.classList.add('visible'); });
     }
 
-    /* Generic gallery lightbox (#lightbox with .lb-trigger items) */
-    function initGalleryLightbox(){
-        var lb = document.getElementById('lightbox');
-        if(!lb) return;
-        var img = document.getElementById('lb-img');
-        var title = document.getElementById('lb-title');
-        var desc = document.getElementById('lb-desc');
-        var tag = document.getElementById('lb-tag');
-        var closeBtn = document.getElementById('lb-close');
-        var prevBtn = document.getElementById('lb-prev');
-        var nextBtn = document.getElementById('lb-next');
-        var triggers = Array.prototype.slice.call(document.querySelectorAll('.lb-trigger, .gallery-item'));
-        var current = 0;
-
-        function dataFor(el){
-            var im = el.querySelector('img');
-            return {
-                src: el.getAttribute('data-src') || (im && im.src) || '',
-                title: el.getAttribute('data-title') || (el.querySelector('.card-title') ? el.querySelector('.card-title').textContent : ''),
-                desc: el.getAttribute('data-desc') || (el.querySelector('.card-desc') ? el.querySelector('.card-desc').textContent : ''),
-                tag: el.getAttribute('data-tag') || (el.querySelector('.card-tag') ? el.querySelector('.card-tag').textContent : '')
-            };
-        }
-        function show(i){
-            if(!triggers.length) return;
-            current = (i + triggers.length) % triggers.length;
-            var d = dataFor(triggers[current]);
-            if(img && d.src){ img.src = d.src; }
-            if(title) title.textContent = d.title;
-            if(desc) desc.textContent = d.desc;
-            if(tag) tag.textContent = d.tag;
-        }
-        function open(i){ show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
-        function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
-
-        triggers.forEach(function(el, i){
-            el.addEventListener('click', function(ev){
-                if(ev.target.closest('a')) return;
-                open(i);
+    /* ── Stat number count-up (numeric stats only) ─────────────────────── */
+    var stats = document.querySelectorAll('.stat-number');
+    if ('IntersectionObserver' in window && stats.length && !reduceMotion) {
+        var sio = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+                if (!en.isIntersecting) return;
+                sio.unobserve(en.target);
+                var el = en.target;
+                var raw = el.textContent.trim();
+                var m = raw.match(/^(\d+)(\+?)$/);
+                if (!m) return;
+                var target = parseInt(m[1], 10), suffix = m[2];
+                var t0 = null, dur = 1400;
+                function step(ts) {
+                    if (!t0) t0 = ts;
+                    var p = Math.min((ts - t0) / dur, 1);
+                    var eased = 1 - Math.pow(1 - p, 4);
+                    el.textContent = Math.round(eased * target) + suffix;
+                    if (p < 1) requestAnimationFrame(step);
+                }
+                requestAnimationFrame(step);
             });
-        });
-        if(closeBtn) closeBtn.addEventListener('click', close);
-        if(prevBtn) prevBtn.addEventListener('click', function(){ show(current-1); });
-        if(nextBtn) nextBtn.addEventListener('click', function(){ show(current+1); });
-        lb.addEventListener('click', function(e){ if(e.target === lb) close(); });
-        document.addEventListener('keydown', function(e){
-            if(!lb.classList.contains('open')) return;
-            if(e.key === 'Escape') close();
-            else if(e.key === 'ArrowLeft') show(current-1);
-            else if(e.key === 'ArrowRight') show(current+1);
-        });
+        }, { threshold: 0.5 });
+        stats.forEach(function (s) { sio.observe(s); });
     }
 
-    /* Gallery filter bar */
-    function initFilters(){
-        var bar = document.querySelector('.filter-bar');
-        if(!bar) return;
-        var btns = bar.querySelectorAll('.filter-btn');
-        var items = document.querySelectorAll('.gallery-item');
-        bar.addEventListener('click', function(e){
-            var btn = e.target.closest('.filter-btn');
-            if(!btn) return;
-            btns.forEach(function(b){ b.classList.remove('active'); });
-            btn.classList.add('active');
-            var f = btn.getAttribute('data-filter') || 'all';
-            items.forEach(function(it){
-                var cat = it.getAttribute('data-category') || '';
-                it.style.display = (f === 'all' || cat === f) ? '' : 'none';
+    /* ── Magnetic buttons (fine pointers only) ─────────────────────────── */
+    if (window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
+        document.querySelectorAll('.btn').forEach(function (btn) {
+            btn.addEventListener('pointermove', function (e) {
+                var r = btn.getBoundingClientRect();
+                var dx = (e.clientX - r.left - r.width / 2) / r.width;
+                var dy = (e.clientY - r.top - r.height / 2) / r.height;
+                btn.style.transform = 'translate(' + dx * 7 + 'px,' + (dy * 5 - 3) + 'px)';
+            });
+            btn.addEventListener('pointerleave', function () {
+                btn.style.transform = '';
             });
         });
     }
 
-    /* Booking wizard (called from pricing.html) */
-    function buildWizard(){
-        if(document.getElementById('bw-overlay')) return;
-        var ov = document.createElement('div');
-        ov.id = 'bw-overlay';
-        ov.className = 'bw-overlay';
-        ov.setAttribute('role','dialog');
-        ov.setAttribute('aria-modal','true');
-        ov.setAttribute('aria-label','Start your AI project');
-        ov.innerHTML =
-            '<div class="bw-modal">' +
-                '<button class="bw-close" aria-label="Close">✕</button>' +
-                '<h3>Start Your AI Project</h3>' +
-                '<p>Tell us what you need and we will reply within 2 business days.</p>' +
-                '<form class="bw-form" action="https://formspree.io/f/mrerqkrv" method="POST">' +
-                    '<input name="name" type="text" required placeholder="Your name">' +
-                    '<input name="email" type="email" required placeholder="you@example.com">' +
-                    '<select name="package" required>' +
-                        '<option value="">Select a package</option>' +
-                        '<option>Pro Creator Pack</option>' +
-                        '<option>Custom Setup</option>' +
-                        '<option>Training Session</option>' +
-                        '<option>Other</option>' +
-                    '</select>' +
-                    '<textarea name="message" rows="4" placeholder="Describe your project..."></textarea>' +
-                    '<button type="submit" class="btn btn--primary full">Send Request</button>' +
-                    '<p class="form-status" aria-live="polite"></p>' +
-                '</form>' +
-            '</div>';
-        document.body.appendChild(ov);
-        var closeBtn = ov.querySelector('.bw-close');
-        var form = ov.querySelector('form');
-        var st = ov.querySelector('.form-status');
-        closeBtn.addEventListener('click', closeWizard);
-        ov.addEventListener('click', function(e){ if(e.target === ov) closeWizard(); });
-        document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && ov.classList.contains('open')) closeWizard(); });
-        form.addEventListener('submit', function(e){
+    /* ── Contact form: async submit with inline status ─────────────────── */
+    var form = document.getElementById('contact-form');
+    if (form) {
+        var status = document.getElementById('contact-status');
+        form.addEventListener('submit', function (e) {
             e.preventDefault();
-            st.className = 'form-status'; st.textContent = 'Sending...';
-            fetch(form.action, {method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}})
-                .then(function(r){
-                    if(r.ok){ form.reset(); st.className = 'form-status ok'; st.textContent = 'Request sent. We will be in touch shortly.'; }
-                    else{ st.className = 'form-status err'; st.textContent = 'Something went wrong. Please email us directly.'; }
-                })
-                .catch(function(){ st.className = 'form-status err'; st.textContent = 'Network error. Please email us directly.'; });
+            var btn = form.querySelector('[type="submit"]');
+            if (btn) { btn.disabled = true; btn.style.opacity = '.6'; }
+            if (status) { status.style.color = ''; status.textContent = 'Transmitting…'; }
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(function (res) {
+                if (res.ok) {
+                    form.reset();
+                    if (status) status.textContent = '✓ Message sent — we’ll reply within 2 business days.';
+                } else {
+                    throw new Error('send failed');
+                }
+            }).catch(function () {
+                if (status) {
+                    status.style.color = '#f3b3cf';
+                    status.textContent = 'Could not send. Please email Hasnain@outlook.at directly.';
+                }
+            }).finally(function () {
+                if (btn) { btn.disabled = false; btn.style.opacity = ''; }
+            });
         });
     }
-    function closeWizard(){
-        var ov = document.getElementById('bw-overlay');
-        if(ov){ ov.classList.remove('open'); document.body.style.overflow = ''; }
-    }
-    window.openBookingWizard = function(){
-        buildWizard();
-        var ov = document.getElementById('bw-overlay');
-        ov.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        var f = ov.querySelector('input');
-        if(f) f.focus();
-    };
 
-    ready(function(){
-        initNav();
-        initProgress();
-        initReveals();
-        initOrbs();
-        initPageTransition();
-        initContactForm();
-        initGalleryLightbox();
-        initFilters();
+    /* ── Footer year auto-update ────────────────────────────────────────── */
+    document.querySelectorAll('.footer-bottom span').forEach(function (s) {
+        s.innerHTML = s.innerHTML.replace(/©\s*\d{4}/, '© ' + new Date().getFullYear());
     });
+
+    /* ── Scroll parallax: [data-parallax="0.12"] drifts with scroll ────── */
+    var pxEls = document.querySelectorAll('[data-parallax]');
+    if (pxEls.length && !reduceMotion) {
+        var ticking = false;
+        function parallax() {
+            var vh = window.innerHeight;
+            pxEls.forEach(function (el) {
+                var f = parseFloat(el.dataset.parallax) || 0.1;
+                var r = el.getBoundingClientRect();
+                var center = r.top + r.height / 2 - vh / 2;
+                el.style.transform = 'translateY(' + (-center * f).toFixed(1) + 'px)';
+            });
+            ticking = false;
+        }
+        window.addEventListener('scroll', function () {
+            if (!ticking) { ticking = true; requestAnimationFrame(parallax); }
+        }, { passive: true });
+        parallax();
+    }
+})();
+
+/* ═══════════════════════════════════════════════════════════════════════
+   AppViz — live animated previews so every app SHOWS what it does.
+   Used by the Windows / Android catalogue renderers and the home page.
+   ═══════════════════════════════════════════════════════════════════════ */
+window.AppViz = (function () {
+    /* One animation per app, derived from that app's real feature set:
+       gauge    = junk cleanup + optimisation (PC TuneX, Mobile TuneX)
+       qr       = QR design + export            (Drop2QR)
+       dock     = dock with live app pins       (NimbusDock)
+       transfer = device-to-device Wi-Fi share  (QuantumDrop)
+       seasons  = seasonal wallpaper cycle      (XSeasons)
+       spatial  = 3D positional audio field     (SpatiaX Ultra / Mobile)
+       eq       = media player + visualizer     (VAudio Elite)
+       convert  = local media conversion        (FlipX Studio)
+       suite    = PDF / Word / spreadsheet docs (WorkX Suite)
+       imagegen = GPU image generation render   (HSX StudioFlow)
+       prompt   = structured prompt assembly    (ForgeX Pro)
+       shell    = desktop shell + widgets       (HorizonOS)
+       docs     = document text extraction      (DocsMining)
+       lock     = AES-256 local encryption      (XCipher)            */
+    var byId = {
+        pctunex: 'gauge', mobiletunex: 'gauge',
+        drop2qr: 'qr',
+        nimbusdock: 'dock',
+        quantumdrop: 'transfer',
+        xseasons: 'seasons',
+        spatiaxultra: 'spatial', spatiaxmobile: 'spatial',
+        vaudioelite: 'eq',
+        flipxstudio: 'convert', flipxandroid: 'convert',
+        workxsuite: 'suite', hsxstudioflow: 'imagegen',
+        forgexpro: 'prompt', horizonos: 'shell',
+        docsmining: 'docs',
+        xcipher: 'lock',
+        pcguardx: 'guard',      /* privacy toggles dashboard */
+        hsxpocketai: 'chat',    /* local AI chat */
+        stillmotion: 'gallery', /* photo + video library */
+        quantumcast: 'cast'     /* casting, details TBA */
+    };
+    var byCat = { utilities: 'gauge', media: 'eq', productivity: 'suite', ai: 'prompt' };
+    function cells(n, tag) {
+        var out = '';
+        for (var i = 0; i < n; i++) out += '<' + tag + '></' + tag + '>';
+        return out;
+    }
+    var tpl = {
+        gauge:    '<span class="vg-ring"><span class="vg-core"></span></span><span class="vg-bars">' + cells(3, 'i') + '</span>',
+        qr:       '<span class="vq">' + cells(25, 'i') + '</span>',
+        dock:     '<span class="vd">' + cells(5, 'i') + '</span>',
+        transfer: '<span class="vt-node"></span><span class="vt-line">' + cells(3, 'i') + '</span><span class="vt-node"></span>',
+        seasons:  '<span class="vs"><i class="sun"></i><i class="hill"></i></span>',
+        eq:       '<span class="ve">' + cells(7, 'i') + '</span>',
+        convert:  '<span class="vc-chip">MP4</span><span class="vc-arrows">⟳</span><span class="vc-chip">MP3</span>',
+        spatial:  '<span class="vsp"><i class="vsp-ring"></i><i class="vsp-ring vsp-ring2"></i><b class="vsp-head"></b><span class="vsp-orbit"><i class="vsp-orb"></i></span></span>',
+        suite:    '<span class="vsu"><b>PDF</b><b>DOC</b><b>XLS</b></span>',
+        imagegen: '<span class="vimg"><i class="vimg-fill"></i><i class="vimg-peak"></i><b class="vimg-bar"></b></span>',
+        prompt:   '<span class="vpr"><i></i><i></i><i></i><b class="vpr-cursor"></b></span>',
+        shell:    '<span class="vsh"><i></i><i></i><i></i><i></i><b class="vsh-dock"></b></span>',
+        docs:     '<span class="vdoc">' + cells(4, 'i') + '<span class="scan"></span></span>',
+        lock:     '<span class="vl"><span class="vl-pad"></span><span class="vl-code">A7·K2·X9</span></span>',
+        guard:    '<span class="vgd"><i class="vgd-shield"></i><span class="vgd-toggles"><b></b><b></b><b></b></span></span>',
+        chat:     '<span class="vch"><i class="vch-b1"></i><i class="vch-b2"><b></b><b></b><b></b></i></span>',
+        gallery:  '<span class="vga"><i></i><i></i><i></i><b class="vga-glint"></b></span>',
+        cast:     '<span class="vca"><i class="vca-scr"></i><i class="vca-w vca-w1"></i><i class="vca-w vca-w2"></i><i class="vca-w vca-w3"></i></span>'
+    };
+    return function (app) {
+        var type = byId[app.id] || byCat[app.category] || 'ai';
+        return '<div class="viz viz-' + type + '" aria-hidden="true">' + tpl[type] + '</div>';
+    };
+})();
+
+/* Catalogue pages render their grid before this file loads — re-render once
+   AppViz exists so every tile gets its live preview. */
+(function () {
+    try {
+        if (typeof renderGrid === 'function' && document.getElementById('apps-grid')) {
+            renderGrid(typeof currentFilter !== 'undefined' ? currentFilter : 'all');
+        }
+    } catch (e) { /* no-op */ }
 })();

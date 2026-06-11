@@ -371,16 +371,29 @@
 
         <main class="container" role="main">
 
-            <!-- Hero -->
-            <section class="hero hero--single" style="margin-bottom:0">
-                <div class="hero-card" style="padding:1.6rem 2rem 1.4rem;">
-                    <div class="hero-decoration"></div>
-                    <div class="live-badge"><span class="live-dot"></span>Mobile TuneX - Now on Google Play</div>
-                    <h1 style="font-size:clamp(1.5rem,3.8vw,2.2rem);margin-bottom:.4rem;">Android Apps</h1>
-                    <p class="lead" style="font-size:.93rem;margin-bottom:.9rem;opacity:.75;">The same lightweight, privacy-first philosophy from our Windows tools - brought to Android. No trackers, no background data collection, no bloat.</p>
-                    <div class="hero-actions" style="gap:.5rem;flex-wrap:wrap;justify-content:center;">
+            <!-- Hero: pocket-sized -->
+            <section class="hero-split" aria-label="Android apps introduction" style="padding-bottom:0;">
+                <div class="hero-copy">
+                    <div class="hero-eyebrow">Mobile Catalogue · Google Play</div>
+                    <h1>Pocket-sized.<br><span class="holo-word">Privacy-first.</span></h1>
+                    <p class="lead">Mobile TuneX keeps your phone fast: junk cleanup, a permission auditor, battery tips, and a storage analyser, all processed on your device. More privacy-first tools are on the way. No trackers, no background data collection, no bloat.</p>
+                    <div class="hero-actions">
                         <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.mobiletunex.app&pcampaignid=web_share" target="_blank" rel="noopener">Browse on Google Play</a>
                         <a class="btn btn--secondary" href="Windows-apps.html">See Windows Apps</a>
+                    </div>
+                    <div class="proof-chips" aria-label="Store presence">
+                        <span class="proof-chip">Mobile TuneX · <b>Live</b></span>
+                        <span class="proof-chip"><b>0</b>&nbsp;Trackers</span>
+                        <span class="proof-chip">Play Store · <b>Certified</b></span>
+                    </div>
+                </div>
+                <div class="hero-stage depth-stage" style="min-height:340px;display:flex;align-items:center;justify-content:center;" aria-hidden="true">
+                    <div class="dev-phone" data-float style="--rot:2deg;">
+                        <div class="dev-screen">
+                            <div class="ds-label">Mobile TuneX</div>
+                            <div class="viz viz-gauge" style="flex-direction:column;"><span class="vg-ring"><span class="vg-core"></span></span><span class="vg-bars"><i></i><i></i><i></i></span></div>
+                            <div class="ds-label" style="color:var(--mint);">Cache Cleared ✓</div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -457,7 +470,7 @@
 
             <!-- Windows CTA -->
             <section class="section reveal" aria-label="Also on Windows" style="margin-top:1.2rem;text-align:center;padding:1.4rem 1.6rem;">
-                <p style="margin:0 0 .8rem;opacity:.75;font-size:.92rem;">Using Windows? We have a full suite of 10 desktop tools ready for you.</p>
+                <p style="margin:0 0 .8rem;opacity:.75;font-size:.92rem;">Using Windows? We have a full suite of 13 desktop tools ready for you.</p>
                 <a class="btn btn--primary" href="Windows-apps.html">Browse Windows Apps</a>
             </section>
 
@@ -633,6 +646,7 @@
                 return `
                     <article class="app-tile reveal" role="listitem" tabindex="0"
                         data-id="${app.id}" aria-label="${app.name} - ${app.tagline}">
+                        ${window.AppViz ? AppViz(app) : ''}
                         <div class="tile-icon" aria-hidden="true">${app.icon}</div>
                         <div class="tile-name">${app.name}</div>
                         <div class="tile-tagline">${app.tagline}</div>
@@ -677,6 +691,7 @@
             const isExternal = app.storeUrl.startsWith('http');
             const target = isExternal ? ' target="_blank" rel="noopener"' : '';
             document.getElementById('modal-body').innerHTML = `
+                ${window.AppViz ? AppViz(app) : ''}
                 <div class="modal-head">
                     <div class="modal-icon" aria-hidden="true">${app.icon}</div>
                     <div>
