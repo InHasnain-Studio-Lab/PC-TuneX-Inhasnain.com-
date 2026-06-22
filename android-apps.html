@@ -374,26 +374,32 @@
             <!-- Hero: pocket-sized -->
             <section class="hero-split" aria-label="Android apps introduction" style="padding-bottom:0;">
                 <div class="hero-copy">
-                    <div class="hero-eyebrow">Mobile Catalogue · Google Play</div>
-                    <h1>Pocket-sized.<br><span class="holo-word">Privacy-first.</span></h1>
-                    <p class="lead">Mobile TuneX keeps your phone fast: junk cleanup, a permission auditor, battery tips, and a storage analyser, all processed on your device. More privacy-first tools are on the way. No trackers, no background data collection, no bloat.</p>
+                    <div class="hero-eyebrow">Mobile Catalogue · Google Play · Android 10+</div>
+                    <h1>Your phone,<br><span class="holo-word">uncompromised.</span></h1>
+                    <p class="lead">Privacy-first Android apps built to the same zero-telemetry standard as our Windows catalogue. Mobile TuneX keeps your phone fast and clean — all processing on-device, nothing transmitted. XCipher (AES-256 encryption), SpatiaX Mobile, and FlipX Studio Android are coming soon.</p>
                     <div class="hero-actions">
-                        <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.mobiletunex.app&pcampaignid=web_share" target="_blank" rel="noopener">Browse on Google Play</a>
-                        <a class="btn btn--secondary" href="Windows-apps.html">See Windows Apps</a>
+                        <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.mobiletunex.app&pcampaignid=web_share" target="_blank" rel="noopener">Get Mobile TuneX</a>
+                        <a class="btn btn--secondary" href="Windows-apps.html">See 21 Windows Apps</a>
                     </div>
                     <div class="proof-chips" aria-label="Store presence">
-                        <span class="proof-chip">Mobile TuneX · <b>Live</b></span>
+                        <span class="proof-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3.5v17l9-8.5zM14.5 10.5 17 8l3.5 2.6c.8.6.8 1.6 0 2.2L17 15.4l-2.5-2.5 1.2-1.2z"/></svg>Google Play · <b>Live</b></span>
                         <span class="proof-chip"><b>0</b>&nbsp;Trackers</span>
-                        <span class="proof-chip">Play Store · <b>Certified</b></span>
+                        <span class="proof-chip"><b>0</b>&nbsp;Background Data</span>
+                        <span class="proof-chip">Android <b>10+</b></span>
                     </div>
                 </div>
-                <div class="hero-stage depth-stage" style="min-height:340px;display:flex;align-items:center;justify-content:center;" aria-hidden="true">
-                    <div class="dev-phone" data-float style="--rot:2deg;">
+                <div class="hero-stage depth-stage" style="min-height:340px;display:flex;align-items:center;justify-content:center;gap:1.4rem;flex-direction:column;" aria-hidden="true">
+                    <div class="dev-phone" data-float style="--rot:1.5deg;">
                         <div class="dev-screen">
                             <div class="ds-label">Mobile TuneX</div>
                             <div class="viz viz-gauge" style="flex-direction:column;"><span class="vg-ring"><span class="vg-core"></span></span><span class="vg-bars"><i></i><i></i><i></i></span></div>
-                            <div class="ds-label" style="color:var(--mint);">Cache Cleared ✓</div>
+                            <div class="ds-label" style="color:var(--mint);font-size:.6rem;">Cache Cleared ✓ · No Trackers</div>
                         </div>
+                    </div>
+                    <div style="display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;">
+                        <span class="proof-chip" style="font-size:.65rem;padding:.2rem .6rem;">Mobile TuneX · Live</span>
+                        <span class="proof-chip" style="font-size:.65rem;padding:.2rem .6rem;color:var(--ink-faint);">XCipher · Soon</span>
+                        <span class="proof-chip" style="font-size:.65rem;padding:.2rem .6rem;color:var(--ink-faint);">SpatiaX Mobile · Soon</span>
                     </div>
                 </div>
             </section>
@@ -431,11 +437,37 @@
             <!-- App grid - rendered by JS -->
             <div class="apps-grid" id="apps-grid" role="list" aria-label="Android apps"></div>
 
+            <!-- Coming soon spotlight -->
+            <section class="section reveal" aria-labelledby="soon-title" style="margin-top:1.5rem;">
+                <div class="section-header">
+                    <div style="font-family:var(--f-display);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--violet);margin-bottom:.5rem;">In the Pipeline</div>
+                    <h2 id="soon-title">What's Coming to Android</h2>
+                    <p>The Windows catalogue's best features are being rebuilt for mobile. Same principles, native performance.</p>
+                </div>
+                <div class="bento" style="grid-template-columns:repeat(3,1fr);">
+                    <article class="bento-cell">
+                        <span class="bento-kicker" style="color:var(--ice);">Encryption · Soon</span>
+                        <h3>XCipher</h3>
+                        <p>AES-256 file and text encryption. Encrypt anything on your phone — files, folders, clipboard text. Nothing leaves the device.</p>
+                    </article>
+                    <article class="bento-cell">
+                        <span class="bento-kicker" style="color:var(--mint);">Audio · Soon</span>
+                        <h3>SpatiaX Mobile</h3>
+                        <p>The Android port of SpatiaX Ultra. Real-time 3D spatial audio, headphone profiles, and pro-grade DSP — all running locally on your device.</p>
+                    </article>
+                    <article class="bento-cell">
+                        <span class="bento-kicker" style="color:var(--rose);">Media · Soon</span>
+                        <h3>FlipX Studio</h3>
+                        <p>Convert audio, video, and images on Android. Batch processing, smart presets, and fully offline — the same privacy-first media toolkit on mobile.</p>
+                    </article>
+                </div>
+            </section>
+
             <!-- Philosophy section -->
             <section class="section reveal" aria-labelledby="philosophy-title" style="margin-top:2rem;">
                 <div class="section-header">
-                    <h2 id="philosophy-title">Our Android Philosophy</h2>
-                    <p>The same standards that define our Windows apps, applied to mobile.</p>
+                    <h2 id="philosophy-title">Mobile done right.</h2>
+                    <p>The same zero-telemetry, local-first principles as our 21 Windows apps — but built for the constraints and rhythms of mobile life.</p>
                 </div>
                 <div class="philosophy-grid">
                     <article class="card" role="article">
@@ -470,8 +502,8 @@
 
             <!-- Windows CTA -->
             <section class="section reveal" aria-label="Also on Windows" style="margin-top:1.2rem;text-align:center;padding:1.4rem 1.6rem;">
-                <p style="margin:0 0 .8rem;opacity:.75;font-size:.92rem;">Using Windows? We have a full suite of 13 desktop tools ready for you.</p>
-                <a class="btn btn--primary" href="Windows-apps.html">Browse Windows Apps</a>
+                <p style="margin:0 0 .8rem;opacity:.75;font-size:.92rem;">On Windows? There are 21 desktop apps ready for you — including the full AI Studio suite, a cinematic audio engine, and a one-click performance booster.</p>
+                <a class="btn btn--primary" href="Windows-apps.html">Browse 21 Windows Apps</a>
             </section>
 
         </main>
