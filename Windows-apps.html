@@ -12,9 +12,10 @@
         <meta property="og:url" content="https://www.hasnainstudiox.com/Windows-apps.html"/>
         <meta property="og:site_name" content="Hasnain Studio X"/>
         <meta name="twitter:card" content="summary_large_image"/>
-        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <meta name="theme-color" content="#08070c"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="site.css"/>
         <style>
             /* Windows Apps page - compact grid + modal layout */
@@ -1039,4 +1040,175 @@
                 storeUrl: 'https://apps.microsoft.com/detail/9PFFP713N7X2',
                 privacyUrl: 'HSXPocketAIPrivacy.html',
                 storeLabel: 'Download App',
-   
+                   icon: ico('<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/>'),
+            },
+            {
+                id: 'stillmotion',
+                name: 'Stillmotion',
+                category: 'media',
+                tagline: 'Organise, edit, and export photos and videos',
+                badge: 'Free Trial',
+                badgeClass: 'badge-available',
+                status: 'live',
+                description: 'A Windows app for organising, editing, and exporting photos and videos in one local library. Zero upload policy: your media never leaves your machine, and no model is ever trained on it.',
+                features: [
+                    'One local library for photos and videos',
+                    'Editing and export tools, including SRT captions',
+                    'EXIF and GPS metadata read on device only',
+                    'Zero upload policy, media never leaves your machine',
+                ],
+                storeUrl: 'https://apps.microsoft.com/detail/9NR32X1TLJZT',
+                privacyUrl: 'StillmotionPrivacy.html',
+                storeLabel: 'Download App',
+                icon: ico('<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m10.5 15.5 5-3-5-3z"/>'),
+            },
+            {
+                id: 'quantumcast',
+                name: 'QuantumCast',
+                category: 'media',
+                tagline: 'New Windows app, in development',
+                badge: 'Coming Soon',
+                badgeClass: 'badge-pending',
+                status: 'soon',
+                description: 'QuantumCast is currently in development at the studio. Full details, features, and its privacy policy will be published here closer to release.',
+                features: [
+                    'Feature list to be announced',
+                    'Built on the same local-first, zero-telemetry principles',
+                ],
+                storeUrl: 'contact.html',
+                privacyUrl: 'contact.html',
+                storeLabel: 'Get Notified',
+                icon: ico('<path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/><line x1="2" y1="20" x2="2.01" y2="20"/>'),
+            },
+            {
+                id: 'browsex',
+                name: 'BrowseX',
+                category: 'utilities',
+                tagline: 'Privacy-first Windows browser | launching soon on MS Store',
+                badge: 'Coming Soon',
+                badgeClass: 'badge-pending',
+                status: 'soon',
+                description: 'BrowseX is in development at Hasnain Studio X. A privacy-first Windows browser built on the same zero-telemetry, no-account principles as the rest of the catalogue. Full feature details will be published closer to launch.',
+                features: [
+                    'Privacy-first browsing with zero telemetry',
+                    'No account, no tracking, no cloud sync',
+                    'Full feature list to be announced pre-launch',
+                ],
+                storeUrl: 'https://apps.microsoft.com/detail/9P49PDPB9DF4',
+                privacyUrl: 'contact.html',
+                storeLabel: 'View on MS Store',
+                icon: ico('<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>'),
+            },
+        ];
+
+        let currentFilter = 'all';
+
+        function renderGrid(filter) {
+            const grid = document.getElementById('apps-grid');
+            const countEl = document.getElementById('app-count');
+            const visible = APPS.filter(a => filter === 'all' || a.category === filter);
+
+            grid.innerHTML = visible.map(app => {
+                const isExternal = app.storeUrl.startsWith('http');
+                const target = isExternal ? ' target="_blank" rel="noopener"' : '';
+                return `
+                    <article class="app-tile reveal" role="listitem" tabindex="0"
+                        data-id="${app.id}" aria-label="${app.name} - ${app.tagline}">
+                        ${window.AppViz ? AppViz(app) : ''}
+                        <div class="tile-icon" aria-hidden="true">${app.icon}</div>
+                        <div class="tile-name">${app.name}</div>
+                        <div class="tile-tagline">${app.tagline}</div>
+                        <span class="${app.badgeClass}" style="font-size:.68rem;padding:.13rem .58rem;align-self:flex-start;">${app.badge}</span>
+                        <div class="tile-footer">
+                            <a class="tile-btn tile-btn-get" href="${app.storeUrl}"${target}
+                                onclick="event.stopPropagation()"
+                                aria-label="${app.storeLabel} - ${app.name}">${app.storeLabel}</a>
+                            <button class="tile-btn tile-btn-details"
+                                onclick="event.stopPropagation();openModal('${app.id}')"
+                                aria-label="Details for ${app.name}">Details</button>
+                        </div>
+                    </article>`;
+            }).join('');
+
+            grid.querySelectorAll('.app-tile').forEach(tile => {
+                tile.addEventListener('click', () => openModal(tile.dataset.id));
+                tile.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openModal(tile.dataset.id);
+                    }
+                });
+            });
+
+            const liveCount = visible.filter(a => a.status === 'live').length;
+            const soonCount = visible.filter(a => a.status === 'soon').length;
+            let label = liveCount + ' app' + (liveCount !== 1 ? 's' : '') + ' available';
+            if (soonCount > 0) label += ' · ' + soonCount + ' coming soon';
+            countEl.textContent = label;
+
+            requestAnimationFrame(() => {
+                grid.querySelectorAll('.reveal').forEach((el, i) => {
+                    setTimeout(() => el.classList.add('visible'), i * 50);
+                });
+            });
+        }
+
+        function openModal(id) {
+            const app = APPS.find(a => a.id === id);
+            if (!app) return;
+            const isExternal = app.storeUrl.startsWith('http');
+            const target = isExternal ? ' target="_blank" rel="noopener"' : '';
+            document.getElementById('modal-body').innerHTML = `
+                ${window.AppViz ? AppViz(app) : ''}
+                <div class="modal-head">
+                    <div class="modal-icon" aria-hidden="true">${app.icon}</div>
+                    <div>
+                        <div class="modal-name" id="modal-app-name">${app.name}</div>
+                        <span class="${app.badgeClass}" style="font-size:.73rem;">${app.badge}</span>
+                    </div>
+                </div>
+                <div class="modal-divider"></div>
+                <p class="modal-desc">${app.description}</p>
+                <div class="modal-features-label">Key Features</div>
+                <ul class="modal-features">
+                    ${app.features.map(f => '<li>' + f + '</li>').join('')}
+                </ul>
+                <div class="modal-actions">
+                    <a class="btn btn--primary" href="${app.storeUrl}"${target}>${app.storeLabel}</a>
+                    <a class="btn btn--secondary" href="${app.privacyUrl}">Privacy Policy</a>
+                </div>`;
+            document.getElementById('modal-overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('modal-close').focus();
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderGrid(currentFilter);
+            });
+        });
+
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+        document.getElementById('modal-overlay').addEventListener('click', e => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        renderGrid('all');
+        </script>
+
+        <script src="fluid.js" defer></script>
+        <script src="site.js" defer></script>
+        <script src="effects.js" defer></script>
+    </body>
+</html>

@@ -12,9 +12,10 @@
         <meta property="og:url" content="https://www.hasnainstudiox.com/android-apps.html"/>
         <meta property="og:site_name" content="Hasnain Studio X"/>
         <meta name="twitter:card" content="summary_large_image"/>
-        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <meta name="theme-color" content="#08070c"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="site.css"/>
         <style>
             /* Android Apps page - compact grid + modal layout */
@@ -761,4 +762,52 @@
                 <div class="modal-head">
                     <div class="modal-icon" aria-hidden="true">${app.icon}</div>
                     <div>
-                        <div class="modal-name" id="modal-app-name">${app.n
+                        <div class="modal-name" id="modal-app-name">${app.n                        <div class="modal-name" id="modal-app-name">${app.name}</div>
+                        <span class="${app.badgeClass}" style="font-size:.73rem;">${app.badge}</span>
+                    </div>
+                </div>
+                <div class="modal-divider"></div>
+                <p class="modal-desc">${app.description}</p>
+                <div class="modal-features-label">Key Features</div>
+                <ul class="modal-features">
+                    ${app.features.map(f => '<li>' + f + '</li>').join('')}
+                </ul>
+                <div class="modal-actions">
+                    <a class="btn btn--primary" href="${app.storeUrl}"${target}>${app.storeLabel}</a>
+                    <a class="btn btn--secondary" href="${app.privacyUrl}">Privacy Policy</a>
+                </div>`;
+            document.getElementById('modal-overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('modal-close').focus();
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderGrid(currentFilter);
+            });
+        });
+
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+        document.getElementById('modal-overlay').addEventListener('click', e => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        renderGrid('all');
+        </script>
+
+        <script src="fluid.js" defer></script>
+        <script src="site.js" defer></script>
+        <script src="effects.js" defer></script>
+    </body>
+</html>
