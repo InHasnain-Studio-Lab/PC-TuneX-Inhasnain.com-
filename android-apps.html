@@ -2,13 +2,13 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <title>Android Apps | Hasnain Studio X</title>
-        <meta name="description" content="Privacy-first Android apps from Hasnain Studio X. No trackers, no background data collection, no bloat - the same local-first standards as our Windows range."/>
+        <title>Android Privacy Apps | Zero Trackers, No Data Collection | Hasnain Studio X</title>
+        <meta name="description" content="Privacy-first Android apps from Hasnain Studio X. Mobile TuneX keeps your phone fast — zero trackers, no background data, no hidden permissions. 100% local processing on Google Play."/>
         <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
         <link rel="canonical" href="https://www.hasnainstudiox.com/android-apps.html"/>
         <meta property="og:type" content="website"/>
-        <meta property="og:title" content="Android Apps | Hasnain Studio X"/>
-        <meta property="og:description" content="Privacy-first Android apps from Hasnain Studio X."/>
+        <meta property="og:title" content="Android Privacy Apps | Zero Trackers | Hasnain Studio X"/>
+        <meta property="og:description" content="Mobile TuneX and more privacy-first Android apps. Zero trackers, no background data collection, no hidden permissions. Local processing only."/>
         <meta property="og:url" content="https://www.hasnainstudiox.com/android-apps.html"/>
         <meta property="og:site_name" content="Hasnain Studio X"/>
         <meta name="twitter:card" content="summary_large_image"/>
@@ -337,6 +337,40 @@
                 gap: .6rem;
             }
         </style>
+    <meta name="robots" content="index, follow"/>
+    <meta name="author" content="Hasnain Studio X"/>
+    <meta name="keywords" content="Android privacy apps, Android apps no trackers, privacy first Android, Android cleaner no ads, mobile apps no data collection, Google Play privacy apps"/>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.hasnainstudiox.com/android-apps.html#webpage",
+          "url": "https://www.hasnainstudiox.com/android-apps.html",
+          "name": "Android Privacy Apps | Zero Trackers | Hasnain Studio X",
+          "isPartOf": { "@id": "https://www.hasnainstudiox.com/#website" },
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hasnainstudiox.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Android Apps", "item": "https://www.hasnainstudiox.com/android-apps.html" }
+            ]
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Mobile TuneX",
+          "applicationCategory": "UtilitiesApplication",
+          "operatingSystem": "Android 10+",
+          "description": "Privacy-first Android phone cleaner. Removes junk and cache files, audits app permissions, provides battery optimisation tips, and analyses storage — all processed locally on your device.",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP", "availability": "https://schema.org/InStock" },
+          "url": "https://play.google.com/store/apps/details?id=com.mobiletunex.app",
+          "publisher": { "@id": "https://www.hasnainstudiox.com/#organization" }
+        }
+      ]
+    }
+    </script>
     </head>
     <body>
         <div id="scroll-progress"></div>
@@ -727,52 +761,4 @@
                 <div class="modal-head">
                     <div class="modal-icon" aria-hidden="true">${app.icon}</div>
                     <div>
-                        <div class="modal-name" id="modal-app-name">${app.name}</div>
-                        <span class="${app.badgeClass}" style="font-size:.73rem;">${app.badge}</span>
-                    </div>
-                </div>
-                <div class="modal-divider"></div>
-                <p class="modal-desc">${app.description}</p>
-                <div class="modal-features-label">Key Features</div>
-                <ul class="modal-features">
-                    ${app.features.map(f => '<li>' + f + '</li>').join('')}
-                </ul>
-                <div class="modal-actions">
-                    <a class="btn btn--primary" href="${app.storeUrl}"${target}>${app.storeLabel}</a>
-                    <a class="btn btn--secondary" href="${app.privacyUrl}">Privacy Policy</a>
-                </div>`;
-            document.getElementById('modal-overlay').classList.add('open');
-            document.body.style.overflow = 'hidden';
-            document.getElementById('modal-close').focus();
-        }
-
-        function closeModal() {
-            document.getElementById('modal-overlay').classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentFilter = btn.dataset.filter;
-                renderGrid(currentFilter);
-            });
-        });
-
-        document.getElementById('modal-close').addEventListener('click', closeModal);
-        document.getElementById('modal-overlay').addEventListener('click', e => {
-            if (e.target === e.currentTarget) closeModal();
-        });
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        renderGrid('all');
-        </script>
-
-        <script src="fluid.js"></script>
-        <script src="site.js"></script>
-        <script src="effects.js"></script>
-    </body>
-</html>
+                        <div class="modal-name" id="modal-app-name">${app.n

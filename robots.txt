@@ -1,3 +1,10 @@
 User-agent: *
 Allow: /
+
+# Block crawling of raw JS/CSS assets — not useful to index
+Disallow: /fluid.js
+Disallow: /site.js
+Disallow: /effects.js
+Disallow: /portfolio.js
+
 Sitemap: https://www.hasnainstudiox.com/sitemap.xml
