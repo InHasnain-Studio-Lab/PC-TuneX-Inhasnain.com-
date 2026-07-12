@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- ── Core pages ──────────────────────────────────────────────────── -->
+  <!-- ================================================================ -->
+  <!-- Core pages                                                        -->
+  <!-- ================================================================ -->
 
   <url>
-    <loc>https://www.hasnainstudiox.com/</loc>
+    <loc>https://www.hasnainstudiox.com/index.html</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -12,14 +14,14 @@
 
   <url>
     <loc>https://www.hasnainstudiox.com/Windows-apps.html</loc>
-    <lastmod>2026-06-23</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://www.hasnainstudiox.com/android-apps.html</loc>
-    <lastmod>2026-06-23</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -38,207 +40,328 @@
     <priority>0.7</priority>
   </url>
 
-  <url>
-    <loc>https://www.hasnainstudiox.com/pctunex.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- ── Privacy policies ─────────────────────────────────────────────── -->
+  <!-- ================================================================ -->
+  <!-- Privacy policy pages (one per app)                                -->
+  <!-- ================================================================ -->
 
   <url>
     <loc>https://www.hasnainstudiox.com/privacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://www.hasnainstudiox.com/PCTurboXUltraPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
+    <loc>https://www.hasnainstudiox.com/ArchiveXProPrivacy.html</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://www.hasnainstudiox.com/HypersonusPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/MediaXUltraPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
+    <loc>https://www.hasnainstudiox.com/AutoClickXPrivacy.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://www.hasnainstudiox.com/BrowseXPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
+    <lastmod>2026-07-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://www.hasnainstudiox.com/HSXStudioFlowPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/HSXVantaPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/HSXPocketAIPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/StillmotionPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/FrogeXPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/SpatiaXprivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/VAudioPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/FlipXStudioPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/WorkXPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/WebXPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/Drop2QRPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/NimbusDockPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/QuantumDropPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/XSeasonsPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/HorizonOSPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/PCGuardXPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/MobileTunexPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/XCipherPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/SpatiaXMobilePrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.hasnainstudiox.com/QCastprivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
+    <loc>https://www.hasnainstudiox.com/ConvertXProPrivacy.html</loc>
+    <lastmod>2026-06-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://www.hasnainstudiox.com/CreatorXStudioPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/DocClarityPrivacy.html</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/DocXStudioProPrivacy.html</loc>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://www.hasnainstudiox.com/DocsMiningPrivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/Drop2QRPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/FlipXStudioPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://www.hasnainstudiox.com/FlipXprivacy.html</loc>
-    <lastmod>2026-06-23</lastmod>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/FrogeXPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/GlowLabPrivacy.html</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/HSXPocketAIPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/HSXStudioFlowPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/HSXVantaPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/HorizonOSPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/HypersonusPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/Image3DXPrivacy.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/InfinityJunglePrivacy.html</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/MediaXUltraPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/MobileTunexPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/NimbusDockPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/PCDownloadManagerUltraPrivacy.html</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/PCGuardXPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/PCSenseXPrivacy.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/PCTurboXUltraPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/PCVisionXprivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/PlanetXEarthExplorerPrivacy.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/PlanetXInfinityPrivacy.html</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/PlanetXPrivacy.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/PrimeCutPrivacy.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/QCastprivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/QuantumDropPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/SenseCapturePrivacy.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/SpatiaXMobilePrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/SpatiaXprivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/StillmotionPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/SystemXPrivacy.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/VAudioElitePrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/VDroidXPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/WebXStudioPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/WorkXPrivacy.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/XCipherPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hasnainstudiox.com/XSeasonsPrivacy.html</loc>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
