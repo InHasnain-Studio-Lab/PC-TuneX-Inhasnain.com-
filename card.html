@@ -124,6 +124,77 @@
     margin-top: 26px;
   }
 
+  /* ---- business card ---- */
+
+  .avatar {
+    width: 86px;
+    height: 86px;
+    border-radius: 30px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    color: var(--ink);
+    background: rgba(255,255,255,.16);
+    border: 1px solid rgba(255,255,255,.3);
+  }
+
+  .role {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .org {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 4px 0 0;
+  }
+
+  .details {
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+    text-align: left;
+  }
+
+  .details li { border-top: 1px solid var(--rule); }
+  .details li:last-child { border-bottom: 1px solid var(--rule); }
+
+  .details a, .details .plain {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 14px 4px;
+    min-height: 44px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 15px;
+    word-break: break-word;
+  }
+
+  .details a:hover { color: var(--accent); }
+
+  .details .label {
+    flex: 0 0 74px;
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .primary {
+    background: var(--accent);
+    border-color: transparent;
+    color: #10131C;
+  }
+
+  .primary:hover { background: var(--accent); filter: brightness(1.08); }
+
   button {
     font: inherit;
     font-size: 14px;
@@ -219,12 +290,133 @@
     document.title = heading;
   }
 
-  function render(card) {
+  function paint(card, fromFallback, toFallback, accentFallback) {
     var root = document.documentElement.style;
     var backdrop = String(card.b || '').split('|');
-    root.setProperty('--from', css(backdrop[0], '#1A237E'));
-    root.setProperty('--to', css(backdrop[1] || backdrop[0], '#000051'));
-    root.setProperty('--accent', css(card.a, '#FFD700'));
+    root.setProperty('--from', css(backdrop[0], fromFallback));
+    root.setProperty('--to', css(backdrop[1] || backdrop[0], toFallback));
+    root.setProperty('--accent', css(card.a, accentFallback));
+  }
+
+  function footer() {
+    var node = el('p', 'footer');
+    node.appendChild(document.createTextNode('This card was assembled in your browser. Nothing was uploaded. '));
+    var link = el('a', null, 'Made with QR Creator Studio');
+    link.href = 'https://www.hasnainstudiox.com';
+    link.rel = 'noopener';
+    node.appendChild(link);
+    return node;
+  }
+
+  function initials(first, last) {
+    var a = (first || '').trim().charAt(0);
+    var b = (last || '').trim().charAt(0);
+    var text = (a + b).toUpperCase();
+    return text || '#';
+  }
+
+  // vCard 3.0, escaped per RFC 2426 so commas and semicolons survive.
+  function vcard(card) {
+    function esc(v) {
+      return String(v || '')
+        .replace(/\\/g, '\\\\').replace(/,/g, '\\,')
+        .replace(/;/g, '\\;').replace(/\r?\n/g, '\\n');
+    }
+    var full = ((card.f || '') + ' ' + (card.l || '')).trim();
+    var lines = ['BEGIN:VCARD', 'VERSION:3.0'];
+    lines.push('N:' + esc(card.l) + ';' + esc(card.f) + ';;;');
+    lines.push('FN:' + esc(full));
+    if (card.o) lines.push('ORG:' + esc(card.o));
+    if (card.j) lines.push('TITLE:' + esc(card.j));
+    if (card.m) lines.push('TEL;TYPE=CELL:' + esc(card.m));
+    if (card.w) lines.push('TEL;TYPE=WORK:' + esc(card.w));
+    if (card.e) lines.push('EMAIL:' + esc(card.e));
+    if (card.u) lines.push('URL:' + esc(card.u));
+    if (card.ad) {
+      var p = String(card.ad).split('|');
+      lines.push('ADR;TYPE=WORK:;;' + esc(p[0]) + ';' + esc(p[1]) + ';' + esc(p[2]) + ';' + esc(p[3]) + ';' + esc(p[4]));
+    }
+    if (card.nt) lines.push('NOTE:' + esc(card.nt));
+    lines.push('END:VCARD');
+    return lines.join('\r\n');
+  }
+
+  function detailRow(list, label, value, href) {
+    if (!value) return;
+    var item = document.createElement('li');
+    var row = el(href ? 'a' : 'span', href ? null : 'plain');
+    if (href) { row.href = href; row.rel = 'noopener'; }
+    row.appendChild(el('span', 'label', label));
+    row.appendChild(el('span', null, value));
+    item.appendChild(row);
+    list.appendChild(item);
+  }
+
+  function renderBusiness(card) {
+    paint(card, '#111827', '#0A0E1A', '#22D3EE');
+
+    var full = ((card.f || '') + ' ' + (card.l || '')).trim();
+    var article = el('article', 'card');
+
+    article.appendChild(el('div', 'avatar', initials(card.f, card.l)));
+    if (full) article.appendChild(el('h1', null, full));
+    if (card.j) article.appendChild(el('p', 'role', card.j));
+    if (card.o) article.appendChild(el('p', 'org', card.o));
+
+    var list = el('ul', 'details');
+    detailRow(list, 'Mobile', card.m, card.m ? 'tel:' + String(card.m).replace(/\s/g, '') : null);
+    detailRow(list, 'Work', card.w, card.w ? 'tel:' + String(card.w).replace(/\s/g, '') : null);
+    detailRow(list, 'Email', card.e, card.e ? 'mailto:' + card.e : null);
+
+    if (card.u) {
+      var url = /^https?:\/\//i.test(card.u) ? card.u : 'https://' + card.u;
+      detailRow(list, 'Website', card.u, url);
+    }
+
+    if (card.ad) {
+      var address = String(card.ad).split('|').filter(function (part) { return part && part.trim(); }).join(', ');
+      detailRow(list, 'Address', address, address ? 'https://maps.google.com/?q=' + encodeURIComponent(address) : null);
+    }
+
+    detailRow(list, 'Note', card.nt, null);
+    if (list.childNodes.length) article.appendChild(list);
+
+    var actions = el('div', 'actions');
+
+    // Rebuilding the contact file here keeps the phone's own add-contact sheet
+    // one tap away, which is the part a plain web page would otherwise lose.
+    var save = el('button', 'primary', 'Save to contacts');
+    save.addEventListener('click', function () {
+      var blob = new Blob([vcard(card)], { type: 'text/vcard;charset=utf-8' });
+      var href = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = href;
+      a.download = (full || 'contact').replace(/[^\w\- ]+/g, '') + '.vcf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(href); }, 4000);
+    });
+    actions.appendChild(save);
+
+    if (navigator.share) {
+      var share = el('button', null, 'Share');
+      share.addEventListener('click', function () {
+        navigator.share({ title: full || 'Contact card', url: location.href }).catch(function () { });
+      });
+      actions.appendChild(share);
+    }
+
+    article.appendChild(actions);
+
+    stage.innerHTML = '';
+    stage.appendChild(article);
+    stage.appendChild(footer());
+    document.title = full ? full : 'Contact card';
+  }
+
+  function render(card) {
+    paint(card, '#1A237E', '#000051', '#FFD700');
 
     var article = el('article', 'card');
 
@@ -257,14 +449,7 @@
     article.appendChild(actions);
     stage.innerHTML = '';
     stage.appendChild(article);
-
-    var footer = el('p', 'footer');
-    footer.appendChild(document.createTextNode('This card was assembled in your browser. Nothing was uploaded. '));
-    var link = el('a', null, 'Made with QR Creator Studio');
-    link.href = 'https://www.hasnainstudiox.com';
-    link.rel = 'noopener';
-    footer.appendChild(link);
-    stage.appendChild(footer);
+    stage.appendChild(footer());
 
     document.title = card.t ? card.t : 'A card for you';
   }
@@ -280,8 +465,17 @@
 
     try {
       var card = decode(fragment);
-      if (!card || (!card.t && !card.m)) throw new Error('empty card');
-      render(card);
+      if (!card) throw new Error('no card');
+
+      // Links made before the business card existed carry no kind, so an absent
+      // kind still means a greeting.
+      if (card.k === 'b') {
+        if (!card.f && !card.l) throw new Error('empty contact');
+        renderBusiness(card);
+      } else {
+        if (!card.t && !card.m) throw new Error('empty greeting');
+        render(card);
+      }
     } catch (e) {
       showEmpty(
         'This card could not be read',
